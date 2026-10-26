@@ -28,7 +28,7 @@ const areas: { title: string; body: string; evidence: string }[] = [
   {
     title: "Python security tools",
     body: "A Python TCP port scanner for authorized environments.",
-    evidence: "Source is on GitHub (see the Python Network Port Scanner project, including its documented limitations). Redacted lab output is still to be added.",
+    evidence: "See the Python Network Port Scanner project page, including its documented limitations. Redacted lab output is still to be added.",
   },
   {
     title: "Linux and command-line work",

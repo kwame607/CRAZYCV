@@ -17,7 +17,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner")] },
       { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)")] },
       { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
-      { name: "SQL", evidence: [{ kind: "repository", label: "AM-Dataflow: SQL script and Supabase", href: "https://github.com/kwame607/AM-Dataflow" }] },
+      { name: "SQL", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Supabase, SQL scripts)")] },
       { name: "C++", evidence: [], needsEvidence: true },
     ],
   },
@@ -55,7 +55,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Tools",
     skills: [
-      { name: "Git and GitHub", evidence: [{ kind: "repository", label: "GitHub profile and repositories", href: "https://github.com/kwame607?tab=repositories" }] },
+      { name: "Git and GitHub", evidence: [{ kind: "repository", label: "GitHub profile", href: "https://github.com/kwame607" }] },
       { name: "Kali Linux", evidence: [], needsEvidence: true },
       { name: "Browser developer tools", evidence: [], needsEvidence: true },
     ],

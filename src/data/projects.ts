@@ -45,7 +45,7 @@ export const projects: Project[] = [
       "Seller terms, terms and privacy pages",
     ],
     evidenceNote:
-      "Read from the private repository kwame607/adepamarket (package.json, route and page names, Wrangler binding types). Not tested against the live site.",
+      "Read from the project's source code (dependency list, route and page names, deployment configuration). Not tested against the live site.",
     toDocument: [
       "Architecture diagram (storefront, seller portal, admin, D1, payments, images)",
       "End-to-end payment and order flow",
@@ -64,7 +64,6 @@ export const projects: Project[] = [
     links: [{ label: "Live site", href: "https://adepamarket.admunz.workers.dev/" }],
     screenshots: [placeholder("the AdepaMarket home page")],
     ownerNotes: [
-      "The repository is private, so no source link is shown. Add one here if you make it public.",
       "Confirm you are happy listing this stack summary publicly.",
       "Real screenshots are needed; I could not capture any from this environment.",
     ],
@@ -100,7 +99,7 @@ export const projects: Project[] = [
       "Networks referenced in code: MTN, Telecel and AirtelTigo",
     ],
     evidenceNote:
-      "Read from the public repository kwame607/AM-Dataflow (package name dataflow-gh). Its README and logo component are titled ADMUNZ, so DataFlow Ghana is shown here as the same product rather than a separate one. Not tested against the live site.",
+      "Read from the project's source code (dependency list, routes, components). DataFlow Ghana is the working name of this same product, confirmed by the owner, so it is not listed separately. Not tested against the live site.",
     toDocument: [
       "Architecture diagram (agents, wallet, Paystack, upstream providers, cron jobs)",
       "Payment and fulfilment flow, including failure and reconciliation handling",
@@ -115,13 +114,9 @@ export const projects: Project[] = [
       "Observations from reading the source, not a security assessment: the Paystack webhook handler contains signature-verification code (HMAC and timing-safe comparison); Zod validation is imported in 2 files; rate limiting is referenced in 12 files; no .env file is committed and a simple pattern search found no obvious keys (a quick search, not a secret-scanning audit).",
       "Nothing has been tested against the live site. No finding, fix or retest is claimed.",
     ],
-    links: [
-      { label: "Live site", href: "https://www.admunz.com/" },
-      { label: "Source on GitHub", href: "https://github.com/kwame607/AM-Dataflow" },
-    ],
+    links: [{ label: "Live site", href: "https://www.admunz.com/" }],
     screenshots: [placeholder("the Admunz Data Hub storefront and agent dashboard")],
     ownerNotes: [
-      "Please confirm DataFlow Ghana and Admunz are the same product (inferred from the repository). If DataFlow Ghana is separately deployed, say so and it can get its own entry.",
       "The repository README is a patch note ('Three Fixes'), not project documentation. A real README would strengthen this entry.",
       "The repository contains two stray files that look like accidental shell output: app/store/[slug]/dataflow-gh@0.1.0 and app/store/[slug]/next.",
       "Zod validation appears in only 2 files; worth checking that the other API routes validate input some other way.",
@@ -132,7 +127,7 @@ export const projects: Project[] = [
     slug: "city-beans",
     title: "City Beans",
     tagline: "Restaurant ordering site with online payment, delivery zones and an admin panel",
-    status: "Source reviewed; live link to be confirmed",
+    status: "Live (owner-reported); source reviewed",
     featured: true,
     overview:
       "A restaurant website where customers browse the menu, order online, pay, and follow their order, backed by an admin area for running orders, products, riders and delivery.",
@@ -157,7 +152,7 @@ export const projects: Project[] = [
       "Admin area with login: orders, products, riders and delivery management",
     ],
     evidenceNote:
-      "Read from the public repository kwame607/city-beans (package.json, source files, database table and function names). Not tested against a live site.",
+      "Read from the project's source code (dependency list, source files, database table and function names). Not tested against the live site.",
     toDocument: [
       "Architecture diagram (React client, Supabase tables and functions, Paystack)",
       "Order and payment flow, including the failure and 'still confirming' paths",
@@ -171,10 +166,10 @@ export const projects: Project[] = [
       "Observations from reading the source, not a security assessment: payment verification runs in a server-side function rather than in the browser, and order creation and lookup go through database functions. The admin route has a client-side guard, so real protection depends on the database access rules, which have not been reviewed here.",
       "Nothing has been tested against a live site. No finding, fix or retest is claimed.",
     ],
-    links: [{ label: "Source on GitHub", href: "https://github.com/kwame607/city-beans" }],
+    links: [{ label: "Live site", href: "https://kwame607.github.io/city-beans/" }],
     screenshots: [placeholder("the City Beans menu and checkout")],
     ownerNotes: [
-      "The live URL you gave (kwame607.github.io/citybeans) returned an error. The repo is configured to deploy at /city-beans/ (with the hyphen). Please confirm the correct address and I will add the Live site link.",
+      "The live link uses the address you confirmed (with the hyphen). I could not load it from my environment, so please click it once to check.",
       "Real screenshots are needed; I could not capture any from this environment.",
     ],
   },
@@ -182,7 +177,7 @@ export const projects: Project[] = [
     slug: "python-port-scanner",
     title: "Python Network Port Scanner",
     tagline: "Interactive TCP connect scanner for authorized targets",
-    status: "Source on GitHub; sample output pending",
+    status: "Built; sample output pending",
     featured: true,
     overview:
       "A Python command-line tool that checks which TCP ports accept connections on a host the user chooses. It prompts for a hostname or IPv4 address, a port range, and a scan mode, then reports open ports.",
@@ -204,7 +199,7 @@ export const projects: Project[] = [
       "README includes a disclaimer to scan only systems you own or have permission to test",
     ],
     evidenceNote:
-      "Read from the public repository kwame607/python-port-scanner (README, main.py, nocopyrightport_scanner.py, requirements.txt). The tool was read, not run, for this page.",
+      "Read from the tool's source code and README. The tool was read, not run, for this page.",
     limitations: [
       "Ports are scanned one at a time, so large ranges are slow.",
       "Any failed connection is reported as 'closed', so it cannot tell a refused connection from a filtered port or a timeout.",
@@ -225,7 +220,7 @@ export const projects: Project[] = [
       "Meant only for systems you own or are authorized to test. Nothing on this website runs the scanner.",
       "The Security Lab demo is a fixed, simulated dataset against reserved documentation addresses.",
     ],
-    links: [{ label: "Source on GitHub", href: "https://github.com/kwame607/python-port-scanner" }],
+    links: [],
     screenshots: [placeholder("redacted scanner output from a controlled lab")],
     ownerNotes: [
       "The README says to run menu.py, but the repository contains main.py (and a simpler nocopyrightport_scanner.py).",
@@ -234,11 +229,11 @@ export const projects: Project[] = [
   },
   {
     slug: "other-projects",
-    title: "More on GitHub",
-    tagline: "Other repositories, not yet written up",
+    title: "More projects",
+    tagline: "Other projects, not yet written up",
     status: "Not yet reviewed",
     overview:
-      "Other repositories exist on the GitHub account, including a Python LAN chat application. They have not been reviewed for this site yet, so no features or technologies are claimed for them.",
+      "Other projects exist, including a Python LAN chat application. They have not been reviewed for this site yet, so no features or technologies are claimed for them.",
     problem: "Each project will state its own problem once reviewed.",
     role: "To be confirmed.",
     technologiesVerified: [],
@@ -249,10 +244,7 @@ export const projects: Project[] = [
     challenges: [],
     learned: [],
     security: ["Not assessed."],
-    links: [
-      { label: "python-lan-chat on GitHub", href: "https://github.com/kwame607/python-lan-chat" },
-      { label: "All repositories", href: "https://github.com/kwame607?tab=repositories" },
-    ],
+    links: [],
     screenshots: [],
     ownerNotes: ["Tell me which of the other repositories should be featured and I will review and write them up."],
   },
