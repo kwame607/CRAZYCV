@@ -36,6 +36,10 @@ export interface Project {
   security: string[];
   links: ProjectLink[];
   screenshots: ProjectAsset[];
+  /** Where the verified details came from. Shown on the case study. */
+  evidenceNote?: string;
+  /** Known limitations of the work itself (tools, scope, accuracy). */
+  limitations?: string[];
   /** Notes for the site owner about unresolved facts. */
   ownerNotes: string[];
 }

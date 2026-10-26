@@ -4,11 +4,13 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { z } from "zod";
 import type { InfoSection, IpState, ServerInfoState } from "@/types/browser-info";
 import { buildSections, collectClientSnapshot, readPlatformVersion, type ClientSnapshot } from "@/lib/browser/collect-display-info";
+import { previewBuildId, previewVersion, staticPreview } from "@/lib/preview";
 
 interface SystemInfoValue {
   ready: boolean;
   sections: InfoSection[];
   ip: IpState;
+  server: ServerInfoState;
   /** Explicit, user-initiated. Resolves to the IP or rejects. */
   requestIp: () => Promise<string>;
   clearIp: () => void;
@@ -46,7 +48,9 @@ async function fetchJson(url: string, timeoutMs: number): Promise<unknown> {
 
 export function SystemInfoProvider({ children }: { children: ReactNode }) {
   const [snapshot, setSnapshot] = useState<ClientSnapshot | null>(null);
-  const [server, setServer] = useState<ServerInfoState>({ state: "loading" });
+  const [server, setServer] = useState<ServerInfoState>(() =>
+    staticPreview ? { state: "static", version: previewVersion, build: previewBuildId } : { state: "loading" },
+  );
   const [ip, setIp] = useState<IpState>({ state: "not-requested" });
   const ipRef = useRef(ip);
   useEffect(() => {
@@ -54,6 +58,7 @@ export function SystemInfoProvider({ children }: { children: ReactNode }) {
   }, [ip]);
 
   const loadServer = useCallback(async () => {
+    if (staticPreview) return; // no server to ask
     setServer({ state: "loading" });
     const t0 = performance.now();
     try {
@@ -89,6 +94,11 @@ export function SystemInfoProvider({ children }: { children: ReactNode }) {
   }, [loadSnapshot, loadServer]);
 
   const requestIp = useCallback(async () => {
+    if (staticPreview) {
+      const message = "Public IP lookup needs a server and is not available in the static GitHub Pages preview.";
+      setIp({ state: "failed", message });
+      throw new Error(message);
+    }
     setIp({ state: "loading" });
     try {
       const data = ipSchema.parse(await fetchJson("/api/ip", 6000));
@@ -96,7 +106,7 @@ export function SystemInfoProvider({ children }: { children: ReactNode }) {
       return data.ip;
     } catch {
       setIp({ state: "failed", message: "The lookup did not complete. This is optional; nothing else is affected." });
-      throw new Error("ip lookup failed");
+      throw new Error("The lookup failed or timed out.");
     }
   }, []);
 
@@ -111,8 +121,8 @@ export function SystemInfoProvider({ children }: { children: ReactNode }) {
   const sections = useMemo(() => (snapshot ? buildSections(snapshot, server, ip) : []), [snapshot, server, ip]);
 
   const value = useMemo<SystemInfoValue>(
-    () => ({ ready: snapshot !== null, sections, ip, requestIp, clearIp, refresh }),
-    [snapshot, sections, ip, requestIp, clearIp, refresh],
+    () => ({ ready: snapshot !== null, sections, ip, server, requestIp, clearIp, refresh }),
+    [snapshot, sections, ip, server, requestIp, clearIp, refresh],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

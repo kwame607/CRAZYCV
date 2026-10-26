@@ -12,7 +12,7 @@ export function HomeApp() {
   return (
     <div>
       <p className="font-mono text-xs text-term">welcome to ADOM // OS</p>
-      <h1 className="mt-2 font-display text-4xl leading-tight text-fg">{profile.name}</h1>
+      <h2 className="mt-2 font-display text-4xl leading-tight text-fg">{profile.name}</h2>
       <p className="mt-2 text-sm text-accent">{profile.roles.join(" · ")}</p>
       <p className="mt-3 max-w-prose text-sm leading-relaxed text-fg2">{profile.summary}</p>
 

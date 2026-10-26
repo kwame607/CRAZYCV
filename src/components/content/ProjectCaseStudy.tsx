@@ -1,6 +1,7 @@
 import { ExternalLink, ImageOff } from "lucide-react";
 import type { Project } from "@/types/portfolio";
 import { Notice, SectionTitle } from "@/components/shared/ui";
+import { showOwnerNotes, withBase } from "@/lib/preview";
 
 function List({ items, empty }: { items: string[]; empty: string }) {
   if (items.length === 0) return <p className="text-sm italic text-fg2">{empty}</p>;
@@ -49,10 +50,18 @@ export function ProjectCaseStudy({ project: p }: { project: Project }) {
       <SectionTitle>My role</SectionTitle>
       <p className="text-sm text-fg2">{p.role}</p>
 
-      <SectionTitle>Confirmed features</SectionTitle>
+      {p.evidenceNote && (
+        <div className="mt-4">
+          <Notice>
+            <strong className="text-fg">Basis for these details:</strong> {p.evidenceNote}
+          </Notice>
+        </div>
+      )}
+
+      <SectionTitle>Features (confirmed from source or owner)</SectionTitle>
       <List items={p.featuresVerified} empty="None confirmed yet." />
 
-      <SectionTitle>Technologies (verified)</SectionTitle>
+      <SectionTitle>Technologies (verified in source)</SectionTitle>
       <List items={p.technologiesVerified} empty="None verified yet. Only confirmed technologies are listed here." />
       {p.technologiesToConfirm.length > 0 && (
         <>
@@ -63,6 +72,13 @@ export function ProjectCaseStudy({ project: p }: { project: Project }) {
 
       <SectionTitle>Still to document</SectionTitle>
       <List items={p.toDocument} empty="Nothing outstanding." />
+
+      {p.limitations && p.limitations.length > 0 && (
+        <>
+          <SectionTitle>Known limitations</SectionTitle>
+          <List items={p.limitations} empty="" />
+        </>
+      )}
 
       <SectionTitle>Key engineering decisions</SectionTitle>
       <List items={p.decisions} empty="Not yet written up." />
@@ -79,7 +95,7 @@ export function ProjectCaseStudy({ project: p }: { project: Project }) {
         {p.screenshots.map((s) =>
           s.src ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img key={s.src} src={s.src} alt={s.alt} loading="lazy" className="rounded-lg border border-line" />
+            <img key={s.src} src={withBase(s.src)} alt={s.alt} loading="lazy" className="rounded-lg border border-line" />
           ) : (
             <figure key={s.alt} className="flex aspect-video flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-line bg-white/[0.02] p-4 text-center">
               <ImageOff className="h-6 w-6 text-fg2" aria-hidden />
@@ -93,10 +109,10 @@ export function ProjectCaseStudy({ project: p }: { project: Project }) {
         )}
       </div>
 
-      {p.ownerNotes.length > 0 && (
+      {showOwnerNotes && p.ownerNotes.length > 0 && (
         <div className="pt-5">
           <Notice tone="warn">
-            <p className="mb-1 font-medium text-fg">Open items for the site owner</p>
+            <p className="mb-1 font-medium text-fg">Preview notes for the site owner (hidden in production)</p>
             <ul className="list-disc pl-5">
               {p.ownerNotes.map((n) => (
                 <li key={n}>{n}</li>

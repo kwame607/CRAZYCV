@@ -65,7 +65,8 @@ export const simScenarios: SimScenario[] = [
         service: "mysql",
         explanation:
           "No response arrived. A firewall silently dropping packets looks like this, but so does packet loss.",
-        falsePositiveNote: "Filtered is not the same as closed or secure. A retry from another vantage point may differ.",
+        falsePositiveNote:
+          "Filtered is not the same as closed or secure. A retry from another vantage point may differ. Note: a simple connect-scanner that treats every failed connection as 'closed' (like my own Python scanner) cannot tell these apart.",
         remediation: "Keep databases off public interfaces; allow access only from application hosts.",
       },
       {

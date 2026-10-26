@@ -168,6 +168,13 @@ function serverItems(server: ServerInfoState): InfoItem[] {
   if (server.state === "loading") {
     return [{ label: "Server info", value: "Loading…", status: "not-requested" }];
   }
+  if (server.state === "static") {
+    return [
+      { label: "Server API", value: "Not available in this static preview", status: "unavailable", note: "GitHub Pages serves static files only, so /api/* does not exist here. On a Next.js host these rows show live values." },
+      { label: "App version", value: server.version, status: server.version === "not configured" ? "unavailable" : "detected", note: "Baked in at build time from package.json." },
+      { label: "Build identifier", value: server.build, status: server.build === "not configured" ? "unavailable" : "detected", note: "Baked in at build time (commit SHA)." },
+    ];
+  }
   if (server.state === "error") {
     return [{ label: "API availability", value: "Unavailable", status: "unavailable", note: `${server.message}. The rest of the portfolio works without it.` }];
   }

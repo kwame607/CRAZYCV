@@ -27,13 +27,21 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Quality gates run against the normal (server) configuration, before API routes are removed.
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
       - name: Remove server-only API routes (static export cannot include them)
         run: rm -rf src/app/api
       - name: Build static export
         run: npm run build
         env:
           GITHUB_PAGES: "true"
+          NEXT_PUBLIC_STATIC_PREVIEW: "true"
+          NEXT_PUBLIC_BASE_PATH: /CRAZYCV
           NEXT_PUBLIC_SITE_URL: https://kwame607.github.io/CRAZYCV
+          NEXT_PUBLIC_BUILD_ID: ${{ github.sha }}
+          NEXT_PUBLIC_APP_VERSION: 0.1.0
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

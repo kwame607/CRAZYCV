@@ -52,7 +52,7 @@ export function initialState(): WmState {
 }
 
 export type WmAction =
-  | { type: "open"; id: AppId }
+  | { type: "open"; id: AppId; anchor?: "left" | "right" }
   | { type: "close"; id: AppId }
   | { type: "minimize"; id: AppId }
   | { type: "focus"; id: AppId }
@@ -106,7 +106,10 @@ export function wmReducer(s: WmState, a: WmAction): WmState {
       if (!w.placed) {
         // Cascade new windows so they do not stack exactly on top of each other.
         const n = openCount(s);
-        const rect = clampRect({ x: 24 + n * 32, y: 16 + n * 28, w: w.w, h: w.h }, s.bounds);
+        // An anchor gives the first-run layout: side by side instead of stacked.
+        const rect = a.anchor
+          ? clampRect({ x: a.anchor === "left" ? 24 : s.bounds.w - w.w - 24, y: 20, w: w.w, h: w.h }, s.bounds)
+          : clampRect({ x: 24 + n * 32, y: 16 + n * 28, w: w.w, h: w.h }, s.bounds);
         next = { ...w, ...rect, placed: true };
       }
       next = { ...next, open: true, minimized: false, z: s.zTop };

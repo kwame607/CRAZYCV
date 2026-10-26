@@ -20,7 +20,8 @@ export const profile: Profile = {
   summary:
     "I build functional web applications and I am developing practical cybersecurity skills through authorized, documented laboratory assessments: investigate, document evidence, fix, and retest.",
   email: envOrNull(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
-  github: envOrNull(process.env.NEXT_PUBLIC_GITHUB_URL),
+  // The account owns the repositories this portfolio documents; override with the env var if needed.
+  github: envOrNull(process.env.NEXT_PUBLIC_GITHUB_URL) ?? "https://github.com/kwame607",
   linkedin: envOrNull(process.env.NEXT_PUBLIC_LINKEDIN_URL),
   cvPdfPath: "/documents/Kwame-Emmanuel-Adom-CV.pdf",
   learningGoals: [

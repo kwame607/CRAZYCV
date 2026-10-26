@@ -15,9 +15,9 @@ export const skillGroups: SkillGroup[] = [
     title: "Programming",
     skills: [
       { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner")] },
-      { name: "JavaScript and TypeScript", evidence: [], needsEvidence: true },
+      { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)")] },
       { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
-      { name: "SQL", evidence: [], needsEvidence: true },
+      { name: "SQL", evidence: [{ kind: "repository", label: "AM-Dataflow: SQL script and Supabase", href: "https://github.com/kwame607/AM-Dataflow" }] },
       { name: "C++", evidence: [], needsEvidence: true },
     ],
   },
@@ -26,9 +26,9 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Full-stack web applications", evidence: [proj("admunz-data-hub", "Admunz Data Hub"), proj("adepamarket", "AdepaMarket")] },
       { name: "Responsive design", evidence: [proj("adepamarket", "AdepaMarket")] },
-      { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub")] },
-      { name: "React and Next.js", evidence: [{ kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }] },
-      { name: "Database integration", evidence: [], needsEvidence: true },
+      { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Paystack, upstream providers)"), proj("adepamarket", "AdepaMarket (Paystack)")] },
+      { name: "React and Next.js", evidence: [{ kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }, proj("adepamarket", "AdepaMarket"), proj("admunz-data-hub", "Admunz Data Hub")] },
+      { name: "Database integration", evidence: [proj("adepamarket", "AdepaMarket (D1 with Drizzle)"), proj("admunz-data-hub", "Admunz Data Hub (Supabase)")] },
     ],
   },
   {
@@ -55,7 +55,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Tools",
     skills: [
-      { name: "Git and GitHub", evidence: [], needsEvidence: true },
+      { name: "Git and GitHub", evidence: [{ kind: "repository", label: "GitHub profile and repositories", href: "https://github.com/kwame607?tab=repositories" }] },
       { name: "Kali Linux", evidence: [], needsEvidence: true },
       { name: "Browser developer tools", evidence: [], needsEvidence: true },
     ],

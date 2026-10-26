@@ -14,6 +14,8 @@ interface DesktopValue {
   mobileApp: AppId;
   params: AppParams;
   pdfAvailable: boolean;
+  /** False until the saved or default window layout has been applied on the client. */
+  hydrated: boolean;
 }
 
 const Ctx = createContext<DesktopValue | null>(null);
@@ -41,8 +43,9 @@ export function DesktopProvider({ children, pdfAvailable }: { children: ReactNod
       /* storage blocked or corrupt: fall back to defaults */
     }
     if (!restored) {
-      dispatch({ type: "open", id: "system" });
-      dispatch({ type: "open", id: "home" });
+      dispatch({ type: "open", id: "home", anchor: "left" });
+      dispatch({ type: "open", id: "system", anchor: "right" });
+      dispatch({ type: "focus", id: "home" });
     }
     // Hydration flag flips once after the layout has been restored.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -70,8 +73,8 @@ export function DesktopProvider({ children, pdfAvailable }: { children: ReactNod
   }, []);
 
   const value = useMemo(
-    () => ({ state, dispatch, openApp, mobileApp, params, pdfAvailable }),
-    [state, openApp, mobileApp, params, pdfAvailable],
+    () => ({ state, dispatch, openApp, mobileApp, params, pdfAvailable, hydrated }),
+    [state, openApp, mobileApp, params, pdfAvailable, hydrated],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

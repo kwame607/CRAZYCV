@@ -35,10 +35,15 @@ export function ContactContent() {
         )}
       </ul>
 
-      {!hasAny && (
-        <Notice tone="warn">
-          Contact details are not configured yet. Set <code className="font-mono text-xs text-fg">NEXT_PUBLIC_CONTACT_EMAIL</code> and{" "}
-          <code className="font-mono text-xs text-fg">NEXT_PUBLIC_GITHUB_URL</code> (see README) and redeploy.
+      {!profile.email && (
+        <Notice tone={hasAny ? "info" : "warn"}>
+          {hasAny ? (
+            <>An email address is not published on this site yet. Please reach out through GitHub in the meantime.</>
+          ) : (
+            <>
+              Contact details are not configured yet. Set <code className="font-mono text-xs text-fg">NEXT_PUBLIC_CONTACT_EMAIL</code> (see README) and redeploy.
+            </>
+          )}
         </Notice>
       )}
     </div>

@@ -25,7 +25,7 @@ function useIsMobile(): boolean {
 }
 
 function Workspace() {
-  const { dispatch, state } = useDesktop();
+  const { dispatch, state, hydrated } = useDesktop();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function Workspace() {
           {appIds.map((id) => (
             <DesktopWindow key={id} id={id} />
           ))}
-          {appIds.every((id) => !state.wins[id].open || state.wins[id].minimized) && (
+          {hydrated && appIds.every((id) => !state.wins[id].open || state.wins[id].minimized) && (
             <p className="absolute inset-0 grid place-items-center text-sm text-fg2">All windows are closed or minimized. Choose an app from the dock.</p>
           )}
         </main>

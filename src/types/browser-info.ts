@@ -38,6 +38,8 @@ export interface ServerInfo {
 export type ServerInfoState =
   | { state: "loading" }
   | { state: "ok"; info: ServerInfo; roundTripMs: number }
+  /** GitHub Pages preview: no server exists, values are baked in at build time. */
+  | { state: "static"; version: string; build: string }
   | { state: "error"; message: string };
 
 export type IpState =

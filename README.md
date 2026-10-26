@@ -31,6 +31,7 @@ All variables are optional. Nothing here is a secret: `NEXT_PUBLIC_*` values are
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin for sitemap, robots and Open Graph |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Shown in Contact/CV and used for the `mailto:` link. Empty means "not configured" is shown |
 | `NEXT_PUBLIC_GITHUB_URL`, `NEXT_PUBLIC_LINKEDIN_URL` | Profile links. Empty means hidden |
+| `NEXT_PUBLIC_STATIC_PREVIEW`, `NEXT_PUBLIC_BASE_PATH`, `NEXT_PUBLIC_BUILD_ID`, `NEXT_PUBLIC_APP_VERSION` | Set only by the GitHub Pages workflow (static preview). Leave unset everywhere else |
 | `APP_VERSION` | Version shown in System Overview. Falls back to `package.json` |
 | `BUILD_ID` | Build identifier (commit SHA). Falls back to `VERCEL_GIT_COMMIT_SHA`, `CF_PAGES_COMMIT_SHA`, `GITHUB_SHA`, else "not configured" |
 | `DEPLOY_ENV` | Environment label. Falls back to `NODE_ENV` |
@@ -73,6 +74,14 @@ Hosting providers keep their own access logs; check your provider's retention se
 - **Network Tools:** local calculations only. No DNS, port, or TLS probing of arbitrary targets.
 - **Headers:** CSP, `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (camera, microphone, geolocation, etc. disabled), COOP, and HSTS in production (`next.config.ts`). The CSP allows `'unsafe-inline'` scripts because Next.js inlines bootstrap scripts; tightening this needs a per-request nonce via middleware.
 - **No contact form:** none is shown because no message-handling backend is configured. Contact is via `mailto:` and profile links.
+
+## GitHub Pages preview
+
+`.github/workflows/pages.yml` publishes a static preview to `https://kwame607.github.io/CRAZYCV/` on every push to `main` (enable it once under Settings → Pages → Source: GitHub Actions). The workflow runs typecheck, lint and tests, removes `src/app/api` for that build only, and builds with `GITHUB_PAGES=true`. In the preview:
+
+- there is no server, so System Overview labels the server rows "Not available in this static preview" and the public-IP button is disabled (version and build id are baked in at build time);
+- security headers cannot be set, so the CSP and related headers in `next.config.ts` only apply on a real Next.js host;
+- owner-facing notes on project pages are visible; they are hidden in production builds.
 
 ## Deployment
 

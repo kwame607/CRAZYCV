@@ -63,9 +63,9 @@ export function BootScreen({ onDone }: { onDone: () => void }) {
 
   return (
     <div className="boot-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-bg p-6" role="status" aria-live="polite" aria-label="Starting">
-      <h1 className="font-mono text-3xl font-semibold tracking-wide text-fg sm:text-4xl">
+      <p className="font-mono text-3xl font-semibold tracking-wide text-fg sm:text-4xl">
         ADOM <span className="text-accent">{"//"}</span> OS
-      </h1>
+      </p>
       <div className="mt-6 h-1 w-64 max-w-full overflow-hidden rounded bg-white/10">
         <div className="boot-bar h-full bg-accent" />
       </div>

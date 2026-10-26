@@ -43,7 +43,7 @@ const nextConfig: NextConfig = isPages
   ? {
       reactStrictMode: true,
       output: "export",
-      basePath: "/CRAZYCV",
+      basePath: process.env.NEXT_PUBLIC_BASE_PATH || "/CRAZYCV",
       trailingSlash: true,
       images: { unoptimized: true },
     }

@@ -3,6 +3,7 @@ import { profile, education, experience } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
 import { Notice, SectionTitle } from "@/components/shared/ui";
+import { withBase } from "@/lib/preview";
 
 export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
   return (
@@ -10,7 +11,7 @@ export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
       <div className="mb-4">
         {pdfAvailable ? (
           <a
-            href={profile.cvPdfPath}
+            href={withBase(profile.cvPdfPath)}
             download
             className="inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-bg hover:brightness-110"
           >

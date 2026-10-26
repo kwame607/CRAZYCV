@@ -23,7 +23,7 @@ export function AppDock() {
             }`}
           >
             <Icon className="h-5 w-5" aria-hidden />
-            <span className="max-w-full truncate px-0.5 text-[9px] leading-none">{title.split(" ")[0]}</span>
+            <span className="max-w-full truncate px-0.5 text-[10px] leading-none">{title.split(" ")[0]}</span>
             {running && <span aria-hidden className="absolute -left-1.5 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent" />}
           </button>
         );

@@ -102,8 +102,8 @@ const commands: CommandDef[] = [
             try {
               const ip = await ctx.requestIp();
               return [{ kind: "out", text: `Public IP: ${ip}` }, { kind: "info", text: "VPNs, proxies and carrier NAT can change this. It is not stored." }];
-            } catch {
-              return [{ kind: "err", text: "Public IP: not retrieved (lookup failed)." }];
+            } catch (e) {
+              return [{ kind: "err", text: `Public IP: not retrieved. ${e instanceof Error ? e.message : "The lookup failed."}` }];
             }
           },
         };

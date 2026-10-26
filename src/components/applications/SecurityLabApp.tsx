@@ -18,7 +18,7 @@ const areas: { title: string; body: string; evidence: string }[] = [
   {
     title: "Web application security",
     body: "Header, cookie, session, access-control and input-handling reviews of sites I own or am authorized to test.",
-    evidence: "No published assessment yet. See the sample record under Assessments for the format.",
+    evidence: "No live assessment published yet. Source-level observations are on the AdepaMarket and Admunz project pages; the Assessments tab shows the record format.",
   },
   {
     title: "Network security",
@@ -28,7 +28,7 @@ const areas: { title: string; body: string; evidence: string }[] = [
   {
     title: "Python security tools",
     body: "A Python TCP port scanner for authorized environments.",
-    evidence: "Project entry exists; redacted lab output and repository link still to be added.",
+    evidence: "Source is on GitHub (see the Python Network Port Scanner project, including its documented limitations). Redacted lab output is still to be added.",
   },
   {
     title: "Linux and command-line work",
