@@ -129,6 +129,56 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "city-beans",
+    title: "City Beans",
+    tagline: "Restaurant ordering site with online payment, delivery zones and an admin panel",
+    status: "Source reviewed; live link to be confirmed",
+    featured: true,
+    overview:
+      "A restaurant website where customers browse the menu, order online, pay, and follow their order, backed by an admin area for running orders, products, riders and delivery.",
+    problem:
+      "A restaurant needs a simple way to take and track orders online, accept payment, and manage delivery without handling everything by hand.",
+    role: "Developer and repository owner (specific responsibilities to be added by the owner).",
+    technologiesVerified: [
+      "React, built with Vite (JavaScript/JSX)",
+      "Tailwind CSS and Lucide icons",
+      "React Router",
+      "Supabase (JavaScript client; database functions and an Edge Function)",
+      "Paystack (payment hook and public key usage in the client)",
+      "GitHub Actions deployment to GitHub Pages",
+    ],
+    technologiesToConfirm: [],
+    featuresVerified: [
+      "Menu loaded from a database: products, categories, extras and per-product extras",
+      "Cart and checkout, with delivery zones",
+      "Order creation, payment initialisation and order-status lookup through database functions",
+      "Payment verification through a server-side Supabase Edge Function",
+      "Order tracking for customers, and payment result screens (not completed, still confirming, error)",
+      "Admin area with login: orders, products, riders and delivery management",
+    ],
+    evidenceNote:
+      "Read from the public repository kwame607/city-beans (package.json, source files, database table and function names). Not tested against a live site.",
+    toDocument: [
+      "Architecture diagram (React client, Supabase tables and functions, Paystack)",
+      "Order and payment flow, including the failure and 'still confirming' paths",
+      "How admin access is enforced on the database side",
+      "Real screenshots",
+    ],
+    decisions: [],
+    challenges: [],
+    learned: [],
+    security: [
+      "Observations from reading the source, not a security assessment: payment verification runs in a server-side function rather than in the browser, and order creation and lookup go through database functions. The admin route has a client-side guard, so real protection depends on the database access rules, which have not been reviewed here.",
+      "Nothing has been tested against a live site. No finding, fix or retest is claimed.",
+    ],
+    links: [{ label: "Source on GitHub", href: "https://github.com/kwame607/city-beans" }],
+    screenshots: [placeholder("the City Beans menu and checkout")],
+    ownerNotes: [
+      "The live URL you gave (kwame607.github.io/citybeans) returned an error. The repo is configured to deploy at /city-beans/ (with the hyphen). Please confirm the correct address and I will add the Live site link.",
+      "Real screenshots are needed; I could not capture any from this environment.",
+    ],
+  },
+  {
     slug: "python-port-scanner",
     title: "Python Network Port Scanner",
     tagline: "Interactive TCP connect scanner for authorized targets",
