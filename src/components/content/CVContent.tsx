@@ -1,5 +1,5 @@
 import { Download, FileWarning } from "lucide-react";
-import { profile, education, experience } from "@/data/profile";
+import { profile, education, experience, certifications } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
 import { Notice, SectionTitle } from "@/components/shared/ui";
@@ -40,14 +40,23 @@ export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
       <SectionTitle>Education</SectionTitle>
       {education.map((e) => (
         <p key={e.title} className="text-sm text-fg2">
-          <span className="text-fg">{e.title}</span>, {e.org} ({e.period})
+          <span className="text-fg">{e.title}</span>, {e.org}
+          {e.period ? ` (${e.period})` : ""}
         </p>
       ))}
 
       <SectionTitle>Experience</SectionTitle>
       {experience.map((e) => (
         <p key={e.title} className="text-sm text-fg2">
-          <span className="text-fg">{e.title}</span>, {e.org} ({e.period})
+          <span className="text-fg">{e.title}</span>, {e.org}
+          {e.period ? ` (${e.period})` : ""}
+        </p>
+      ))}
+
+      <SectionTitle>Certifications</SectionTitle>
+      {certifications.map((e) => (
+        <p key={e.title} className="text-sm text-fg2">
+          <span className="text-fg">{e.title}</span>, {e.org}
         </p>
       ))}
 
@@ -67,9 +76,6 @@ export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
         </p>
       ))}
 
-      <p className="mt-6 text-xs italic text-fg2">
-        Education and experience details are pending confirmation from the owner&rsquo;s current CV.
-      </p>
     </div>
   );
 }

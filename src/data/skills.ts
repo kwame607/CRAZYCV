@@ -14,7 +14,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Programming",
     skills: [
-      { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner")] },
+      { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("momo-fraud-shield", "MoMo Fraud Shield")] },
       { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)")] },
       { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
       { name: "SQL", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Supabase, SQL scripts)")] },
@@ -28,13 +28,21 @@ export const skillGroups: SkillGroup[] = [
       { name: "Responsive design", evidence: [proj("adepamarket", "AdepaMarket")] },
       { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Paystack, upstream providers)"), proj("adepamarket", "AdepaMarket (Paystack)"), proj("city-beans", "City Beans (Paystack, Supabase)")] },
       { name: "React and Next.js", evidence: [proj("city-beans", "City Beans (React, Vite)"), { kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }, proj("adepamarket", "AdepaMarket"), proj("admunz-data-hub", "Admunz Data Hub")] },
+      { name: "Flask, Django and FastAPI", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield (Flask)")] },
       { name: "Database integration", evidence: [proj("adepamarket", "AdepaMarket (D1 with Drizzle)"), proj("admunz-data-hub", "Admunz Data Hub (Supabase)"), proj("city-beans", "City Beans (Supabase)")] },
+    ],
+  },
+  {
+    title: "AI and Machine Learning",
+    skills: [
+      { name: "Text classification with scikit-learn (TF-IDF, Logistic Regression, SVM, Random Forest)", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield")] },
+      { name: "Model evaluation and explainability (LIME)", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield")] },
     ],
   },
   {
     title: "Systems and Networking",
     skills: [
-      { name: "Linux and command-line workflows", evidence: [], needsEvidence: true },
+      { name: "Linux and command-line workflows", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
       { name: "TCP/IP and socket programming", evidence: [proj("python-port-scanner", "Python Network Port Scanner")] },
       { name: "Subnetting and CIDR", evidence: [{ kind: "demo", label: "Network Tools: subnet calculator", href: "/network-tools" }] },
       { name: "DNS and HTTP/HTTPS", evidence: [], needsEvidence: true },
@@ -43,12 +51,12 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Cybersecurity",
     skills: [
-      { name: "Security fundamentals", evidence: [], needsEvidence: true },
+      { name: "Security fundamentals", evidence: [{ kind: "demo", label: "Cisco Networking Academy: Introduction to Cybersecurity (see About)", href: "/about" }] },
       {
         name: "Evidence-based assessment reporting",
         evidence: [{ kind: "demo", label: "Security Lab: assessment format", href: "/security-lab" }],
       },
-      { name: "Authorized vulnerability assessment", evidence: [], needsEvidence: true },
+      { name: "Authorized vulnerability assessment (lab practice, OWASP Top 10)", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
       { name: "Remediation and retesting", evidence: [], needsEvidence: true },
     ],
   },
@@ -56,7 +64,8 @@ export const skillGroups: SkillGroup[] = [
     title: "Tools",
     skills: [
       { name: "Git and GitHub", evidence: [{ kind: "repository", label: "GitHub profile", href: "https://github.com/kwame607" }] },
-      { name: "Kali Linux", evidence: [], needsEvidence: true },
+      { name: "Kali Linux, Nmap and Metasploit", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
+      { name: "Burp Suite", evidence: [], needsEvidence: true },
       { name: "Browser developer tools", evidence: [], needsEvidence: true },
     ],
   },

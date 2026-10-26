@@ -22,8 +22,8 @@ const areas: { title: string; body: string; evidence: string }[] = [
   },
   {
     title: "Network security",
-    body: "TCP/IP fundamentals and subnetting, practiced through the Network Tools app.",
-    evidence: "Working demo: subnet calculator and IPv4 classifier in Network Tools.",
+    body: "TCP/IP fundamentals and subnetting, practiced through the Network Tools app and an isolated home lab.",
+    evidence: "Working demo: subnet calculator and IPv4 classifier in Network Tools. Home lab (Kali, Nmap, Metasploit, Metasploitable 2) is described on the CV; a write-up is pending.",
   },
   {
     title: "Python security tools",

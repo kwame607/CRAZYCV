@@ -38,9 +38,9 @@ All variables are optional. Nothing here is a secret: `NEXT_PUBLIC_*` values are
 
 ## Adding your content
 
-- **CV PDF:** put it at `public/documents/Kwame-Emmanuel-Adom-CV.pdf`. The download button only appears when this file exists; otherwise the CV page says the PDF has not been supplied. The HTML CV is always available.
+- **CV PDF:** the CV is at `public/documents/Kwame-Emmanuel-Adom-CV.pdf`, so the download button is live. It contains the phone numbers and email printed on the CV, so anyone who downloads it sees them. Replace the file to update it. If the file is removed, the button disappears and the CV page says the PDF is not available. The HTML CV is always available.
 - **Projects:** edit `src/data/projects.ts`. Keep facts in `featuresVerified` / `technologiesVerified` only once confirmed; anything unconfirmed goes in `toDocument` / `technologiesToConfirm`. Add screenshots to `public/projects/` and set `src` on the screenshot entry (until then a labeled placeholder is shown, never a fake screenshot).
-- **Education and experience:** edit `src/data/profile.ts` from your current CV and set `status: "verified"`.
+- **Education, experience and certifications:** `src/data/profile.ts` (taken from the CV; add dates or credentials only if they are real).
 - **Skills:** edit `src/data/skills.ts`. Each skill links to evidence; skills without evidence are flagged "evidence pending".
 - **Security assessments:** add a record to `src/data/assessments/index.ts` (see the `SAMPLE-001` entry). Records are validated by `src/lib/security/assessment-schema.ts` when the app loads:
   - evidence must be `redacted: true`;

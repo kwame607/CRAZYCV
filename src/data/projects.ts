@@ -23,7 +23,7 @@ export const projects: Project[] = [
       "A Ghanaian multi-vendor marketplace focused on handmade fashion, including clothing, footwear, and accessories. Each seller gets their own storefront, and sellers and administrators have separate management areas.",
     problem:
       "Local makers need a place to present and sell handmade fashion online, and the marketplace needs tools to onboard sellers, take orders and moderate the catalogue.",
-    role: "Developer and repository owner (specific responsibilities to be added by the owner).",
+    role: "Web developer, 2026 to present (per CV). Built the responsive marketplace interfaces and deployed it on Cloudflare Workers.",
     technologiesVerified: [
       "Next.js, React and TypeScript",
       "Tailwind CSS",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
       "An online digital-services platform focused on automated data bundle sales, customer onboarding, and digital transactions. It includes agent accounts with their own storefronts, a wallet, order tracking and an administrative back office.",
     problem:
       "Selling data bundles by hand is slow and error-prone. The platform automates ordering, payment and fulfilment, and lets resellers (agents) run their own stores on top of it.",
-    role: "Developer and repository owner (specific responsibilities to be added by the owner).",
+    role: "Founder and full-stack web developer, 2026 to present (per CV). Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements.",
     technologiesVerified: [
       "Next.js 14, React 18 and TypeScript",
       "Supabase (database and auth client libraries)",
@@ -133,7 +133,7 @@ export const projects: Project[] = [
       "A restaurant website where customers browse the menu, order online, pay, and follow their order, backed by an admin area for running orders, products, riders and delivery.",
     problem:
       "A restaurant needs a simple way to take and track orders online, accept payment, and manage delivery without handling everything by hand.",
-    role: "Developer and repository owner (specific responsibilities to be added by the owner).",
+    role: "Website developer and graphic designer on a freelance, project basis, 2026 to present (per CV). Designed and built the restaurant's website and created branding and promotional graphics.",
     technologiesVerified: [
       "React, built with Vite (JavaScript/JSX)",
       "Tailwind CSS and Lucide icons",
@@ -171,6 +171,64 @@ export const projects: Project[] = [
     ownerNotes: [
       "The live link uses the address you confirmed (with the hyphen). I could not load it from my environment, so please click it once to check.",
       "Real screenshots are needed; I could not capture any from this environment.",
+    ],
+  },
+  {
+    slug: "momo-fraud-shield",
+    title: "MoMo Fraud Shield",
+    tagline: "Machine-learning web app that flags likely mobile money fraud and explains why",
+    status: "Prototype (final-year project); no public demo listed",
+    featured: true,
+    overview:
+      "A Flask web application where a user pastes a message (an SMS, a summary of a call, or a social-media message) and gets an estimated fraud probability, a Low, Medium or High risk level, the suspicious wording it found, the words that most influenced the result, and a plain-language safety recommendation. It was my final-year project: an AI-based system for detecting impersonation and mobile money-related social engineering fraud.",
+    problem:
+      "Mobile money scams rely on impersonation, urgency and requests for a PIN or OTP. People need a fast check that also explains itself, so they can learn the warning signs rather than just trust a score.",
+    role: "Author. Designed and implemented the whole system as my final-year project (per CV).",
+    technologiesVerified: [
+      "Python and Flask (served with gunicorn)",
+      "scikit-learn: TF-IDF text features, Logistic Regression, Support Vector Machine and Random Forest",
+      "pandas, NumPy and SciPy",
+      "LIME for word-level explanations",
+      "HTML, CSS and JavaScript front end",
+    ],
+    technologiesToConfirm: [],
+    featuresVerified: [
+      "Estimated fraud probability and a Low, Medium or High risk category, with thresholds calibrated by cross-validation",
+      "Detection of linguistic indicators such as urgency, requests for a PIN or OTP, authority claims and reward framing",
+      "LIME explanation showing which words pushed the prediction",
+      "Plain-language recommendation for what to do next",
+      "Three models trained and compared on a 9,447-message dataset, with Logistic Regression deployed",
+      "Held-out test results: 98.3% recall (475 of 483 frauds caught), 99.2% precision and 99.0% accuracy on 1,165 test messages, with 8 missed frauds and 4 false alarms",
+    ],
+    evidenceNote:
+      "Read from the project's source code and README. The test results above were reproduced by re-running the project's training script on its dataset (the project pins scikit-learn 1.8.0; I used 1.9.1), and they match the figures on the CV.",
+    limitations: [
+      "The scores come from a held-out split of the same dataset. They say nothing yet about messages from other sources or new scam styles, so they are prototype results, not real-world performance.",
+      "The dataset is built from message templates, and the project does not document how much of it is synthetic versus real, so it should not be read as a measure of performance on live traffic.",
+      "A high-risk result is an estimate, not proof. It is meant to support a person's judgement, not replace it.",
+    ],
+    toDocument: [
+      "How the dataset was built and labelled, and what share is synthetic",
+      "The full list of engineered features and why each was added",
+      "Testing on messages collected independently of the training data",
+      "A public demo, if you want one",
+    ],
+    decisions: [
+      "Chose the deployed model by recall, because a missed fraud costs more than an unnecessary warning.",
+      "Split train, validation and test sets by message template, so near-duplicate messages cannot leak between them and inflate the scores.",
+      "Removed a feature (double-space count) after investigating it, because it could dominate a decision on its own.",
+    ],
+    challenges: [],
+    learned: [],
+    security: [
+      "The app processes message text pasted by users on a Flask server. Input handling, rate limiting and data retention have not been reviewed here.",
+    ],
+    links: [],
+    screenshots: [placeholder("the MoMo Fraud Shield result screen")],
+    ownerNotes: [
+      "The project's README still describes an earlier SVM version (1,448 messages, recall 0.95). The code and CV describe the current Logistic Regression version. Updating the README would avoid confusion.",
+      "Compiled .pyc files are committed in the repository.",
+      "If this is deployed anywhere, add the link so visitors can try it.",
     ],
   },
   {
@@ -228,25 +286,54 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "pentest-home-lab",
+    title: "Penetration Testing Home Lab",
+    tagline: "Isolated Kali Linux lab for practicing reconnaissance and vulnerability assessment",
+    status: "Described on CV; write-up pending",
+    overview:
+      "An isolated home lab built with Kali Linux and deliberately vulnerable targets (Metasploitable 2) to practice network reconnaissance, service enumeration and vulnerability assessment aligned with OWASP Top 10 categories, in preparation for web application security and bug bounty work.",
+    problem: "Security skills need a safe, legal place to practice, so the lab is isolated and uses targets that are meant to be attacked.",
+    role: "Builder and sole user (per CV).",
+    technologiesVerified: [],
+    technologiesToConfirm: ["Kali Linux", "Nmap", "Metasploit Framework", "Metasploitable 2", "Burp Suite (listed in CV skills)"],
+    featuresVerified: [],
+    evidenceNote:
+      "From the owner's CV. No lab notes, screenshots or reports have been published yet, so nothing on this page is evidence of specific results.",
+    toDocument: [
+      "Lab network diagram",
+      "A sanitized walkthrough of one assessment: scope, method, findings, severity and what was learned",
+      "Redacted tool output in the Security Lab assessment format",
+    ],
+    decisions: [],
+    challenges: [],
+    learned: [],
+    security: [
+      "Lab-only. All targets are deliberately vulnerable machines in an isolated environment. Nothing here was run against a third-party system.",
+    ],
+    links: [],
+    screenshots: [],
+    ownerNotes: ["Send me lab notes or sanitized screenshots and I will turn them into a proper Security Lab record."],
+  },
+  {
     slug: "other-projects",
     title: "More projects",
     tagline: "Other projects, not yet written up",
     status: "Not yet reviewed",
     overview:
-      "Other projects exist, including a Python LAN chat application. They have not been reviewed for this site yet, so no features or technologies are claimed for them.",
+      "Other projects listed on the CV: a Python LAN chat application, an interactive 3D villa experience (A-Frame), a business website for Wisewave Enterprise, an educational file-encryption simulation, and a Python and SQLite student management system. They have not been reviewed for this site yet, so no features or technologies are claimed beyond what the CV says.",
     problem: "Each project will state its own problem once reviewed.",
     role: "To be confirmed.",
     technologiesVerified: [],
     technologiesToConfirm: [],
     featuresVerified: [],
-    toDocument: ["LAN chat application", "Educational encryption simulation", "Student management system"],
+    toDocument: ["LAN chat application (Python, socket programming)", "Interactive 3D villa experience (A-Frame, GLB/GLTF)", "Wisewave Enterprise website", "Educational encryption simulation", "Student management system (Python, SQLite)"],
     decisions: [],
     challenges: [],
     learned: [],
     security: ["Not assessed."],
     links: [],
     screenshots: [],
-    ownerNotes: ["Tell me which of the other repositories should be featured and I will review and write them up."],
+    ownerNotes: ["Tell me which of these should be featured and I will review and write them up."],
   },
 ];
 

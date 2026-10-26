@@ -122,12 +122,12 @@ const commands: CommandDef[] = [
   {
     name: "education",
     description: "Education",
-    run: () => ({ lines: education.flatMap((e) => out(`${e.title}, ${e.org}, ${e.period}`, `  ${e.detail}`)) }),
+    run: () => ({ lines: education.flatMap((e) => out([e.title, e.org, e.period].filter(Boolean).join(", "), `  ${e.detail}`)) }),
   },
   {
     name: "experience",
     description: "Experience",
-    run: () => ({ lines: experience.flatMap((e) => out(`${e.title}, ${e.org}, ${e.period}`, `  ${e.detail}`)) }),
+    run: () => ({ lines: experience.flatMap((e) => out([e.title, e.org, e.period].filter(Boolean).join(", "), `  ${e.detail}`)) }),
   },
   {
     name: "github",

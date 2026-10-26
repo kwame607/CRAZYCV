@@ -68,7 +68,8 @@ export interface SkillGroup {
 export interface TimelineEntry {
   title: string;
   org: string;
-  period: string;
+  /** Omit when the source (CV) gives no dates. */
+  period?: string;
   detail: string;
   status: VerificationStatus;
 }

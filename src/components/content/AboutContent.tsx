@@ -1,4 +1,4 @@
-import { profile, education, experience } from "@/data/profile";
+import { profile, education, experience, certifications } from "@/data/profile";
 import type { TimelineEntry } from "@/types/portfolio";
 import { SectionTitle } from "@/components/shared/ui";
 
@@ -9,7 +9,7 @@ function Timeline({ entries }: { entries: TimelineEntry[] }) {
         <li key={e.title} className="rounded-lg border border-line bg-white/[0.02] p-3">
           <p className="text-sm font-medium text-fg">{e.title}</p>
           <p className="text-xs text-fg2">
-            {e.org} · {e.period}
+            {[e.org, e.period].filter(Boolean).join(" · ")}
           </p>
           <p className="mt-1 text-sm text-fg2">{e.detail}</p>
           {e.status !== "verified" && <p className="mt-1 font-mono text-[11px] text-warn">Needs confirmation from the current CV before publishing.</p>}
@@ -33,6 +33,9 @@ export function AboutContent() {
       <Timeline entries={education} />
       <SectionTitle>Experience</SectionTitle>
       <Timeline entries={experience} />
+
+      <SectionTitle>Certifications</SectionTitle>
+      <Timeline entries={certifications} />
 
       <SectionTitle>Current learning goals</SectionTitle>
       <ul className="list-disc space-y-1 pl-5 text-sm text-fg2">
