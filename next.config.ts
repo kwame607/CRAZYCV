@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== "production";
+// Static preview on GitHub Pages: no server, so no API routes or custom headers.
+// Set only by .github/workflows/pages.yml; normal builds are unaffected.
+const isPages = process.env.GITHUB_PAGES === "true";
 
 // Content Security Policy.
 // - No third-party origins are contacted from the browser. The optional public
@@ -36,12 +39,20 @@ const securityHeaders = [
     : [{ key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" }]),
 ];
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  poweredByHeader: false,
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
-};
+const nextConfig: NextConfig = isPages
+  ? {
+      reactStrictMode: true,
+      output: "export",
+      basePath: "/CRAZYCV",
+      trailingSlash: true,
+      images: { unoptimized: true },
+    }
+  : {
+      reactStrictMode: true,
+      poweredByHeader: false,
+      async headers() {
+        return [{ source: "/:path*", headers: securityHeaders }];
+      },
+    };
 
 export default nextConfig;
