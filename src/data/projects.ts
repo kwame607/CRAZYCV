@@ -1,5 +1,8 @@
 import type { Project } from "@/types/portfolio";
 
+/** A real screenshot supplied by the owner, stored under /public/projects. */
+const shot = (file: string, alt: string) => ({ src: `/projects/${file}`, alt, neededNote: "" });
+
 const placeholder = (what: string) => ({
   src: null,
   alt: `Placeholder: ${what} (real screenshot not yet supplied)`,
@@ -51,7 +54,6 @@ export const projects: Project[] = [
       "End-to-end payment and order flow",
       "Image delivery: both a Cloudinary dependency and uploaded product images exist in the repository, so the actual approach needs a short write-up",
       "Seller onboarding and moderation workflow",
-      "Real screenshots",
       "A documented, authorized security assessment of the live site",
     ],
     decisions: [],
@@ -62,10 +64,12 @@ export const projects: Project[] = [
       "Nothing has been tested against the live site. No finding, fix or retest is claimed.",
     ],
     links: [{ label: "Live site", href: "https://adepamarket.admunz.workers.dev/" }],
-    screenshots: [placeholder("the AdepaMarket home page")],
+    screenshots: [
+      shot("adepamarket-home.jpg", "AdepaMarket home page: search bar, category navigation and a hero banner reading \"Discover your next favourite look\"."),
+      shot("adepamarket-stores-new-arrivals.jpg", "AdepaMarket home page further down: a Stores to Explore row and a New Arrivals grid of accessories with prices in Ghana cedis."),
+    ],
     ownerNotes: [
       "Confirm you are happy listing this stack summary publicly.",
-      "Real screenshots are needed; I could not capture any from this environment.",
     ],
   },
   {
@@ -104,7 +108,6 @@ export const projects: Project[] = [
       "Architecture diagram (agents, wallet, Paystack, upstream providers, cron jobs)",
       "Payment and fulfilment flow, including failure and reconciliation handling",
       "Deployment and maintenance",
-      "Real screenshots",
       "A documented, authorized security assessment of the live site",
     ],
     decisions: [],
@@ -115,12 +118,14 @@ export const projects: Project[] = [
       "Nothing has been tested against the live site. No finding, fix or retest is claimed.",
     ],
     links: [{ label: "Live site", href: "https://www.admunz.com/" }],
-    screenshots: [placeholder("the Admunz Data Hub storefront and agent dashboard")],
+    screenshots: [
+      shot("admunz-data-hub-storefront.jpg", "Admunz Data Hub storefront: MTN, AirtelTigo and Telecel data bundle options and a Become a Reseller Agent button."),
+      shot("admunz-data-hub-agent-dashboard.jpg", "Admunz Data Hub agent dashboard overview showing order and earnings totals, an AI performance coach and a WhatsApp message generator."),
+    ],
     ownerNotes: [
       "The repository README is a patch note ('Three Fixes'), not project documentation. A real README would strengthen this entry.",
       "The repository contains two stray files that look like accidental shell output: app/store/[slug]/dataflow-gh@0.1.0 and app/store/[slug]/next.",
       "Zod validation appears in only 2 files; worth checking that the other API routes validate input some other way.",
-      "Real screenshots are needed; I could not capture any from this environment.",
     ],
   },
   {
@@ -157,7 +162,6 @@ export const projects: Project[] = [
       "Architecture diagram (React client, Supabase tables and functions, Paystack)",
       "Order and payment flow, including the failure and 'still confirming' paths",
       "How admin access is enforced on the database side",
-      "Real screenshots",
     ],
     decisions: [],
     challenges: [],
@@ -167,10 +171,12 @@ export const projects: Project[] = [
       "Nothing has been tested against a live site. No finding, fix or retest is claimed.",
     ],
     links: [{ label: "Live site", href: "https://kwame607.github.io/city-beans/" }],
-    screenshots: [placeholder("the City Beans menu and checkout")],
+    screenshots: [
+      shot("city-beans-home.jpg", "City Beans home page: hero banner reading \"Your favourite Ghanaian meals made fresh\" with Order Now and Explore Menu buttons."),
+      shot("city-beans-menu.jpg", "City Beans menu: meal category filters, a search box and meal cards with prices in Ghana cedis and Add and Customize buttons."),
+    ],
     ownerNotes: [
       "The live link uses the address you confirmed (with the hyphen). I could not load it from my environment, so please click it once to check.",
-      "Real screenshots are needed; I could not capture any from this environment.",
     ],
   },
   {
@@ -224,7 +230,10 @@ export const projects: Project[] = [
       "The app processes message text pasted by users on a Flask server. Input handling, rate limiting and data retention have not been reviewed here.",
     ],
     links: [],
-    screenshots: [placeholder("the MoMo Fraud Shield result screen")],
+    screenshots: [
+      shot("momo-fraud-shield-home.jpg", "MoMo Fraud Shield home screen: a box to paste a message, example buttons and a three-step explanation."),
+      shot("momo-fraud-shield-result.jpg", "MoMo Fraud Shield result for one message: a Low risk label, an estimated fraud likelihood of 12.4 percent, reasons, and the words that most influenced the result."),
+    ],
     ownerNotes: [
       "The project's README still describes an earlier SVM version (1,448 messages, recall 0.95). The code and CV describe the current Logistic Regression version. Updating the README would avoid confusion.",
       "Compiled .pyc files are committed in the repository.",

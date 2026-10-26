@@ -187,13 +187,14 @@ describe("terminal", () => {
 });
 
 describe("projects app", () => {
-  it("opens a case study from Home and marks missing assets and unverified facts", async () => {
+  it("opens a case study from Home and shows its real screenshots", async () => {
     render(<DesktopShell pdfAvailable={false} />);
     const home = await screen.findByRole("dialog", { name: "Home" });
     fireEvent.click(within(home).getByRole("button", { name: /AdepaMarket/ }));
     const projects = await screen.findByRole("dialog", { name: "Projects" });
     expect(within(projects).getByRole("heading", { name: "AdepaMarket" })).toBeInTheDocument();
-    expect(within(projects).getByText(/Placeholder, not a real screenshot/)).toBeInTheDocument();
+    expect(within(projects).getByRole("img", { name: /AdepaMarket home page/ })).toHaveAttribute("src", "/projects/adepamarket-home.jpg");
+    expect(within(projects).queryByText(/Placeholder, not a real screenshot/)).not.toBeInTheDocument();
     expect(within(projects).getByRole("link", { name: /Live site/ })).toHaveAttribute("href", "https://adepamarket.admunz.workers.dev/");
   });
 });
