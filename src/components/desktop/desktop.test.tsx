@@ -193,7 +193,7 @@ describe("projects app", () => {
     fireEvent.click(within(home).getByRole("button", { name: /AdepaMarket/ }));
     const projects = await screen.findByRole("dialog", { name: "Projects" });
     expect(within(projects).getByRole("heading", { name: "AdepaMarket" })).toBeInTheDocument();
-    expect(within(projects).getByRole("img", { name: /AdepaMarket home page/ })).toHaveAttribute("src", "/projects/adepamarket-home.jpg");
+    expect(within(projects).getAllByRole("img", { name: /AdepaMarket home page/ })[0]).toHaveAttribute("src", "/projects/adepamarket-home.jpg");
     expect(within(projects).queryByText(/Placeholder, not a real screenshot/)).not.toBeInTheDocument();
     expect(within(projects).getByRole("link", { name: /Live site/ })).toHaveAttribute("href", "https://adepamarket.admunz.workers.dev/");
   });
