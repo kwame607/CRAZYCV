@@ -1,4 +1,4 @@
-import type { Profile, TimelineEntry } from "@/types/portfolio";
+import type { Profile, StudyEntry, TimelineEntry } from "@/types/portfolio";
 
 /** Empty or whitespace env values count as "not configured". */
 function envOrNull(value: string | undefined): string | null {
@@ -15,14 +15,16 @@ export const profile: Profile = {
     "Cybersecurity learner",
     "Python programmer",
   ],
-  location: "Ghana",
+  location: "Kumasi, Ghana",
   focus: "Practical cybersecurity and secure application development",
   summary:
     "Computer Science graduate (University of Cape Coast) and full-stack developer, founder of Admunz Data Hub. I build and deploy real web applications, and I am developing practical cybersecurity skills through authorized, documented lab work: investigate, document evidence, fix, and retest.",
-  email: envOrNull(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
+  // Public contact address supplied by the owner; the env var can override it.
+  email: envOrNull(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "kwameadom607@gmail.com",
   // The account owns the repositories this portfolio documents; override with the env var if needed.
   github: envOrNull(process.env.NEXT_PUBLIC_GITHUB_URL) ?? "https://github.com/kwame607",
   linkedin: envOrNull(process.env.NEXT_PUBLIC_LINKEDIN_URL),
+  website: "https://www.admunz.com/",
   cvPdfPath: "/documents/Kwame-Emmanuel-Adom-CV.pdf",
   learningGoals: [
     "Authorized web-application assessments with documented evidence and retesting",
@@ -60,9 +62,10 @@ export const experience: TimelineEntry[] = [
     status: "verified",
   },
   {
-    title: "Web Developer",
+    title: "Founder and Web Developer",
     org: "AdepaMarket",
     period: "2026 to present",
+    // The CV summary calls the owner founder and developer of AdepaMarket; the CV experience entry says Web Developer.
     detail: "Built an e-commerce marketplace connecting Ghanaian fashion sellers with customers, with responsive interfaces; deployed on Cloudflare Workers.",
     status: "verified",
   },
@@ -95,5 +98,19 @@ export const certifications: TimelineEntry[] = [
     org: "Cisco Networking Academy",
     detail: "Certificate listed on the CV. No credential ID or issue date is shown here because the CV does not give one.",
     status: "verified",
+  },
+];
+
+/**
+ * The CV lists Ethical Hacking under certifications but states only the
+ * Introduction certificate as earned ("continued professional development in
+ * ethical hacking"). It is therefore shown as continuing study, not as a
+ * credential. Confirm completion status before moving it to `certifications`.
+ */
+export const studying: StudyEntry[] = [
+  {
+    title: "Ethical Hacking",
+    org: "Cisco Networking Academy",
+    note: "Continuing study. Listed on the CV; no completion is claimed here.",
   },
 ];

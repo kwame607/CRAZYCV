@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import type { ReactNode } from "react";
 
 const nav = [
@@ -12,27 +11,30 @@ const nav = [
   { href: "/contact", label: "Contact" },
 ];
 
-/** Plain, server-rendered page frame so every section is reachable by direct URL. */
+/** Plain, server-rendered frame for the deep pages, so every one is reachable by direct URL. */
 export function PageShell({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="desk-bg min-h-dvh">
-      <header className="border-b border-line bg-bg2/90">
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3">
-          <Link href="/" className="inline-flex items-center gap-2 font-mono text-sm font-semibold text-fg">
-            <ArrowLeft className="h-4 w-4 text-accent" aria-hidden />
-            ADOM <span className="text-accent">{"//"}</span> OS
+      <header className="border-b border-line bg-bg/80 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-7 gap-y-2 px-5 py-4 md:px-10">
+          <Link href="/" className="font-mono text-sm tracking-[0.18em] text-fg">
+            KA<span className="text-accent">.</span>
+            <span className="sr-only"> Kwame Adom, back to the portfolio</span>
           </Link>
-          <nav aria-label="Sections" className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          <nav aria-label="Sections" className="flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] uppercase tracking-[0.16em]">
             {nav.map((n) => (
-              <Link key={n.href} href={n.href} className="text-fg2 hover:text-fg">
+              <Link key={n.href} href={n.href} className="text-fg2 transition-colors duration-[var(--t-fast)] hover:text-fg">
                 {n.label}
               </Link>
             ))}
           </nav>
         </div>
       </header>
-      <main id="main" className="mx-auto max-w-4xl px-4 py-8">
-        <h1 className="mb-6 font-display text-3xl text-fg">{title}</h1>
+      <main id="main" className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-16">
+        <Link href="/" className="mb-8 inline-block font-mono text-[11px] uppercase tracking-[0.2em] text-accent hover:underline">
+          ← Back to the portfolio
+        </Link>
+        <h1 className="mb-10 font-display text-[clamp(2.6rem,6vw,4.6rem)] leading-none text-fg">{title}</h1>
         {children}
       </main>
     </div>

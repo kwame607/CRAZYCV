@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { certifications, education, experience, profile } from "./profile";
+import { certifications, education, experience, profile, studying } from "./profile";
 import { projects } from "./projects";
 import { skillGroups } from "./skills";
 
@@ -20,6 +20,21 @@ describe("CV-backed content", () => {
   });
   it("lists only the certification the CV consistently supports", () => {
     expect(certifications.map((c) => c.title)).toEqual(["Introduction to Cybersecurity"]);
+  });
+  it("shows Ethical Hacking as continuing study, never as an earned credential", () => {
+    expect(studying.map((s) => s.title)).toContain("Ethical Hacking");
+    expect(certifications.map((c) => c.title)).not.toContain("Ethical Hacking");
+  });
+  it("uses the contact details given by the owner", () => {
+    expect(profile.email).toBe("kwameadom607@gmail.com");
+    expect(profile.location).toBe("Kumasi, Ghana");
+    expect(profile.website).toBe("https://www.admunz.com/");
+  });
+  it("does not claim a degree class the CV does not state", () => {
+    expect(JSON.stringify([profile, education])).not.toMatch(/second class|2:1|upper/i);
+  });
+  it("ships no owner-only notes or TODO lists in the public data", () => {
+    expect(JSON.stringify(projects)).not.toMatch(/ownerNotes|toDocument|technologiesToConfirm|stray files|Placeholder/);
   });
   it("no project still carries the old role placeholder", () => {
     expect(JSON.stringify(projects)).not.toMatch(/specific responsibilities to be added/);

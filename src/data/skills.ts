@@ -15,7 +15,7 @@ export const skillGroups: SkillGroup[] = [
     title: "Programming",
     skills: [
       { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("momo-fraud-shield", "MoMo Fraud Shield")] },
-      { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)")] },
+      { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)"), proj("city-beans", "City Beans (JavaScript)")] },
       { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
       { name: "SQL", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Supabase, SQL scripts)")] },
       { name: "C++", evidence: [], needsEvidence: true },
@@ -28,7 +28,8 @@ export const skillGroups: SkillGroup[] = [
       { name: "Responsive design", evidence: [proj("adepamarket", "AdepaMarket")] },
       { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Paystack, upstream providers)"), proj("adepamarket", "AdepaMarket (Paystack)"), proj("city-beans", "City Beans (Paystack, Supabase)")] },
       { name: "React and Next.js", evidence: [proj("city-beans", "City Beans (React, Vite)"), { kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }, proj("adepamarket", "AdepaMarket"), proj("admunz-data-hub", "Admunz Data Hub")] },
-      { name: "Flask, Django and FastAPI", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield (Flask)")] },
+      { name: "Flask", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield (Flask)")] },
+      { name: "Django and FastAPI", evidence: [], needsEvidence: true },
       { name: "Database integration", evidence: [proj("adepamarket", "AdepaMarket (D1 with Drizzle)"), proj("admunz-data-hub", "Admunz Data Hub (Supabase)"), proj("city-beans", "City Beans (Supabase)")] },
     ],
   },
@@ -37,6 +38,16 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Text classification with scikit-learn (TF-IDF, Logistic Regression, SVM, Random Forest)", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield")] },
       { name: "Model evaluation and explainability (LIME)", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield")] },
+    ],
+  },
+  {
+    title: "Interactive 3D",
+    skills: [
+      {
+        name: "A-Frame scenes with GLB/GLTF assets",
+        evidence: [proj("interactive-villa-vr", "Interactive Villa VR"), { kind: "demo", label: "Live demo", href: "https://kwame607.github.io/interactive-villa-vr/" }],
+      },
+      { name: "Camera and movement controls (desktop and touch)", evidence: [proj("interactive-villa-vr", "Interactive Villa VR")] },
     ],
   },
   {
@@ -70,3 +81,23 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
 ];
+
+export type SkillLevel = "shipped" | "lab" | "learning";
+
+export const levelLabels: Record<SkillLevel, { label: string; meaning: string }> = {
+  shipped: { label: "In shipped work", meaning: "Used in a project with a case study on this site." },
+  lab: { label: "Lab practice", meaning: "Practised in my own isolated lab or coursework. Not used on a client or production system." },
+  learning: { label: "Learning", meaning: "Familiar, and actively learning. No project here demonstrates it yet." },
+};
+
+/**
+ * Derived, never hand-typed per skill, so the label can't drift from the evidence:
+ *  - no evidence at all            -> learning
+ *  - evidence only from the home lab or a demo page -> lab practice
+ *  - any real project evidence      -> shipped
+ */
+export function skillLevel(skill: { evidence: { kind: string; href: string }[]; needsEvidence?: boolean }): SkillLevel {
+  if (skill.needsEvidence || skill.evidence.length === 0) return "learning";
+  const real = skill.evidence.some((e) => e.kind === "project" && !e.href.endsWith("/pentest-home-lab"));
+  return real ? "shipped" : "lab";
+}

@@ -1,24 +1,33 @@
-import type { AppId, CommandDef, CommandResult, TerminalContext, TerminalLine } from "@/types/terminal";
-import { profile, education, experience } from "@/data/profile";
+import type { CommandDef, CommandResult, TerminalContext, TerminalLine } from "@/types/terminal";
+import type { SectionId } from "@/lib/experience/actions";
+import { profile, education, experience, certifications, studying } from "@/data/profile";
 import { projects } from "@/data/projects";
-import { skillGroups } from "@/data/skills";
+import { moreBuilds } from "@/data/more-builds";
+import { skillGroups, skillLevel, levelLabels } from "@/data/skills";
+import { assessments } from "@/data/assessments";
 import { parseCommand } from "./command-parser";
 
 const out = (...texts: string[]): TerminalLine[] => texts.map((text) => ({ kind: "out", text }));
+const err = (text: string): TerminalLine[] => [{ kind: "err", text }];
 
-const appNames: Record<string, AppId> = {
-  home: "home",
-  projects: "projects",
+/** Names a visitor can type after `open`. Each maps to a real section of this page. */
+const sectionNames: Record<string, SectionId> = {
+  home: "hero",
+  hero: "hero",
+  work: "work",
+  projects: "work",
+  about: "about",
+  skills: "skills",
+  security: "security",
   terminal: "terminal",
   system: "system",
-  "security-lab": "security-lab",
-  network: "network-tools",
-  "network-tools": "network-tools",
-  skills: "skills",
-  cv: "cv",
-  about: "about",
+  journey: "journey",
+  experience: "journey",
+  cv: "journey",
   contact: "contact",
 };
+
+const timelineLine = (e: { title: string; org: string; period?: string }) => [e.title, e.org, e.period].filter(Boolean).join(", ");
 
 const commands: CommandDef[] = [
   {
@@ -42,54 +51,81 @@ const commands: CommandDef[] = [
   },
   {
     name: "about",
-    description: "Short profile (opens About)",
-    run: () => ({ lines: out(profile.summary), openApp: "about" }),
+    description: "Short profile, then jump to About",
+    run: () => ({ lines: out(profile.summary), go: "about" }),
   },
   {
     name: "projects",
-    description: "List projects (opens Projects)",
-    run: () => ({
-      lines: [
-        ...out("Projects:"),
-        ...projects.map((p) => ({ kind: "out" as const, text: `  ${p.title.padEnd(30)} ${p.status}` })),
-        ...out("", "Opening the Projects app for case studies."),
-      ],
-      openApp: "projects",
-    }),
+    description: "List projects. 'projects <name>' shows one",
+    run: (args) => {
+      const q = (args[0] ?? "").toLowerCase();
+      if (q) {
+        const p = projects.find((x) => x.slug === q || x.slug.startsWith(q) || x.title.toLowerCase().includes(q));
+        if (!p) return { lines: err(`No project matches '${q}'. Type 'projects' to list them.`) };
+        return {
+          lines: [
+            ...out(p.title, p.tagline, `Status: ${p.status}`, "", p.overview, "", "Features:"),
+            ...out(...p.featuresVerified.map((f) => `  - ${f}`)),
+            ...out("", "Technologies:"),
+            ...out(...p.technologiesVerified.map((t) => `  - ${t}`)),
+            ...(p.links.length ? out("", ...p.links.map((l) => `${l.label}: ${l.href}`)) : []),
+          ],
+        };
+      }
+      return {
+        lines: [
+          ...out("Projects (type 'projects <name>' for details):"),
+          ...projects.map((p) => ({ kind: "out" as const, text: `  ${p.slug.padEnd(22)} ${p.title}` })),
+          ...out("", "Also built (from the CV):", ...moreBuilds.map((b) => `  ${b.title}`)),
+        ],
+        go: "work",
+      };
+    },
   },
   {
     name: "skills",
-    description: "Skills grouped by area (opens Skills)",
+    description: "Skills, with how much evidence backs each",
     run: () => ({
-      lines: skillGroups.flatMap((g) => out(`${g.title}: ${g.skills.map((s) => s.name).join(", ")}`)),
-      openApp: "skills",
+      lines: [
+        ...skillGroups.flatMap((g) => out(`${g.title}: ${g.skills.map((s) => `${s.name} [${skillLevel(s)}]`).join(", ")}`)),
+        ...out("", ...(Object.entries(levelLabels) as [string, { label: string; meaning: string }][]).map(([k, v]) => `[${k}] ${v.label}: ${v.meaning}`)),
+      ],
+      go: "skills",
     }),
   },
   {
-    name: "contact",
-    description: "How to reach me (opens Contact)",
+    name: "experience",
+    description: "Work experience",
+    run: () => ({ lines: experience.flatMap((e) => out(timelineLine(e), `  ${e.detail}`)), go: "journey" }),
+  },
+  {
+    name: "education",
+    description: "Education, certifications and current study",
     run: () => ({
-      lines: out(
-        `Email:  ${profile.email ?? "not configured yet"}`,
-        `GitHub: ${profile.github ?? "not configured yet"}`,
-      ),
-      openApp: "contact",
+      lines: [
+        ...education.flatMap((e) => out(timelineLine(e), `  ${e.detail}`)),
+        ...certifications.flatMap((e) => out(`Certificate: ${e.title}, ${e.org}`)),
+        ...studying.flatMap((e) => out(`Studying: ${e.title}, ${e.org}. ${e.note}`)),
+      ],
+      go: "journey",
     }),
   },
   {
-    name: "cv",
-    description: "View CV (opens CV)",
-    run: () => ({ lines: out("Opening CV."), openApp: "cv" }),
-  },
-  {
-    name: "system",
-    description: "Browser and system overview",
-    run: (_a, ctx) => ({ lines: out(...ctx.systemLines()), openApp: "system" }),
-  },
-  {
-    name: "browser",
-    description: "Detected browser details",
-    run: (_a, ctx) => ({ lines: out(...ctx.browserLines()) }),
+    name: "security",
+    description: "What is real, what is simulated, and what is published",
+    run: () => {
+      const real = assessments.filter((a) => !a.sample).length;
+      return {
+        lines: out(
+          "Security work on this site is labelled REAL or SIMULATED.",
+          `Published real assessments: ${real}.`,
+          real === 0 ? "None yet. The assessment record on the Security Lab page is an illustrative sample, not a result." : "",
+          "The port-scan demo is a SIMULATION against reserved documentation addresses (RFC 5737).",
+          "Nothing on this site scans any third-party host.",
+        ).filter((l) => l.text !== ""),
+        go: "security",
+      };
+    },
   },
   {
     name: "network",
@@ -101,7 +137,10 @@ const commands: CommandDef[] = [
           deferred: async () => {
             try {
               const ip = await ctx.requestIp();
-              return [{ kind: "out", text: `Public IP: ${ip}` }, { kind: "info", text: "VPNs, proxies and carrier NAT can change this. It is not stored." }];
+              return [
+                { kind: "out", text: `Public IP: ${ip}` },
+                { kind: "info", text: "VPNs, proxies and carrier NAT can change this. It is not stored." },
+              ];
             } catch (e) {
               return [{ kind: "err", text: `Public IP: not retrieved. ${e instanceof Error ? e.message : "The lookup failed."}` }];
             }
@@ -112,40 +151,52 @@ const commands: CommandDef[] = [
     },
   },
   {
-    name: "security-lab",
-    description: "Open the Security Lab",
+    name: "system",
+    description: "Browser and system overview, then jump to it",
+    run: (_a, ctx) => ({ lines: out(...ctx.systemLines()), go: "system" }),
+  },
+  {
+    name: "browser",
+    description: "Detected browser details",
+    run: (_a, ctx) => ({ lines: out(...ctx.browserLines()) }),
+  },
+  {
+    name: "cv",
+    description: "CV summary. 'cv download' saves the PDF",
+    run: (args) => {
+      if (args[0] === "download") return { lines: out("Downloading Kwame-Emmanuel-Adom-CV.pdf"), download: "cv" };
+      return {
+        lines: out(`${profile.name}, ${profile.roles[0]}`, ...experience.map(timelineLine).map((l) => `  ${l}`), "", "Type 'cv download' to save the PDF."),
+        go: "journey",
+      };
+    },
+  },
+  {
+    name: "contact",
+    description: "How to reach me",
     run: () => ({
-      lines: out("Security Lab: simulated demos, assessment format, no real scans of third-party systems."),
-      openApp: "security-lab",
+      lines: out(`Email:   ${profile.email ?? "not configured yet"}`, `GitHub:  ${profile.github ?? "not configured yet"}`, `Website: ${profile.website}`, `Based in: ${profile.location}`),
+      go: "contact",
     }),
-  },
-  {
-    name: "education",
-    description: "Education",
-    run: () => ({ lines: education.flatMap((e) => out([e.title, e.org, e.period].filter(Boolean).join(", "), `  ${e.detail}`)) }),
-  },
-  {
-    name: "experience",
-    description: "Experience",
-    run: () => ({ lines: experience.flatMap((e) => out([e.title, e.org, e.period].filter(Boolean).join(", "), `  ${e.detail}`)) }),
   },
   {
     name: "github",
     description: "GitHub profile",
-    run: () => ({
-      lines: profile.github ? out(profile.github) : [{ kind: "err", text: "GitHub link is not configured yet." }],
-    }),
+    run: () => ({ lines: profile.github ? out(profile.github) : err("GitHub link is not configured yet.") }),
   },
   {
     name: "open",
-    description: "open <app>: open an app window",
+    description: "open <section>: scroll to a section of this page",
     run: (args) => {
-      const id = appNames[(args[0] ?? "").toLowerCase()];
-      if (!id) {
-        return { lines: [{ kind: "err", text: `Usage: open <${Object.keys(appNames).join("|")}>` }] };
-      }
-      return { lines: out(`Opening ${id}.`), openApp: id };
+      const id = sectionNames[(args[0] ?? "").toLowerCase()];
+      if (!id) return { lines: err(`Usage: open <${Object.keys(sectionNames).join("|")}>`) };
+      return { lines: out(`Opening ${id}.`), go: id, autoScroll: true };
     },
+  },
+  {
+    name: "replay",
+    description: "Replay the opening animation",
+    run: () => ({ lines: out("Replaying the intro."), replay: true }),
   },
 ];
 
@@ -160,7 +211,7 @@ export function runCommand(raw: string, ctx: TerminalContext): CommandResult {
   const def = registry.get(parsed.name);
   if (!def) {
     return {
-      lines: [{ kind: "err", text: `${parsed.name}: command not found. Type 'help' to see available commands.` }],
+      lines: err(`${parsed.name}: command not found. Type 'help' to see available commands.`),
     };
   }
   return def.run(parsed.args, ctx);

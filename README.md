@@ -1,92 +1,70 @@
-# ADOM // OS
+# Inside Kwame's Mind
 
-Interactive portfolio of **Kwame Emmanuel Adom**, built as a small desktop environment in the browser: windows, a dock, a controlled terminal, a browser/system overview, a safe security lab and network tools.
+Portfolio of **Kwame Emmanuel Adom**: full-stack developer, cybersecurity learner, Kumasi, Ghana.
 
-Stack: Next.js 16 (App Router), React 19, TypeScript (strict), Tailwind CSS 4, Zod, Lucide, Vitest + Testing Library, Playwright.
+It opens with a scroll-driven "Welcome to my mind" sequence: a procedural neural brain you travel *through*, then a normal, fast portfolio. Design notes and what was (and wasn't) learned from the reference are in [`docs/INTERACTION-DESIGN.md`](docs/INTERACTION-DESIGN.md).
 
-## Quick start
+Stack: Next.js 16 (App Router, static export for GitHub Pages), React 19, TypeScript (strict), Tailwind CSS 4, Zod, Vitest, Playwright. **No animation or 3D library**: the intro is Canvas 2D with a hand-written projection.
+
+## Run it
 
 ```bash
 npm install
-cp .env.example .env.local     # fill in contact details (see below)
-npm run dev                    # http://localhost:3000
+npm run dev          # http://localhost:3000
 ```
 
 | Command | What it does |
 | --- | --- |
-| `npm run dev` | Development server |
-| `npm run build` / `npm start` | Production build and server |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | ESLint |
-| `npm test` | Unit and component tests (Vitest) |
-| `npm run test:e2e` | Playwright end-to-end and accessibility tests (needs `npx playwright install chromium` first) |
-| `npm run check` | typecheck + lint + tests + build |
+| `npm run check` | typecheck + lint + unit tests + production build |
+| `npm test` | Vitest unit and component tests |
+| `npm run test:e2e` | Playwright + axe (needs `npx playwright install chromium`) |
 
-## Configuration
+## Deploy (GitHub Pages)
 
-All variables are optional. Nothing here is a secret: `NEXT_PUBLIC_*` values are shipped to every visitor.
+`.github/workflows/pages.yml` runs typecheck, lint and tests, removes `src/app/api` for that build only (Pages has no server), then exports with `GITHUB_PAGES=true` and base path `/CRAZYCV`. Enable it once under *Settings → Pages → Source: GitHub Actions*. Every asset URL goes through `withBase()` or Next's `Link`, so nothing breaks under `/CRAZYCV/`.
 
-| Variable | Purpose |
-| --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin for sitemap, robots and Open Graph |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Shown in Contact/CV and used for the `mailto:` link. Empty means "not configured" is shown |
-| `NEXT_PUBLIC_GITHUB_URL`, `NEXT_PUBLIC_LINKEDIN_URL` | Profile links. Empty means hidden |
-| `NEXT_PUBLIC_STATIC_PREVIEW`, `NEXT_PUBLIC_BASE_PATH`, `NEXT_PUBLIC_BUILD_ID`, `NEXT_PUBLIC_APP_VERSION` | Set only by the GitHub Pages workflow (static preview). Leave unset everywhere else |
-| `APP_VERSION` | Version shown in System Overview. Falls back to `package.json` |
-| `BUILD_ID` | Build identifier (commit SHA). Falls back to `VERCEL_GIT_COMMIT_SHA`, `CF_PAGES_COMMIT_SHA`, `GITHUB_SHA`, else "not configured" |
-| `DEPLOY_ENV` | Environment label. Falls back to `NODE_ENV` |
+To run the Pages build locally:
 
-## Adding your content
+```bash
+mv src/app/api /tmp/api-bak
+GITHUB_PAGES=true NEXT_PUBLIC_STATIC_PREVIEW=true NEXT_PUBLIC_BASE_PATH=/CRAZYCV npx next build
+mv /tmp/api-bak src/app/api
+npx serve out -l 4173   # then serve it under a /CRAZYCV/ prefix to match Pages
+```
 
-- **CV PDF:** the CV is at `public/documents/Kwame-Emmanuel-Adom-CV.pdf`, so the download button is live. It contains the phone numbers and email printed on the CV, so anyone who downloads it sees them. Replace the file to update it. If the file is removed, the button disappears and the CV page says the PDF is not available. The HTML CV is always available.
-- **Projects:** edit `src/data/projects.ts`. Keep facts in `featuresVerified` / `technologiesVerified` only once confirmed; anything unconfirmed goes in `toDocument` / `technologiesToConfirm`. Add screenshots to `public/projects/` and set `src` on the screenshot entry (until then a labeled placeholder is shown, never a fake screenshot).
-- **Education, experience and certifications:** `src/data/profile.ts` (taken from the CV; add dates or credentials only if they are real).
-- **Skills:** edit `src/data/skills.ts`. Each skill links to evidence; skills without evidence are flagged "evidence pending".
-- **Security assessments:** add a record to `src/data/assessments/index.ts` (see the `SAMPLE-001` entry). Records are validated by `src/lib/security/assessment-schema.ts` when the app loads:
-  - evidence must be `redacted: true`;
-  - `retest-passed` requires documented retest evidence;
-  - a `finding-identified` status requires a severity.
-  Mark nothing "secure". Use the status vocabulary: not tested, tested with no issue observed, finding identified, remediation applied, retest passed, inconclusive. Keep full private reports out of the repo and publish a sanitized summary.
+On a Node host (Vercel, Cloudflare via OpenNext) the `/api/ip`, `/api/system` and `/api/health` routes and the security headers in `next.config.ts` apply. On Pages they don't, and the UI says so.
+
+## How the intro works
+
+* `src/lib/experience/timeline.ts`: pure functions mapping scroll progress to camera, caption opacity and ignition. Unit-tested.
+* `src/lib/experience/mind.ts`: builds the brain once (about 1,350 points, k-nearest links, deterministic seed) and draws a frame with no per-frame allocation. Unit-tested.
+* `src/components/experience/IntroStage.tsx`: a 420vh runway with a sticky stage. **Scrolling stays native**; the loop reads progress and draws. It runs only while on screen, writes straight to canvas/DOM (no React re-render per frame), and **steps its own quality down** (no additive blending or pulses, lower pixel ratio, half frame rate) if real frame times are poor.
+* **Skip intro** is the second tab stop. **Scroll to enter / Tap to enter** plays the journey automatically; any wheel, touch or key press hands control back. Esc skips.
+* The intro is remembered (`localStorage`, set before first paint, so no flash). Returning visitors and deep links (`/#work`) never replay it. **Replay intro** is in the nav, footer and terminal (`replay`).
+* `prefers-reduced-motion`: the runway is one still screen, no animation loop, all content unchanged.
+* No JavaScript: the runway is hidden and the whole portfolio is plain server-rendered HTML. If hydration stalls for 6 s, hidden reveal content is forced visible.
+* Canvas unavailable: a CSS glow replaces the brain; captions and controls still work.
+
+## Content rules
+
+The old site's honesty rules are kept and enforced by tests:
+
+* Project data is in `src/data/projects.ts`: features and technologies only once confirmed from source or the CV. Screenshots are real files in `public/projects/`. No placeholder images, no fabricated metrics.
+* Skills (`src/data/skills.ts`) carry an evidence level **derived from their links**: *In shipped work*, *Lab practice*, or *Learning*. C++, Django, FastAPI, Burp Suite, DNS/HTTP, remediation and retesting currently have no linked evidence and show as **Learning**.
+* Security: real vs simulated is explicit. **Published real assessments: 0.** The assessment record is a labelled sample; the port-scan replay is a simulation against RFC 5737 addresses. Nothing on the site scans a third party.
+* Certifications: only *Introduction to Cybersecurity* is shown as earned. *Ethical Hacking* is shown as continuing study, because the CV states only the former as completed.
+* Open questions and to-dos that used to sit inside the public data bundle now live in [`docs/OWNER-NOTES.md`](docs/OWNER-NOTES.md).
+
+## Terminal and system overview
+
+The terminal is a fixed registry (`src/lib/terminal/command-registry.ts`): `help about whoami projects [name] skills experience education security network [ip] system browser cv [download] contact github open <section> replay clear`. Input is sanitised and used only as a lookup key. There is no shell, file, env or network access; only `network ip` can call this site's own `/api/ip`, and only when typed.
+
+The system overview shows only what the visitor's browser exposes, each value labelled *detected*, *inferred* or *unavailable*. Nothing is sent or stored. The public-IP lookup is opt-in and disabled on the static build. No WebRTC/LAN probing.
 
 ## Routes
 
-`/` desktop · `/projects` · `/projects/[slug]` · `/skills` · `/security-lab` · `/network-tools` · `/about` · `/cv` · `/contact` · `/api/health` · `/api/system` · `/api/ip` · `/robots.txt` · `/sitemap.xml`
+`/` (the experience) · `/projects` · `/projects/[slug]` · `/skills` · `/security-lab` · `/network-tools` · `/about` · `/cv` · `/contact`. The deep pages are plain server-rendered HTML, reachable directly and with JavaScript off.
 
-Every section also exists as a normal server-rendered page, so recruiters can reach it without the desktop, and the site works with JavaScript disabled (the intro overlay is hidden and a link list is shown).
+## Configuration
 
-## System Overview: what is and is not collected
-
-Everything is read from the visitor's own browser using feature detection and standard APIs, shown to the visitor, and **not sent anywhere or stored**. Each value is labeled detected, inferred, unavailable or not requested.
-
-- Browser and OS are **best-effort** (user-agent and Client Hints can be reduced or spoofed). Only a browser-reported platform is shown, never a claimed OS version unless Client Hints expose one.
-- Screen size (the display) and viewport size (the page area) are shown separately.
-- `navigator.onLine` is described as a browser flag, not proof of internet access.
-- The **public IP lookup is opt-in** (button). It calls this site's own `/api/ip`, which reads the address from the request headers set by the hosting proxy. No third-party service is contacted, nothing is stored or logged by the app, responses are `no-store`, loopback/private addresses are never presented as a public IP, and the value is strictly validated as an IP before being echoed. It is not re-requested automatically.
-- The **local (LAN) IP is not collected**. The site does not use WebRTC to gather addresses and does not scan or enumerate any network.
-- `/api/system` exposes only: app name, version, build id, environment label, health, timestamp.
-
-Hosting providers keep their own access logs; check your provider's retention settings and privacy policy.
-
-## Security boundaries
-
-- **Terminal:** a fixed registry of named commands (`src/lib/terminal/command-registry.ts`). Input is sanitized and used only as a lookup key. There is no endpoint that runs commands and no shell, file or env access. Unknown input returns "command not found".
-- **Security Lab:** the port-scan demo replays a fixed dataset against reserved documentation addresses (RFC 5737) and is labeled SIMULATION. There is no real scanning code and no way to target a third-party host. If you build a real scanner for your own lab, keep it out of this deployment and enforce a target allowlist.
-- **Network Tools:** local calculations only. No DNS, port, or TLS probing of arbitrary targets.
-- **Headers:** CSP, `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (camera, microphone, geolocation, etc. disabled), COOP, and HSTS in production (`next.config.ts`). The CSP allows `'unsafe-inline'` scripts because Next.js inlines bootstrap scripts; tightening this needs a per-request nonce via middleware.
-- **No contact form:** none is shown because no message-handling backend is configured. Contact is via `mailto:` and profile links.
-
-## GitHub Pages preview
-
-`.github/workflows/pages.yml` publishes a static preview to `https://kwame607.github.io/CRAZYCV/` on every push to `main` (enable it once under Settings → Pages → Source: GitHub Actions). The workflow runs typecheck, lint and tests, removes `src/app/api` for that build only, and builds with `GITHUB_PAGES=true`. In the preview:
-
-- there is no server, so System Overview labels the server rows "Not available in this static preview" and the public-IP button is disabled (version and build id are baked in at build time);
-- security headers cannot be set, so the CSP and related headers in `next.config.ts` only apply on a real Next.js host;
-- owner-facing notes on project pages are visible; they are hidden in production builds.
-
-## Deployment
-
-The app is a standard Next.js server app with route handlers, so use a host that runs Next.js (for example Vercel, or Cloudflare via the OpenNext adapter). Set the environment variables above, run `npm run build`, and verify `/api/health` returns `{"status":"ok"}`. Check the provider's current free-tier limits. On hosts that do not forward the client address, `/api/ip` returns "could not be determined" and the UI shows "Not retrieved".
-
-## Known gaps
-
-See the summary in the project hand-off: missing real assets and unverified facts are listed there and flagged inside the app.
+All optional (`.env.example`). `NEXT_PUBLIC_CONTACT_EMAIL` defaults to the address in `src/data/profile.ts`.

@@ -22,11 +22,13 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
   const project = getProject(slug);
   if (!project) notFound();
   return (
-    <PageShell title="Project case study">
-      <Link href="/projects" className="mb-4 inline-block text-sm text-accent hover:underline">
-        ← All projects
-      </Link>
+    <PageShell title={project.title}>
       <ProjectCaseStudy project={project} />
+      <p className="mt-14 border-t border-line pt-6">
+        <Link href="/projects" className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent hover:underline">
+          ← All projects
+        </Link>
+      </p>
     </PageShell>
   );
 }
