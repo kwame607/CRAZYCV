@@ -27,7 +27,7 @@ describe("parseCommand", () => {
 
 describe("command registry", () => {
   it("registers every required command", () => {
-    for (const name of ["help", "clear", "whoami", "about", "projects", "skills", "contact", "cv", "system", "browser", "network", "security-lab", "education", "experience", "github"]) {
+    for (const name of ["help", "clear", "whoami", "about", "projects", "skills", "experience", "security", "network", "cv", "contact", "system", "browser", "education", "github", "open", "replay"]) {
       expect(commandNames).toContain(name);
     }
   });
@@ -41,12 +41,41 @@ describe("command registry", () => {
   it("whoami shows the configured identity", () => {
     const text = (runCommand("whoami", ctx).lines ?? []).map((l) => l.text).join("\n");
     expect(text).toContain("Kwame Emmanuel Adom");
-    expect(text).toContain("Location: Ghana");
+    expect(text).toContain("Location: Kumasi, Ghana");
   });
-  it("projects lists real project titles and opens the Projects app", () => {
+  it("projects lists real project titles and offers a jump to Work without scrolling by itself", () => {
     const r = runCommand("projects", ctx);
     expect((r.lines ?? []).map((l) => l.text).join("\n")).toContain("AdepaMarket");
-    expect(r.openApp).toBe("projects");
+    expect(r.go).toBe("work");
+    expect(r.autoScroll).toBeUndefined();
+  });
+  it("'projects <name>' prints details from the data, and unknown names error", () => {
+    const text = (runCommand("projects adepamarket", ctx).lines ?? []).map((l) => l.text).join("\n");
+    expect(text).toContain("Cloudflare");
+    expect(text).toContain("https://adepamarket.admunz.workers.dev/");
+    expect(runCommand("projects nope", ctx).lines?.[0]?.kind).toBe("err");
+  });
+  it("'open <section>' is the only command that scrolls on its own", () => {
+    expect(runCommand("open security", ctx)).toMatchObject({ go: "security", autoScroll: true });
+    expect(runCommand("open nonsense", ctx).lines?.[0]?.kind).toBe("err");
+    expect(runCommand("about", ctx).autoScroll).toBeUndefined();
+  });
+  it("cv only downloads when asked to", () => {
+    expect(runCommand("cv", ctx).download).toBeUndefined();
+    expect(runCommand("cv download", ctx).download).toBe("cv");
+  });
+  it("security states the real/simulated split and publishes no invented assessment", () => {
+    const text = (runCommand("security", ctx).lines ?? []).map((l) => l.text).join("\n");
+    expect(text).toContain("Published real assessments: 0");
+    expect(text).toContain("SIMULATION");
+  });
+  it("skills labels each skill with its evidence level", () => {
+    const text = (runCommand("skills", ctx).lines ?? []).map((l) => l.text).join("\n");
+    expect(text).toMatch(/Python \[shipped\]/);
+    expect(text).toMatch(/C\+\+ \[learning\]/);
+  });
+  it("replay asks the page to replay the intro", () => {
+    expect(runCommand("replay", ctx).replay).toBe(true);
   });
   it("system returns the context-provided values", () => {
     expect(runCommand("system", ctx).lines?.[0]?.text).toBe("sys");
@@ -61,7 +90,9 @@ describe("command registry", () => {
     "rejects arbitrary command %s with a safe error",
     (input) => {
       const r = runCommand(input, ctx);
-      expect(r.openApp).toBeUndefined();
+      expect(r.go).toBeUndefined();
+      expect(r.download).toBeUndefined();
+      expect(r.replay).toBeUndefined();
       expect(r.deferred).toBeUndefined();
       expect(r.lines?.[0]?.kind).toBe("err");
       expect(r.lines?.[0]?.text).toContain("command not found");

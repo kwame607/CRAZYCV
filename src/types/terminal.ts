@@ -1,26 +1,29 @@
-export type AppId =
-  | "home"
-  | "projects"
-  | "terminal"
-  | "system"
-  | "security-lab"
-  | "network-tools"
-  | "skills"
-  | "cv"
-  | "about"
-  | "contact";
+import type { SectionId } from "@/lib/experience/actions";
 
 export type LineKind = "cmd" | "out" | "err" | "info";
 
 export interface TerminalLine {
   kind: LineKind;
   text: string;
+  /** Renders as a "jump to" button instead of plain text. */
+  go?: SectionId;
 }
 
-/** What a command wants the shell to do. Commands never touch the DOM or OS directly. */
+/**
+ * What a command asks the page to do. Commands never touch the DOM, the OS or
+ * the network themselves: the terminal component performs these few, fixed
+ * actions on their behalf.
+ */
 export interface CommandResult {
   lines?: TerminalLine[];
-  openApp?: AppId;
+  /** One of the page's own sections. Offered as a jump button, or scrolled to if `autoScroll`. */
+  go?: SectionId;
+  /** Scroll straight away (only the explicit `open` command does this). */
+  autoScroll?: boolean;
+  /** Download the CV PDF that ships with this site. */
+  download?: "cv";
+  /** Replay the intro animation. */
+  replay?: boolean;
   clear?: boolean;
   /** Async follow-up, e.g. user-requested IP lookup. Returns more lines. */
   deferred?: () => Promise<TerminalLine[]>;

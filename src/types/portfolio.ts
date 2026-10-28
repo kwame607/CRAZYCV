@@ -6,11 +6,12 @@ export interface ProjectLink {
 }
 
 export interface ProjectAsset {
-  /** Path under /public, or null when the real asset has not been supplied yet. */
-  src: string | null;
+  /** Path under /public. Only real screenshots are ever listed. */
+  src: string;
   alt: string;
-  /** What is needed to replace the placeholder. */
-  neededNote: string;
+  /** Intrinsic size in pixels, so the layout does not jump while the image loads. */
+  w: number;
+  h: number;
 }
 
 export interface Project {
@@ -24,12 +25,8 @@ export interface Project {
   role: string;
   /** Only technologies confirmed from the implementation or project docs. */
   technologiesVerified: string[];
-  /** Technologies that are likely but not yet confirmed; shown separately. */
-  technologiesToConfirm: string[];
   /** Features confirmed from the live site or source. */
   featuresVerified: string[];
-  /** Areas the case study will document once evidence is supplied. */
-  toDocument: string[];
   decisions: string[];
   challenges: string[];
   learned: string[];
@@ -40,8 +37,6 @@ export interface Project {
   evidenceNote?: string;
   /** Known limitations of the work itself (tools, scope, accuracy). */
   limitations?: string[];
-  /** Notes for the site owner about unresolved facts. */
-  ownerNotes: string[];
 }
 
 export type SkillEvidenceKind = "project" | "assessment" | "repository" | "demo";
@@ -84,6 +79,13 @@ export interface Profile {
   email: string | null;
   github: string | null;
   linkedin: string | null;
+  website: string;
   cvPdfPath: string;
   learningGoals: string[];
+}
+
+export interface StudyEntry {
+  title: string;
+  org: string;
+  note: string;
 }

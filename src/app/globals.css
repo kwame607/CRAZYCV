@@ -1,64 +1,194 @@
 @import "tailwindcss";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  --color-bg: #080b0d;
-  --color-bg2: #101518;
+  --color-bg: #0a0c0d;
+  --color-bg2: #111517;
+  --color-bg3: #171c1f;
   --color-win: #0d1215;
-  --color-accent: #f5b544;
+  --color-accent: #e9b155;
+  --color-cream: #efe6d2;
   --color-term: #62e6a5;
-  --color-fg: #f4f2ec;
-  --color-fg2: #a7b2ba;
-  --color-line: rgba(255, 255, 255, 0.12);
+  --color-fg: #f2efe6;
+  --color-fg2: #a3adb3;
+  --color-line: rgba(242, 239, 230, 0.14);
   --color-danger: #e06c6c;
-  --color-warn: #f5b544;
+  --color-warn: #e9b155;
 
-  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-html,
-body {
-  height: 100%;
+:root {
+  /* One easing curve and two durations drive every transition on the site. */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 240ms;
+  --t-slow: 700ms;
+  --nav-h: 4rem;
+}
+
+html {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 0.5rem);
+  text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
+  min-height: 100dvh;
+  background: var(--color-bg);
+  overflow-x: clip;
 }
 
 ::selection {
-  background: rgba(245, 181, 68, 0.35);
+  background: rgba(233, 177, 85, 0.35);
 }
 
 :focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Film grain: one static, tiny, tiled SVG. Not animated, so it costs nothing per frame. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 .desk-bg {
   background:
-    radial-gradient(1200px 600px at 75% -10%, rgba(245, 181, 68, 0.07), transparent 60%),
-    linear-gradient(var(--color-bg), #0a0f12);
+    radial-gradient(1100px 520px at 80% -8%, rgba(233, 177, 85, 0.07), transparent 60%),
+    linear-gradient(var(--color-bg), #0b0f11);
 }
 
-.window-in {
-  animation: window-in 160ms ease-out both;
+/* ------------------------------------------------------------------ */
+/* Intro runway: a tall block with a sticky stage inside it.           */
+/* Scrolling stays native; only the visuals are tied to progress.      */
+/* ------------------------------------------------------------------ */
+.intro-runway {
+  position: relative;
+  height: 420vh;
 }
-@keyframes window-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px) scale(0.985);
+@media (max-width: 767px) {
+  .intro-runway {
+    height: 340vh;
   }
-  to {
-    opacity: 1;
-    transform: none;
+}
+.intro-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 600px at 50% 46%, rgba(233, 177, 85, 0.06), transparent 70%),
+    var(--color-bg);
+}
+.intro-stage::after {
+  /* vignette */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(10, 12, 13, 0.85) 100%);
+}
+/* Returning visitors: the runway is gone before first paint (see the head script). */
+html[data-intro="seen"] .intro-runway {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-runway {
+    height: 100vh;
+    height: 100svh;
   }
+}
+/* No JavaScript: the animation cannot run, so it must not hide the page. */
+.no-js-hide {
+  display: none;
+}
+
+/* Nav is hidden while the cinematic part is on screen. */
+html[data-phase="intro"] .site-nav {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.site-nav {
+  transition:
+    opacity var(--t-fast) var(--ease),
+    visibility var(--t-fast);
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion system for the rest of the site                              */
+/* ------------------------------------------------------------------ */
+[data-js] .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--t-slow) var(--ease),
+    transform var(--t-slow) var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+[data-js] .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+[data-js] .reveal-img {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 900ms var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+[data-js] .is-in .reveal-img,
+[data-js] .reveal-img.is-in {
+  clip-path: inset(0 0 0 0);
+}
+[data-js] .rule-draw {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1100ms var(--ease);
+}
+[data-js] .is-in .rule-draw,
+[data-js] .rule-draw.is-in {
+  transform: scaleX(1);
+}
+
+/* Hydration failed or is very slow: never leave content hidden. */
+[data-reveal="all"] .reveal,
+[data-reveal="all"] .reveal-img,
+[data-reveal="all"] .rule-draw {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: background-size var(--t-fast) var(--ease);
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
 }
 
 .cursor-blink::after {
@@ -73,16 +203,17 @@ body {
   }
 }
 
-.boot-bar {
-  animation: boot-fill 1.6s ease-in-out both;
+@keyframes cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
 }
-@keyframes boot-fill {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+.cue-bob {
+  animation: cue-bob 1.8s var(--ease) infinite;
 }
 
 .scroll-thin {
@@ -91,6 +222,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
@@ -98,5 +232,12 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  [data-js] .reveal,
+  [data-js] .reveal-img,
+  [data-js] .rule-draw {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
   }
 }

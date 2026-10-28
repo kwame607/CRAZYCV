@@ -11,6 +11,3 @@ export const previewVersion = process.env.NEXT_PUBLIC_APP_VERSION?.trim() || "no
 export function withBase(path: string): string {
   return path.startsWith("/") ? `${basePath}${path}` : path;
 }
-
-/** Owner-facing notes are shown in dev and in the static preview, never in a real production deployment. */
-export const showOwnerNotes = staticPreview || process.env.NODE_ENV !== "production";
