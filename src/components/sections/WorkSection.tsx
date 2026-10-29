@@ -17,6 +17,7 @@ const themes: Record<string, { bg: string; ink: string; soft: string; accent: st
   "admunz-data-hub": { bg: "#e7f0f5", ink: "#0e1f2b", soft: "#4c6272", accent: "#006a5a", onAccent: "#ffffff" },
   "city-beans": { bg: "#f1e6b0", ink: "#1b1a10", soft: "#5b5a3d", accent: "#476b14", onAccent: "#ffffff" },
   "interactive-villa-vr": { bg: "#1a1426", ink: "#f1ecf7", soft: "#b9afcb", accent: "#f0a35e", onAccent: "#1a1426" },
+  "file-encryption-simulation": { bg: "#14161d", ink: "#e8eaf0", soft: "#a3aabb", accent: "#7fd1ff", onAccent: "#14161d" },
   "lan-chat": { bg: "#10161c", ink: "#e6edf3", soft: "#9fb0bf", accent: "#62e6a5", onAccent: "#10161c" },
   "momo-fraud-shield": { bg: "#17304f", ink: "#f4efe6", soft: "#b4c0d0", accent: "#f4977f", onAccent: "#17304f" },
 };
@@ -25,7 +26,7 @@ const pick = (slugs: string[]) =>
   slugs.map((slug) => projects.find((p) => p.slug === slug)).filter((p): p is Project => !!p);
 
 /** Security and networking first (my priority), then the web products. */
-const securityFeatured = pick(["momo-fraud-shield", "lan-chat"]);
+const securityFeatured = pick(["momo-fraud-shield", "file-encryption-simulation", "lan-chat"]);
 const interactiveFeatured = pick(["interactive-villa-vr"]);
 const webFeatured = pick(["adepamarket", "admunz-data-hub", "city-beans"]);
 
