@@ -31,13 +31,15 @@ export const moreBuilds: MoreBuild[] = [
     tech: ["A-Frame", "GLB/GLTF", "JavaScript"],
     slug: "interactive-villa-vr",
     live: { label: "Open the demo", href: "https://kwame607.github.io/interactive-villa-vr/" },
+    image: { src: "/projects/villa-vr-exterior.jpg", alt: "The villa demo at dusk: a two-storey modern house, a gym building, a pool and a vintage car on a lawn.", w: 1600, h: 783 },
   },
   {
     title: "Solar System",
     kind: "Interactive 3D",
-    line: "A solar-system scene on the web, a second A-Frame project alongside the villa.",
+    line: "A 3D solar-system scene in the browser: a labelled Sun and planets on orbit paths against a starfield.",
     tech: ["A-Frame"],
     live: { label: "Open the demo", href: "https://kwame607.github.io/solar-system/" },
+    image: { src: "/projects/solar-system-orbits.jpg", alt: "The solar-system demo: a glowing Sun and a row of labelled planets from Mercury to Neptune on curved orbit lines in space.", w: 1600, h: 783 },
   },
   {
     title: "LAN Chat Application",

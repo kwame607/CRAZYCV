@@ -40,7 +40,7 @@ On a Node host (Vercel, Cloudflare via OpenNext) the `/api/ip`, `/api/system` an
 * `src/lib/experience/mind.ts`: builds the brain once (about 1,350 points, k-nearest links, deterministic seed) and draws a frame with no per-frame allocation. Unit-tested.
 * `src/components/experience/IntroStage.tsx`: a 420vh runway with a sticky stage. **Scrolling stays native**; the loop reads progress and draws. It runs only while on screen, writes straight to canvas/DOM (no React re-render per frame), and **steps its own quality down** (no additive blending or pulses, lower pixel ratio, half frame rate) if real frame times are poor.
 * **Skip intro** is the second tab stop. **Scroll to enter / Tap to enter** plays the journey automatically; any wheel, touch or key press hands control back. Esc skips.
-* The intro is remembered (`localStorage`, set before first paint, so no flash). Returning visitors and deep links (`/#work`) never replay it. **Replay intro** is in the nav, footer and terminal (`replay`).
+* The intro plays on every visit and nothing about it is stored in the browser. Deep links (`/#work`) skip it. **Replay intro** is in the nav, footer and terminal (`replay`).
 * `prefers-reduced-motion`: the runway is one still screen, no animation loop, all content unchanged.
 * No JavaScript: the runway is hidden and the whole portfolio is plain server-rendered HTML. If hydration stalls for 6 s, hidden reveal content is forced visible.
 * Canvas unavailable: a CSS glow replaces the brain; captions and controls still work.

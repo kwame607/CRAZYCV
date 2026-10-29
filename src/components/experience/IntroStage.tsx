@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createMind, drawMind } from "@/lib/experience/mind";
 import { captionOpacity, captions, clamp01, easeInOutCubic, formatDepth, type Caption } from "@/lib/experience/timeline";
-import { markIntroSeen, scrollToSection, skipIntro } from "@/lib/experience/actions";
+import { scrollToSection, skipIntro } from "@/lib/experience/actions";
 
 /**
  * "Welcome to my mind": a tall runway containing a sticky stage.
@@ -59,7 +59,6 @@ export function IntroStage() {
     let lastPhase = "";
     let lastBeatEnd = false;
     let lastStarted = false;
-    let marked = false;
     // Adaptive quality: 0 full, 1 no additive blending or pulses, 2 also half the frame rate.
     // Phones start at 1. The loop steps down if real frame times say the device is struggling.
     let tier = smallMq.matches ? 1 : 0;
@@ -108,10 +107,6 @@ export function IntroStage() {
       if (end !== lastBeatEnd) {
         lastBeatEnd = end;
         stage.dataset.end = end ? "1" : "0";
-      }
-      if (p > 0.97 && !marked) {
-        marked = true;
-        markIntroSeen();
       }
       setPhase(p < 0.9 ? "intro" : "site");
     };
