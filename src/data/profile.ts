@@ -11,14 +11,14 @@ export const profile: Profile = {
   handle: "adom",
   roles: [
     "Aspiring cybersecurity professional",
+    "Full-stack web developer",
     "Computer Science graduate",
     "Python programmer",
-    "Web developer (HTML, CSS, basic JavaScript)",
   ],
   location: "Kumasi, Ghana",
-  focus: "Practical cybersecurity and secure application development",
+  focus: "Cybersecurity first, with full-stack web development",
   summary:
-    "Aspiring cybersecurity professional with a BSc in Computer Science (University of Cape Coast). I am building security skills through practical projects and authorized, documented lab work: investigate, document evidence, fix, and retest. My strongest web fundamentals are HTML, CSS and basic JavaScript. I have also built AI-assisted web applications with Node.js, TypeScript and modern frameworks, and I do not claim to have written all of that code myself.",
+    "Computer Science graduate (University of Cape Coast) and full-stack web developer, founder of Admunz Data Hub. My priority is cybersecurity: I am building practical skills through hands-on projects and authorized, documented lab work (investigate, document evidence, fix, retest). I also build and deploy real web applications. My strongest web fundamentals are HTML, CSS and basic JavaScript, and my larger applications with Node.js, TypeScript and modern frameworks were built with AI assistance, so I do not claim to have written all of that code myself.",
   // Public contact address supplied by the owner; the env var can override it.
   email: envOrNull(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "kwameadom607@gmail.com",
   // The account owns the repositories this portfolio documents; override with the env var if needed.
@@ -57,7 +57,7 @@ export const education: TimelineEntry[] = [
 
 export const experience: TimelineEntry[] = [
   {
-    title: "Founder and Web Developer",
+    title: "Founder and Full-Stack Web Developer",
     org: "Admunz Data Hub",
     period: "2026 to present",
     detail: "Founded and built an online platform for data bundle sales and digital services; works on APIs, payment integrations, backend services, deployment and ongoing improvements.",

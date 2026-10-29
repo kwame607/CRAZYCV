@@ -85,7 +85,7 @@ export const projects: Project[] = [
       "An online digital-services platform focused on automated data bundle sales, customer onboarding, and digital transactions. It includes agent accounts with their own storefronts, a wallet, order tracking and an administrative back office.",
     problem:
       "Selling data bundles by hand is slow and error-prone. The platform automates ordering, payment and fulfilment, and lets resellers (agents) run their own stores on top of it.",
-    role: "Founder and web developer, 2026 to present (per CV). Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements. Built with AI assistance; I do not claim to have hand-written all of the code.",
+    role: "Founder and full-stack web developer, 2026 to present (per CV). Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "Next.js 14, React 18 and TypeScript",
       "Supabase (database and auth client libraries)",
