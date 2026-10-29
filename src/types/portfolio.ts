@@ -14,6 +14,17 @@ export interface ProjectAsset {
   h: number;
 }
 
+/** A real, permitted run of a tool, shown as evidence with its limits. Not a published assessment. */
+export interface ScanRun {
+  target: string;
+  authorization: string;
+  mode: string;
+  observed: string[];
+  limits: string[];
+  /** Index into the project's screenshots. */
+  screenshot: number;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -33,6 +44,8 @@ export interface Project {
   security: string[];
   links: ProjectLink[];
   screenshots: ProjectAsset[];
+  /** A real run of the tool with its limits (security tools only). */
+  run?: ScanRun;
   /** Where the verified details came from. Shown on the case study. */
   evidenceNote?: string;
   /** Known limitations of the work itself (tools, scope, accuracy). */
@@ -79,6 +92,8 @@ export interface Profile {
   email: string | null;
   github: string | null;
   linkedin: string | null;
+  /** Shown as-is, with a wa.me link built from the international number. */
+  whatsapp: { display: string; href: string };
   website: string;
   cvPdfPath: string;
   learningGoals: string[];

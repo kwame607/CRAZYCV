@@ -23,7 +23,9 @@ export const profile: Profile = {
   email: envOrNull(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "kwameadom607@gmail.com",
   // The account owns the repositories this portfolio documents; override with the env var if needed.
   github: envOrNull(process.env.NEXT_PUBLIC_GITHUB_URL) ?? "https://github.com/kwame607",
-  linkedin: envOrNull(process.env.NEXT_PUBLIC_LINKEDIN_URL),
+  linkedin: envOrNull(process.env.NEXT_PUBLIC_LINKEDIN_URL) ?? "https://www.linkedin.com/in/kwame-adom-957b58277",
+  // Number supplied by the owner for the portfolio; it matches the CV. Ghana country code 233, leading 0 dropped.
+  whatsapp: { display: "+233 53 275 9082", href: "https://wa.me/233532759082" },
   website: "https://www.admunz.com/",
   cvPdfPath: "/documents/Kwame-Emmanuel-Adom-CV.pdf",
   learningGoals: [

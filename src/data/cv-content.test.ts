@@ -27,6 +27,9 @@ describe("CV-backed content", () => {
   });
   it("uses the contact details given by the owner", () => {
     expect(profile.email).toBe("kwameadom607@gmail.com");
+    expect(profile.linkedin).toBe("https://www.linkedin.com/in/kwame-adom-957b58277");
+    expect(profile.whatsapp.href).toBe("https://wa.me/233532759082");
+    expect(profile.whatsapp.display).toBe("+233 53 275 9082");
     expect(profile.location).toBe("Kumasi, Ghana");
     expect(profile.website).toBe("https://www.admunz.com/");
   });

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { assessments } from "@/data/assessments";
+import { getProject } from "@/data/projects";
+import { withBase } from "@/lib/preview";
 import { certifications, studying } from "@/data/profile";
 import { ScanSimulation } from "@/components/applications/ScanSimulation";
 import { Reveal } from "@/components/experience/Reveal";
@@ -16,6 +18,9 @@ const steps: [string, string][] = [
 
 export function SecuritySection() {
   const published = assessments.filter((a) => !a.sample).length;
+  const scanner = getProject("python-port-scanner");
+  const run = scanner?.run;
+  const shot = run ? scanner?.screenshots[run.screenshot] : undefined;
   return (
     <section id="security" aria-labelledby="security-title" className="relative border-t border-line py-24 md:py-36">
       <div className={container}>
@@ -54,7 +59,7 @@ export function SecuritySection() {
             <h3 className="mt-5 font-display text-4xl text-fg">What actually exists</h3>
             <ul className="mt-6 space-y-5 text-[15px] leading-relaxed text-fg2">
               <li>
-                <strong className="font-medium text-fg">A Python port scanner.</strong> A TCP connect scanner I wrote for authorised targets. Its limitations are documented, and nothing on this site runs it.{" "}
+                <strong className="font-medium text-fg">A Python port scanner.</strong> A TCP connect scanner I wrote for authorised targets. I have run it against a host published for scanning practice (below). Its limitations are documented, and nothing on this site runs it.{" "}
                 <Link href="/projects/python-port-scanner" className="link-underline text-term">
                   Read the write-up
                 </Link>
@@ -68,7 +73,7 @@ export function SecuritySection() {
               <li>
                 <strong className="font-medium text-fg">Published assessments: {published}.</strong>{" "}
                 {published === 0
-                  ? "I haven't published a real assessment yet. When I do it will state scope, authorisation, tools, redacted evidence, the fix and the retest. Until then, this site claims no findings."
+                  ? "A port-scan run is not an assessment, and I haven't published a full one yet. When I do it will state scope, authorisation, tools, redacted evidence, the fix and the retest. Until then, this site claims no findings."
                   : "See the Security Lab for the records."}
               </li>
             </ul>
@@ -98,6 +103,48 @@ export function SecuritySection() {
             </ul>
           </Reveal>
         </div>
+
+        {/* A real run, with its limits */}
+        {run && shot && (
+          <Reveal className="mt-10 grid gap-8 rounded-2xl border border-term/30 bg-bg2 p-5 md:p-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
+            <figure className="reveal-img self-start overflow-hidden rounded-xl border border-line bg-black">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={withBase(shot.src)} alt={shot.alt} width={shot.w} height={shot.h} loading="lazy" decoding="async" className="block h-auto w-full" />
+            </figure>
+            <div>
+              <p className="inline-flex items-center gap-2 rounded-full border border-term/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-term">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-term" /> Real run
+              </p>
+              <h3 className="mt-5 font-display text-4xl leading-tight text-fg">My scanner, on a host made for practice</h3>
+              <dl className="mt-6 space-y-4 text-[14px] leading-relaxed">
+                {(
+                  [
+                    ["Target", run.target],
+                    ["Permission", run.authorization],
+                    ["Mode", run.mode],
+                    ["Observed", run.observed.join(". ") + "."],
+                  ] as const
+                ).map(([k, v]) => (
+                  <div key={k}>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-fg2">{k}</dt>
+                    <dd className="mt-1 text-fg">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-accent">What this does not show</p>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-[14px] leading-relaxed text-fg2">
+                {run.limits.map((l) => (
+                  <li key={l}>{l}</li>
+                ))}
+              </ul>
+              <p className="mt-6">
+                <Link href="/projects/python-port-scanner" className="link-underline font-mono text-[11px] uppercase tracking-[0.16em] text-term">
+                  Scanner write-up →
+                </Link>
+              </p>
+            </div>
+          </Reveal>
+        )}
 
         {/* Demo */}
         <Reveal className="mt-10 overflow-hidden rounded-2xl border border-line bg-win">
