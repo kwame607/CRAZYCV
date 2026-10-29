@@ -13,13 +13,19 @@ import { SectionHeader, container } from "@/components/experience/SectionHeader"
  * hue deepened (or lightened on the navy panel) until small text clears 4.5:1.
  */
 const themes: Record<string, { bg: string; ink: string; soft: string; accent: string; onAccent: string }> = {
+  adepamarket: { bg: "#f3e4cf", ink: "#2b1d14", soft: "#6f5646", accent: "#9a3b18", onAccent: "#fff7ee" },
+  "admunz-data-hub": { bg: "#e7f0f5", ink: "#0e1f2b", soft: "#4c6272", accent: "#006a5a", onAccent: "#ffffff" },
+  "city-beans": { bg: "#f1e6b0", ink: "#1b1a10", soft: "#5b5a3d", accent: "#476b14", onAccent: "#ffffff" },
   "lan-chat": { bg: "#10161c", ink: "#e6edf3", soft: "#9fb0bf", accent: "#62e6a5", onAccent: "#10161c" },
   "momo-fraud-shield": { bg: "#17304f", ink: "#f4efe6", soft: "#b4c0d0", accent: "#f4977f", onAccent: "#17304f" },
 };
 
-const featured = ["momo-fraud-shield", "lan-chat"]
-  .map((slug) => projects.find((p) => p.slug === slug))
-  .filter((p): p is Project => !!p);
+const pick = (slugs: string[]) =>
+  slugs.map((slug) => projects.find((p) => p.slug === slug)).filter((p): p is Project => !!p);
+
+/** Security and networking first (my priority), then the web products. */
+const securityFeatured = pick(["momo-fraud-shield", "lan-chat"]);
+const webFeatured = pick(["adepamarket", "admunz-data-hub", "city-beans"]);
 
 function host(href: string): string {
   try {
@@ -131,26 +137,39 @@ export function WorkSection() {
         <SectionHeader
           index="02"
           label="Projects"
-          lead="Security and networking projects first, then the web products. My port scanner and home lab are in the Cybersecurity section above. Each project says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
+          lead="Everything I've built, with security and networking first. My port scanner and home lab are in the Cybersecurity section above. Each project says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
         >
           <span id="work-title">
-            Security and networking projects, <em className="text-accent">then everything else.</em>
+            Security first, <em className="text-accent">and the web products I ship.</em>
           </span>
         </SectionHeader>
 
         <div className="mt-16 space-y-10 md:mt-24 md:space-y-16">
-          {featured.map((p, i) => (
+          {securityFeatured.map((p, i) => (
             <ProjectFeature key={p.slug} project={p} index={i} />
           ))}
+        </div>
+
+        <div id="web-products" className="mt-24 scroll-mt-24 md:mt-32">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+              Full-stack web products <span className="text-fg2">/ built with AI assistance</span>
+            </p>
+            <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-fg2">
+              My strongest web fundamentals are HTML, CSS and basic JavaScript. These larger products use Node.js, TypeScript and modern frameworks, and were built with AI assistance. I am not presenting myself as an advanced full-stack developer, and I do not claim to have written all of this code by hand. Each one is live, and I built and deployed it.
+            </p>
+          </Reveal>
+          <div className="mt-10 space-y-10 md:mt-14 md:space-y-16">
+            {webFeatured.map((p, i) => (
+              <ProjectFeature key={p.slug} project={p} index={securityFeatured.length + i} />
+            ))}
+          </div>
         </div>
 
         <div className="mt-24 md:mt-32">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
               Also built <span className="text-fg2">/ from my CV</span>
-            </p>
-            <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-fg2">
-              My strongest web fundamentals are HTML, CSS and basic JavaScript. The larger web products at the end were built with AI assistance using Node.js, TypeScript and modern frameworks. I am not presenting myself as an advanced full-stack developer, and I do not claim to have written all of that code by hand.
             </p>
           </Reveal>
           <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">

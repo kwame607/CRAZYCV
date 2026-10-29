@@ -61,7 +61,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Web Development",
     skills: [
-      { name: "Web applications (AI-assisted builds)", evidence: [proj("admunz-data-hub", "Admunz Data Hub"), proj("adepamarket", "AdepaMarket")] },
+      { name: "Full-stack web applications (AI-assisted builds)", evidence: [proj("admunz-data-hub", "Admunz Data Hub"), proj("adepamarket", "AdepaMarket")] },
       { name: "Responsive design", evidence: [proj("adepamarket", "AdepaMarket")] },
       { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Paystack, upstream providers)"), proj("adepamarket", "AdepaMarket (Paystack)"), proj("city-beans", "City Beans (Paystack, Supabase)")] },
       { name: "React and Next.js (AI-assisted builds)", evidence: [proj("city-beans", "City Beans (React, Vite)"), { kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }, proj("adepamarket", "AdepaMarket"), proj("admunz-data-hub", "Admunz Data Hub")] },

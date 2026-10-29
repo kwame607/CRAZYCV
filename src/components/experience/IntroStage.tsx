@@ -320,7 +320,7 @@ export function IntroStage() {
           <div data-cap="name" style={hidden} className="absolute inset-x-5 bottom-[21vh] text-center md:bottom-[18vh]">
             <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-fg2">You are inside</p>
             <p className="mt-3 font-display text-[clamp(2.6rem,9vw,8rem)] leading-[0.92] text-fg">Kwame Emmanuel Adom</p>
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-accent md:text-xs">Aspiring cybersecurity professional · Kumasi, Ghana</p>
+            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-accent md:text-xs">Cybersecurity · Full-stack web developer · Kumasi, Ghana</p>
           </div>
         </div>
 

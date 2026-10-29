@@ -18,13 +18,14 @@ const layers = [
     n: "03",
     title: "Build",
     tone: "text-accent",
-    body: "My strongest web fundamentals are HTML, CSS and basic JavaScript. I have also built AI-assisted applications with Node.js, TypeScript and modern frameworks. I direct and deploy them; I don't claim to have written all of that code myself.",
+    body: "Full-stack web products with real payments, accounts and admin tools: Next.js, TypeScript, Supabase, Cloudflare and Paystack. My strongest fundamentals are HTML, CSS and basic JavaScript; the larger applications were built with AI assistance, and I don't claim to have written all of that code myself.",
   },
 ];
 
 const facts: [string, string][] = [
   ["Education", "BSc Computer Science, University of Cape Coast"],
   ["Final-year project", "MoMo Fraud Shield, a machine-learning prototype for spotting mobile money scam messages"],
+  ["Founder and developer", "Admunz Data Hub and AdepaMarket"],
   ["Training", "Cisco Networking Academy: Introduction to Cybersecurity (certificate); Ethical Hacking (continuing study)"],
   ["Based in", "Kumasi, Ghana"],
 ];
@@ -42,10 +43,10 @@ export function AboutSection() {
         <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <Reveal>
             <p className="max-w-[48ch] text-lg leading-relaxed text-fg2">
-              I&rsquo;m an aspiring cybersecurity professional in Kumasi with a Computer Science degree. I&rsquo;m building my skills the careful way: understand the system first, test only what I&rsquo;m authorised to test, and write down what I actually observed.
+              I&rsquo;m a Computer Science graduate in Kumasi. Cybersecurity is my priority, and I&rsquo;m also a full-stack web developer who founded Admunz Data Hub and AdepaMarket. I&rsquo;m building my security skills the careful way: understand the system first, test only what I&rsquo;m authorised to test, and write down what I actually observed.
             </p>
             <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-fg2">
-              I have also built and launched a few web products with AI assistance. They taught me how real applications are put together, which is useful when the job is to find where they break.
+              The web products I build with AI assistance taught me how real applications are put together, which is useful when the job is to find where they break.
             </p>
             <dl className="mt-12 grid gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-2">
               {facts.map(([k, v]) => (

@@ -5,10 +5,10 @@ import { container } from "@/components/experience/SectionHeader";
 
 const facts: [string, string][] = [
   ["Based in", profile.location],
-  ["Focus", "Aspiring cybersecurity professional"],
+  ["Priority", "Cybersecurity (aspiring professional)"],
+  ["Also", "Full-stack web developer"],
   ["Studied", "BSc Computer Science, University of Cape Coast"],
-  ["Hands-on", "Python port scanner · isolated Kali lab · MoMo Fraud Shield"],
-  ["Training", "Cisco: Introduction to Cybersecurity"],
+  ["Founder of", "Admunz Data Hub · AdepaMarket"],
 ];
 
 export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
@@ -37,12 +37,15 @@ export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-9 max-w-[54ch] text-base leading-relaxed text-fg2 md:text-lg">
-              I hold a Computer Science degree and I am building practical cybersecurity skills through hands-on projects and an isolated lab. My web fundamentals are HTML, CSS and basic JavaScript, and I have built AI-assisted applications on top of them.
+              Computer Science graduate. My priority is practical cybersecurity, through hands-on projects and an isolated lab. I also build and ship web products, from HTML, CSS and basic JavaScript up to AI-assisted applications in Node.js and TypeScript.
             </p>
           </Reveal>
           <Reveal delay={240} className="mt-10 flex flex-wrap gap-3">
             <a href="#security" className={`${btn} bg-accent text-bg hover:brightness-110`}>
               See my security work <span aria-hidden="true">↓</span>
+            </a>
+            <a href="#web-products" className={`${btn} border border-line text-fg hover:border-accent hover:text-accent`}>
+              Web projects <span aria-hidden="true">↓</span>
             </a>
             {cvAvailable && (
               <a href={withBase(profile.cvPdfPath)} download className={`${btn} border border-line text-fg hover:border-accent hover:text-accent`}>
@@ -65,6 +68,9 @@ export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
                 LinkedIn<span className="sr-only"> (opens in a new tab)</span>
               </a>
             )}
+            <a className="link-underline hover:text-fg" href="https://adepamarket.admunz.workers.dev/" target="_blank" rel="noopener noreferrer">
+              AdepaMarket<span className="sr-only"> (opens in a new tab)</span>
+            </a>
             <a className="link-underline hover:text-fg" href={profile.website} target="_blank" rel="noopener noreferrer">
               admunz.com<span className="sr-only"> (opens in a new tab)</span>
             </a>
