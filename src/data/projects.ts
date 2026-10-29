@@ -10,6 +10,11 @@ const dims: Record<string, [number, number]> = {
   "city-beans-menu.jpg": [1036, 778],
   "momo-fraud-shield-home.jpg": [1280, 633],
   "momo-fraud-shield-result.jpg": [711, 775],
+  "port-scanner-scanme-run.jpg": [1600, 871],
+  "wisewave-home.jpg": [1600, 871],
+  "wisewave-portfolio.jpg": [1600, 871],
+  "lan-chat-client.jpg": [827, 779],
+  "lan-chat-server.jpg": [854, 722],
 };
 const shot = (file: string, alt: string) => {
   const [w, h] = dims[file] ?? [1200, 800];
@@ -207,7 +212,7 @@ export const projects: Project[] = [
     slug: "python-port-scanner",
     title: "Python Network Port Scanner",
     tagline: "Interactive TCP connect scanner for authorized targets",
-    status: "Built · Python command-line tool",
+    status: "Built · tested on a permitted target",
     featured: true,
     overview:
       "A Python command-line tool that checks which TCP ports accept connections on a host the user chooses. It prompts for a hostname or IPv4 address, a port range, and a scan mode, then reports open ports.",
@@ -228,7 +233,7 @@ export const projects: Project[] = [
       "README includes a disclaimer to scan only systems you own or have permission to test",
     ],
     evidenceNote:
-      "Read from the tool's source code and README. The tool was read, not run, for this page.",
+      "Read from the tool's source code and README. The terminal capture is a real run against scanme.nmap.org, supplied by the owner.",
     limitations: [
       "Ports are scanned one at a time, so large ranges are slow.",
       "Any failed connection is reported as 'closed', so it cannot tell a refused connection from a filtered port or a timeout.",
@@ -245,7 +250,23 @@ export const projects: Project[] = [
       "The Security Lab demo is a fixed, simulated dataset against reserved documentation addresses.",
     ],
     links: [],
-    screenshots: [],
+    screenshots: [
+      shot("port-scanner-scanme-run.jpg", "Terminal capture of the scanner running against scanme.nmap.org, ports 1 to 100 in common-ports mode: ports 21, 22 and 80 reported open and 20, 23, 25 and 53 reported closed."),
+    ],
+    run: {
+      target: "scanme.nmap.org (45.33.32.156)",
+      authorization:
+        "scanme.nmap.org is published by the Nmap project as a host people may practise scanning against, and asks users to keep it light. A short port range was used.",
+      mode: "Host name mode, ports 1 to 100, common-ports mode. Seven of the built-in common ports fall in that range, so seven ports were tried.",
+      observed: ["Reported open: 21, 22 and 80", "Reported closed: 20, 23, 25 and 53"],
+      limits: [
+        "Only seven ports were tried, so this says nothing about the rest of the host.",
+        "The tool prints 'closed' for any failed connection, so closed, filtered and timed-out ports look the same.",
+        "Open means a TCP connection completed. The services behind 21, 22 and 80 (FTP, SSH and HTTP by convention) were not identified.",
+        "The capture carries no date, so none is stated.",
+      ],
+      screenshot: 0,
+    },
   },
   {
     slug: "pentest-home-lab",
@@ -292,6 +313,67 @@ export const projects: Project[] = [
     security: ["A static front-end scene with no accounts or user data. Not assessed."],
     links: [{ label: "Live demo", href: "https://kwame607.github.io/interactive-villa-vr/" }],
     screenshots: [],
+  },
+  {
+    slug: "lan-chat",
+    title: "LAN Chat Application",
+    tagline: "A two-party terminal chat over TCP sockets, written in Python",
+    status: "Built · Python",
+    overview:
+      "A terminal chat where a server waits for a connection, a client connects, each side enters a name, and messages appear on the other side with a timestamp until someone types exit.",
+    problem:
+      "A hands-on way to learn how two programs find each other and exchange data over a network: opening sockets, connecting, and sending and receiving messages.",
+    role: "Author (per CV). Built the real-time messaging application using a client-server design.",
+    technologiesVerified: ["Python", "Socket programming (TCP)"],
+    featuresVerified: [
+      "Client-server architecture over sockets (per CV)",
+      "A server that waits for a connection and reports who connected",
+      "Each side enters a display name; messages show the sender and a timestamp",
+      "Typing exit ends the session",
+      "Coloured status messages and a banner in the terminal",
+    ],
+    limitations: [
+      "The captured session runs on loopback (127.0.0.1), with both programs on one machine. Running it across two machines on a network is what it is built for, but that is not shown here.",
+      "The capture shows one client talking to the server. Handling several clients at once is not shown and is not claimed.",
+      "No encryption or authentication is described or shown, so treat the conversation as plain text.",
+    ],
+    evidenceNote: "From the CV and two terminal captures supplied by the owner (the client and the server). The source code was not reviewed.",
+    decisions: [],
+    challenges: [],
+    learned: [],
+    security: ["Not assessed. Nothing about authentication or encryption is claimed."],
+    links: [],
+    screenshots: [
+      shot("lan-chat-client.jpg", "The chat client in a terminal: a banner, a connected message, a name prompt, and a short timestamped conversation that ends with the exit command."),
+      shot("lan-chat-server.jpg", "The chat server in a terminal: a server-on message, a connection from 127.0.0.1, the same short conversation seen from the other side, and the exit command."),
+    ],
+  },
+  {
+    slug: "wisewave-enterprise",
+    title: "Wisewave Enterprise",
+    tagline: "A responsive business website for a technology and education services company",
+    status: "Live",
+    overview:
+      "A business website with Home, Services, About and Reviews sections. Its landing page introduces the company and presents an Enterprise Solutions Portfolio of three service cards: Enterprise Computing Solutions, Professional Accessories and Smart Technology Solutions.",
+    problem:
+      "A company needs a website that explains what it offers clearly and works on any screen.",
+    role: "Web developer, 2025 to present (per CV). Developed the website, organised its content to present the company's offerings, and implemented responsive layouts and interactive components.",
+    technologiesVerified: ["Responsive front-end website", "Hosted on GitHub Pages"],
+    featuresVerified: [
+      "Navigation across Home, Services, About and Reviews",
+      "A full-width hero with the company introduction",
+      "An Enterprise Solutions Portfolio of three service cards with feature tags",
+    ],
+    evidenceNote: "From the CV and two screenshots of the live site supplied by the owner. The source code was not reviewed.",
+    decisions: [],
+    challenges: [],
+    learned: [],
+    security: ["A static content website with no accounts. Not assessed."],
+    links: [{ label: "Live site", href: "https://kwame607.github.io/wiseewave/" }],
+    screenshots: [
+      shot("wisewave-home.jpg", "Wisewave Enterprise home page: a blue navigation bar with Home, Services, About and Reviews, and a hero reading Empowering Your Digital Future over a blurred photo of electronics."),
+      shot("wisewave-portfolio.jpg", "Wisewave Enterprise Enterprise Solutions Portfolio: three cards for Enterprise Computing Solutions, Professional Accessories and Smart Technology Solutions, each with tags."),
+    ],
   },
 ];
 

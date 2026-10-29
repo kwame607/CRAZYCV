@@ -175,7 +175,14 @@ const commands: CommandDef[] = [
     name: "contact",
     description: "How to reach me",
     run: () => ({
-      lines: out(`Email:   ${profile.email ?? "not configured yet"}`, `GitHub:  ${profile.github ?? "not configured yet"}`, `Website: ${profile.website}`, `Based in: ${profile.location}`),
+      lines: out(
+        `Email:    ${profile.email ?? "not configured yet"}`,
+        `WhatsApp: ${profile.whatsapp.display}`,
+        `LinkedIn: ${profile.linkedin ?? "not configured yet"}`,
+        `GitHub:   ${profile.github ?? "not configured yet"}`,
+        `Website:  ${profile.website}`,
+        `Based in: ${profile.location}`,
+      ),
       go: "contact",
     }),
   },

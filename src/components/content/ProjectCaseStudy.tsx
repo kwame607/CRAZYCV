@@ -59,6 +59,24 @@ export function ProjectCaseStudy({ project: p }: { project: Project }) {
         </div>
       )}
 
+      {p.run && (
+        <div className="mb-10 rounded-xl border border-term/30 bg-term/[0.04] p-5">
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-term">Real run</p>
+          <dl className="mt-3 space-y-3 text-[15px] leading-relaxed text-fg2">
+            <div><dt className="inline font-medium text-fg">Target: </dt><dd className="inline">{p.run.target}</dd></div>
+            <div><dt className="inline font-medium text-fg">Permission: </dt><dd className="inline">{p.run.authorization}</dd></div>
+            <div><dt className="inline font-medium text-fg">Mode: </dt><dd className="inline">{p.run.mode}</dd></div>
+            <div><dt className="inline font-medium text-fg">Observed: </dt><dd className="inline">{p.run.observed.join(". ")}.</dd></div>
+          </dl>
+          <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-accent">What it does not show</p>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-fg2">
+            {p.run.limits.map((l) => (
+              <li key={l}>{l}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <SectionTitle>Overview</SectionTitle>
       <p className="text-[15px] leading-relaxed text-fg2">{p.overview}</p>
 

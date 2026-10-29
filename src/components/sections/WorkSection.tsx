@@ -133,7 +133,7 @@ export function WorkSection() {
         <SectionHeader
           index="01"
           label="Selected work"
-          lead="Four projects with real screenshots, what I built, and what I can and can't claim about each. Every detail here was read from the source or stated on my CV."
+          lead="Four projects in depth, then the smaller builds. Each says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
         >
           <span id="work-title">
             Things I&rsquo;ve built, <em className="text-accent">and how they work.</em>
@@ -156,6 +156,12 @@ export function WorkSection() {
             {moreBuilds.map((b, i) => (
               <li key={b.title} className="bg-bg2 p-6 md:p-8">
                 <Reveal delay={i * 60}>
+                  {b.image && (
+                    <figure className="reveal-img mb-6 aspect-[16/9] overflow-hidden rounded-lg border border-line bg-bg">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={withBase(b.image.src)} alt={b.image.alt} width={b.image.w} height={b.image.h} loading="lazy" decoding="async" className="h-full w-full object-cover object-top" />
+                    </figure>
+                  )}
                   <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-term">{b.kind}</p>
                   <h3 className="mt-3 font-display text-3xl leading-tight text-fg">{b.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-fg2">{b.line}</p>

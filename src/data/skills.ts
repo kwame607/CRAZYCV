@@ -14,7 +14,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Programming",
     skills: [
-      { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("momo-fraud-shield", "MoMo Fraud Shield")] },
+      { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("momo-fraud-shield", "MoMo Fraud Shield"), proj("lan-chat", "LAN Chat Application")] },
       { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)"), proj("city-beans", "City Beans (JavaScript)")] },
       { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
       { name: "SQL", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Supabase, SQL scripts)")] },
@@ -44,9 +44,13 @@ export const skillGroups: SkillGroup[] = [
     title: "Interactive 3D",
     skills: [
       {
-        name: "A-Frame scenes with GLB/GLTF assets",
-        evidence: [proj("interactive-villa-vr", "Interactive Villa VR"), { kind: "demo", label: "Live demo", href: "https://kwame607.github.io/interactive-villa-vr/" }],
+        name: "A-Frame scenes",
+        evidence: [
+          proj("interactive-villa-vr", "Interactive Villa VR"),
+          { kind: "demo", label: "Solar System demo", href: "https://kwame607.github.io/solar-system/" },
+        ],
       },
+      { name: "GLB/GLTF asset integration", evidence: [proj("interactive-villa-vr", "Interactive Villa VR")] },
       { name: "Camera and movement controls (desktop and touch)", evidence: [proj("interactive-villa-vr", "Interactive Villa VR")] },
     ],
   },
@@ -54,7 +58,7 @@ export const skillGroups: SkillGroup[] = [
     title: "Systems and Networking",
     skills: [
       { name: "Linux and command-line workflows", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
-      { name: "TCP/IP and socket programming", evidence: [proj("python-port-scanner", "Python Network Port Scanner")] },
+      { name: "TCP/IP and socket programming", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("lan-chat", "LAN Chat Application")] },
       { name: "Subnetting and CIDR", evidence: [{ kind: "demo", label: "Network Tools: subnet calculator", href: "/network-tools" }] },
       { name: "DNS and HTTP/HTTPS", evidence: [], needsEvidence: true },
     ],

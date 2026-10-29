@@ -43,6 +43,19 @@ export function ContactSection() {
                 </a>
               </li>
             )}
+            {profile.linkedin && (
+              <li>
+                <a className={link} href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn ↗<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            )}
+            <li>
+              <a className={link} href={profile.whatsapp.href} target="_blank" rel="noopener noreferrer">
+                WhatsApp ↗<span className="sr-only"> ({profile.whatsapp.display}, opens in a new tab)</span>
+              </a>
+              <span aria-hidden="true" className="ml-3 normal-case tracking-normal text-fg2">{profile.whatsapp.display}</span>
+            </li>
             <li>
               <a className={link} href={profile.website} target="_blank" rel="noopener noreferrer">
                 admunz.com ↗<span className="sr-only"> (opens in a new tab)</span>

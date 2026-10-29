@@ -60,6 +60,11 @@ export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
                 GitHub<span className="sr-only"> (opens in a new tab)</span>
               </a>
             )}
+            {profile.linkedin && (
+              <a className="link-underline hover:text-fg" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            )}
             <a className="link-underline hover:text-fg" href={profile.website} target="_blank" rel="noopener noreferrer">
               admunz.com<span className="sr-only"> (opens in a new tab)</span>
             </a>

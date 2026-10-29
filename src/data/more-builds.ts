@@ -1,26 +1,28 @@
 export interface MoreBuild {
   title: string;
   kind: string;
-  /** One line, taken from the CV. Nothing is added beyond what the CV says. */
+  /** One line. Only what the CV, the owner or a real screenshot supports. */
   line: string;
   tech: string[];
   /** Internal case-study slug, when a fuller write-up exists. */
   slug?: string;
   live?: { label: string; href: string };
+  /** A real screenshot under /public/projects. */
+  image?: { src: string; alt: string; w: number; h: number };
 }
 
 /**
- * Secondary work. These are listed from the CV only. A project moves out of
- * this list and into `projects.ts` once it has screenshots and a reviewed
- * write-up.
+ * Secondary work. A project here has a smaller card; one with a `slug` also has
+ * its own case-study page in `projects.ts`.
  */
 export const moreBuilds: MoreBuild[] = [
   {
     title: "Python Network Port Scanner",
     kind: "Security tool",
-    line: "A TCP connect scanner for hosts you own or are authorised to test, with a validated port range and two scan modes. Its known limitations are documented.",
+    line: "A TCP connect scanner for hosts you own or are authorised to test. Run against scanme.nmap.org, a host published for scanning practice. Its limits are documented.",
     tech: ["Python", "socket"],
     slug: "python-port-scanner",
+    image: { src: "/projects/port-scanner-scanme-run.jpg", alt: "Terminal capture of the port scanner reporting ports 21, 22 and 80 open on scanme.nmap.org.", w: 1600, h: 871 },
   },
   {
     title: "Interactive Villa VR",
@@ -31,10 +33,28 @@ export const moreBuilds: MoreBuild[] = [
     live: { label: "Open the demo", href: "https://kwame607.github.io/interactive-villa-vr/" },
   },
   {
+    title: "Solar System",
+    kind: "Interactive 3D",
+    line: "A solar-system scene on the web, a second A-Frame project alongside the villa.",
+    tech: ["A-Frame"],
+    live: { label: "Open the demo", href: "https://kwame607.github.io/solar-system/" },
+  },
+  {
     title: "LAN Chat Application",
     kind: "Networking",
-    line: "Real-time messaging over a local network using a client-server design.",
+    line: "A two-party terminal chat over TCP sockets. The captured session runs on one machine; its limits are stated.",
     tech: ["Python", "Socket programming"],
+    slug: "lan-chat",
+    image: { src: "/projects/lan-chat-client.jpg", alt: "The LAN chat client in a terminal showing a short timestamped conversation.", w: 827, h: 779 },
+  },
+  {
+    title: "Wisewave Enterprise website",
+    kind: "Client website",
+    line: "A responsive business website with Home, Services, About and Reviews, and a portfolio of three service cards.",
+    tech: ["Responsive front end", "GitHub Pages"],
+    slug: "wisewave-enterprise",
+    live: { label: "Open the site", href: "https://kwame607.github.io/wiseewave/" },
+    image: { src: "/projects/wisewave-home.jpg", alt: "Wisewave Enterprise home page with the hero Empowering Your Digital Future.", w: 1600, h: 871 },
   },
   {
     title: "File Encryption and Security Simulation",
@@ -47,11 +67,5 @@ export const moreBuilds: MoreBuild[] = [
     kind: "Database",
     line: "A CRUD-based management system with database integration and a modular structure.",
     tech: ["Python", "SQLite"],
-  },
-  {
-    title: "Wisewave Enterprise website",
-    kind: "Client website",
-    line: "A business website with responsive layouts and interactive components, covering the company's travel, imports, fashion, money-transfer and consultancy services.",
-    tech: ["HTML", "CSS", "JavaScript"],
   },
 ];

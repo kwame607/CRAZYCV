@@ -114,3 +114,12 @@ Contents: open questions, to-do items for case-study write-ups, and things worth
 ## Items that were removed from the site because they were stubs
 
 - "More projects" (LAN chat application, educational encryption simulation, student management system, Wisewave website) is now the "More builds" list in `src/data/more-builds.ts`, using only what the CV says about each.
+
+## To confirm (added with the scanme, Solar System, LAN chat and Wisewave evidence)
+
+- Solar System: the stack is listed as "A-Frame" because you called it "a frame work". Confirm, and say what it actually shows.
+- Wisewave: the live URL is spelled "wiseewave". Its pages show tech gadgets and education consulting, while the CV lists travel, imports, fashion, MoMo and education. The "Professional Accessories" card shows sewing machines. Decide which is accurate and fix the site or the CV.
+- Port scan capture has no date, so none is stated. Re-run it and screenshot the terminal with the date visible if you want one.
+- LAN chat screenshots show the name "Enimah". Check that person is fine with being shown.
+- Your WhatsApp number is now public on the site (it is also in the CV PDF).
+- The solar-system site could not be opened from the build environment, so nothing on it was inspected.
