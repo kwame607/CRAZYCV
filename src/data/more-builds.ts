@@ -17,14 +17,6 @@ export interface MoreBuild {
  */
 export const moreBuilds: MoreBuild[] = [
   {
-    title: "File Encryption and Security Simulation",
-    kind: "Education",
-    line: "A Python simulation of file encryption and password-gated recovery, run on a test folder, for studying defensive security. A teaching exercise, not a tool for protecting real data.",
-    tech: ["Python"],
-    slug: "file-encryption-simulation",
-    image: { src: "/projects/encryption-sim-encrypt.jpg", alt: "Terminal running the encryption simulation and listing two encrypted test files.", w: 782, h: 509 },
-  },
-  {
     title: "Student Management System",
     kind: "Database",
     line: "A CRUD-based management system with database integration and a modular structure.",
