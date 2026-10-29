@@ -133,3 +133,8 @@ Contents: open questions, to-do items for case-study write-ups, and things worth
 ## Balanced positioning
 
 Cybersecurity leads (Security section first, then MoMo Fraud Shield and LAN chat), but full-stack web development is shown in full: AdepaMarket, Admunz Data Hub and City Beans are featured cards again under "Full-stack web products", with the AI-assistance note. Confirm that note is accurate for each.
+
+## File Encryption and Security Simulation
+
+- Added from three captures. The fourth capture (a text file holding an AI prompt that names the Admunz stack and upstream provider) was left out on purpose, as was a wrong-password attempt that showed a key-like string. Do not publish either.
+- The encryption method, how the key is protected and how the password is checked are not stated because the source was not reviewed. Tell me if you want them added.

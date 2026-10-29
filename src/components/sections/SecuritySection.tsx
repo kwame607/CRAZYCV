@@ -91,6 +91,12 @@ export function SecuritySection() {
                 </Link>
               </li>
               <li>
+                <strong className="font-medium text-fg">An encryption and recovery simulation.</strong> A Python exercise run on a test folder of throwaway files, labelled a simulation in its own output.{" "}
+                <Link href="/projects/file-encryption-simulation" className="link-underline text-term">
+                  Details
+                </Link>
+              </li>
+              <li>
                 <strong className="font-medium text-fg">Published assessments: {published}.</strong>{" "}
                 {published === 0
                   ? "A port-scan run is not an assessment, and I haven't published a full one yet. When I do it will state scope, authorisation, tools, redacted evidence, the fix and the retest. Until then, this site claims no findings."
