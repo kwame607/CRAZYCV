@@ -10,15 +10,15 @@ export const profile: Profile = {
   name: "Kwame Emmanuel Adom",
   handle: "adom",
   roles: [
-    "Full-stack web developer",
+    "Aspiring cybersecurity professional",
     "Computer Science graduate",
-    "Cybersecurity learner",
     "Python programmer",
+    "Web developer (HTML, CSS, basic JavaScript)",
   ],
   location: "Kumasi, Ghana",
   focus: "Practical cybersecurity and secure application development",
   summary:
-    "Computer Science graduate (University of Cape Coast) and full-stack developer, founder of Admunz Data Hub. I build and deploy real web applications, and I am developing practical cybersecurity skills through authorized, documented lab work: investigate, document evidence, fix, and retest.",
+    "Aspiring cybersecurity professional with a BSc in Computer Science (University of Cape Coast). I am building security skills through practical projects and authorized, documented lab work: investigate, document evidence, fix, and retest. My strongest web fundamentals are HTML, CSS and basic JavaScript. I have also built AI-assisted web applications with Node.js, TypeScript and modern frameworks, and I do not claim to have written all of that code myself.",
   // Public contact address supplied by the owner; the env var can override it.
   email: envOrNull(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "kwameadom607@gmail.com",
   // The account owns the repositories this portfolio documents; override with the env var if needed.
@@ -57,7 +57,7 @@ export const education: TimelineEntry[] = [
 
 export const experience: TimelineEntry[] = [
   {
-    title: "Founder and Full-Stack Web Developer",
+    title: "Founder and Web Developer",
     org: "Admunz Data Hub",
     period: "2026 to present",
     detail: "Founded and built an online platform for data bundle sales and digital services; works on APIs, payment integrations, backend services, deployment and ongoing improvements.",

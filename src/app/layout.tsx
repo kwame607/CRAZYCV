@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
-const title = "Kwame Emmanuel Adom | Full-stack developer and cybersecurity learner";
+const title = "Kwame Emmanuel Adom | Aspiring cybersecurity professional";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

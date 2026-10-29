@@ -13,13 +13,11 @@ import { SectionHeader, container } from "@/components/experience/SectionHeader"
  * hue deepened (or lightened on the navy panel) until small text clears 4.5:1.
  */
 const themes: Record<string, { bg: string; ink: string; soft: string; accent: string; onAccent: string }> = {
-  adepamarket: { bg: "#f3e4cf", ink: "#2b1d14", soft: "#6f5646", accent: "#9a3b18", onAccent: "#fff7ee" },
-  "admunz-data-hub": { bg: "#e7f0f5", ink: "#0e1f2b", soft: "#4c6272", accent: "#006a5a", onAccent: "#ffffff" },
-  "city-beans": { bg: "#f1e6b0", ink: "#1b1a10", soft: "#5b5a3d", accent: "#476b14", onAccent: "#ffffff" },
+  "lan-chat": { bg: "#10161c", ink: "#e6edf3", soft: "#9fb0bf", accent: "#62e6a5", onAccent: "#10161c" },
   "momo-fraud-shield": { bg: "#17304f", ink: "#f4efe6", soft: "#b4c0d0", accent: "#f4977f", onAccent: "#17304f" },
 };
 
-const featured = ["adepamarket", "admunz-data-hub", "city-beans", "momo-fraud-shield"]
+const featured = ["momo-fraud-shield", "lan-chat"]
   .map((slug) => projects.find((p) => p.slug === slug))
   .filter((p): p is Project => !!p);
 
@@ -131,12 +129,12 @@ export function WorkSection() {
     <section id="work" aria-labelledby="work-title" className="py-24 md:py-36">
       <div className={container}>
         <SectionHeader
-          index="01"
-          label="Selected work"
-          lead="Four projects in depth, then the smaller builds. Each says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
+          index="02"
+          label="Projects"
+          lead="Security and networking projects first, then the web products. My port scanner and home lab are in the Cybersecurity section above. Each project says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
         >
           <span id="work-title">
-            Things I&rsquo;ve built, <em className="text-accent">and how they work.</em>
+            Security and networking projects, <em className="text-accent">then everything else.</em>
           </span>
         </SectionHeader>
 
@@ -150,6 +148,9 @@ export function WorkSection() {
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
               Also built <span className="text-fg2">/ from my CV</span>
+            </p>
+            <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-fg2">
+              My strongest web fundamentals are HTML, CSS and basic JavaScript. The larger web products at the end were built with AI assistance using Node.js, TypeScript and modern frameworks. I am not presenting myself as an advanced full-stack developer, and I do not claim to have written all of that code by hand.
             </p>
           </Reveal>
           <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">

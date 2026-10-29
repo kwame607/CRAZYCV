@@ -123,3 +123,9 @@ Contents: open questions, to-do items for case-study write-ups, and things worth
 - LAN chat screenshots show the name "Enimah". Check that person is fine with being shown.
 - Your WhatsApp number is now public on the site (it is also in the CV PDF).
 - The solar-system site could not be opened from the build environment, so nothing on it was inspected.
+
+## Security-first repositioning (to confirm)
+
+- AdepaMarket, Admunz Data Hub and City Beans are labelled "AI-assisted" and say you don't claim to have hand-written all the code. That was inferred from your description of Node.js, TypeScript and modern-framework apps. Confirm which projects it applies to, and whether MoMo Fraud Shield, the port scanner and LAN chat were AI-assisted too (their text says nothing either way).
+- "Authorised website security assessments": none exist yet, and the site says so. Add a real one in `src/data/assessments.ts` once you have written permission, evidence, a fix and a retest.
+- The port scanner now leads the Cybersecurity section (first on the page after the hero) rather than appearing as a project card.

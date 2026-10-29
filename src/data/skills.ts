@@ -12,25 +12,43 @@ const proj = (slug: string, label: string) => ({
  */
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Programming",
+    title: "Cybersecurity",
     skills: [
-      { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("momo-fraud-shield", "MoMo Fraud Shield"), proj("lan-chat", "LAN Chat Application")] },
-      { name: "JavaScript and TypeScript", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)"), proj("city-beans", "City Beans (JavaScript)")] },
-      { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
-      { name: "SQL", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Supabase, SQL scripts)")] },
-      { name: "C++", evidence: [], needsEvidence: true },
+      { name: "Security fundamentals", evidence: [{ kind: "demo", label: "Cisco Networking Academy: Introduction to Cybersecurity (see About)", href: "/about" }] },
+      {
+        name: "Evidence-based assessment reporting",
+        evidence: [{ kind: "demo", label: "Security Lab: assessment format", href: "/security-lab" }],
+      },
+      { name: "Authorized vulnerability assessment (lab practice, OWASP Top 10)", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
+      { name: "Remediation and retesting", evidence: [], needsEvidence: true },
     ],
   },
   {
-    title: "Web Development",
+    title: "Systems and Networking",
     skills: [
-      { name: "Full-stack web applications", evidence: [proj("admunz-data-hub", "Admunz Data Hub"), proj("adepamarket", "AdepaMarket")] },
-      { name: "Responsive design", evidence: [proj("adepamarket", "AdepaMarket")] },
-      { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Paystack, upstream providers)"), proj("adepamarket", "AdepaMarket (Paystack)"), proj("city-beans", "City Beans (Paystack, Supabase)")] },
-      { name: "React and Next.js", evidence: [proj("city-beans", "City Beans (React, Vite)"), { kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }, proj("adepamarket", "AdepaMarket"), proj("admunz-data-hub", "Admunz Data Hub")] },
-      { name: "Flask", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield (Flask)")] },
-      { name: "Django and FastAPI", evidence: [], needsEvidence: true },
-      { name: "Database integration", evidence: [proj("adepamarket", "AdepaMarket (D1 with Drizzle)"), proj("admunz-data-hub", "Admunz Data Hub (Supabase)"), proj("city-beans", "City Beans (Supabase)")] },
+      { name: "Linux and command-line workflows", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
+      { name: "TCP/IP and socket programming", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("lan-chat", "LAN Chat Application")] },
+      { name: "Subnetting and CIDR", evidence: [{ kind: "demo", label: "Network Tools: subnet calculator", href: "/network-tools" }] },
+      { name: "DNS and HTTP/HTTPS", evidence: [], needsEvidence: true },
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      { name: "Git and GitHub", evidence: [{ kind: "repository", label: "GitHub profile", href: "https://github.com/kwame607" }] },
+      { name: "Kali Linux, Nmap and Metasploit", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
+      { name: "Burp Suite", evidence: [], needsEvidence: true },
+      { name: "Browser developer tools", evidence: [], needsEvidence: true },
+    ],
+  },
+  {
+    title: "Programming",
+    skills: [
+      { name: "Python", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("momo-fraud-shield", "MoMo Fraud Shield"), proj("lan-chat", "LAN Chat Application")] },
+      { name: "JavaScript (basic) and TypeScript (in AI-assisted projects)", evidence: [proj("adepamarket", "AdepaMarket (TypeScript)"), proj("admunz-data-hub", "Admunz Data Hub (TypeScript)"), proj("city-beans", "City Beans (JavaScript)")] },
+      { name: "HTML and CSS", evidence: [proj("adepamarket", "AdepaMarket")] },
+      { name: "SQL", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Supabase, SQL scripts)")] },
+      { name: "C++", evidence: [], needsEvidence: true },
     ],
   },
   {
@@ -38,6 +56,18 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Text classification with scikit-learn (TF-IDF, Logistic Regression, SVM, Random Forest)", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield")] },
       { name: "Model evaluation and explainability (LIME)", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield")] },
+    ],
+  },
+  {
+    title: "Web Development",
+    skills: [
+      { name: "Web applications (AI-assisted builds)", evidence: [proj("admunz-data-hub", "Admunz Data Hub"), proj("adepamarket", "AdepaMarket")] },
+      { name: "Responsive design", evidence: [proj("adepamarket", "AdepaMarket")] },
+      { name: "API integration", evidence: [proj("admunz-data-hub", "Admunz Data Hub (Paystack, upstream providers)"), proj("adepamarket", "AdepaMarket (Paystack)"), proj("city-beans", "City Beans (Paystack, Supabase)")] },
+      { name: "React and Next.js (AI-assisted builds)", evidence: [proj("city-beans", "City Beans (React, Vite)"), { kind: "demo", label: "This portfolio (ADOM // OS)", href: "/" }, proj("adepamarket", "AdepaMarket"), proj("admunz-data-hub", "Admunz Data Hub")] },
+      { name: "Flask", evidence: [proj("momo-fraud-shield", "MoMo Fraud Shield (Flask)")] },
+      { name: "Django and FastAPI", evidence: [], needsEvidence: true },
+      { name: "Database integration", evidence: [proj("adepamarket", "AdepaMarket (D1 with Drizzle)"), proj("admunz-data-hub", "Admunz Data Hub (Supabase)"), proj("city-beans", "City Beans (Supabase)")] },
     ],
   },
   {
@@ -52,36 +82,6 @@ export const skillGroups: SkillGroup[] = [
       },
       { name: "GLB/GLTF asset integration", evidence: [proj("interactive-villa-vr", "Interactive Villa VR")] },
       { name: "Camera and movement controls (desktop and touch)", evidence: [proj("interactive-villa-vr", "Interactive Villa VR")] },
-    ],
-  },
-  {
-    title: "Systems and Networking",
-    skills: [
-      { name: "Linux and command-line workflows", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
-      { name: "TCP/IP and socket programming", evidence: [proj("python-port-scanner", "Python Network Port Scanner"), proj("lan-chat", "LAN Chat Application")] },
-      { name: "Subnetting and CIDR", evidence: [{ kind: "demo", label: "Network Tools: subnet calculator", href: "/network-tools" }] },
-      { name: "DNS and HTTP/HTTPS", evidence: [], needsEvidence: true },
-    ],
-  },
-  {
-    title: "Cybersecurity",
-    skills: [
-      { name: "Security fundamentals", evidence: [{ kind: "demo", label: "Cisco Networking Academy: Introduction to Cybersecurity (see About)", href: "/about" }] },
-      {
-        name: "Evidence-based assessment reporting",
-        evidence: [{ kind: "demo", label: "Security Lab: assessment format", href: "/security-lab" }],
-      },
-      { name: "Authorized vulnerability assessment (lab practice, OWASP Top 10)", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
-      { name: "Remediation and retesting", evidence: [], needsEvidence: true },
-    ],
-  },
-  {
-    title: "Tools",
-    skills: [
-      { name: "Git and GitHub", evidence: [{ kind: "repository", label: "GitHub profile", href: "https://github.com/kwame607" }] },
-      { name: "Kali Linux, Nmap and Metasploit", evidence: [proj("pentest-home-lab", "Penetration Testing Home Lab (CV)")] },
-      { name: "Burp Suite", evidence: [], needsEvidence: true },
-      { name: "Browser developer tools", evidence: [], needsEvidence: true },
     ],
   },
 ];

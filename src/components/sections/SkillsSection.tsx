@@ -14,7 +14,7 @@ export function SkillsSection() {
     <section id="skills" aria-labelledby="skills-title" className="py-24 md:py-36">
       <div className={container}>
         <SectionHeader
-          index="03"
+          index="04"
           label="Skills"
           lead="No percentage bars. Each skill says how I've used it, and links to the work that shows it where there is some."
         >

@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "A Ghanaian multi-vendor marketplace focused on handmade fashion, including clothing, footwear, and accessories. Each seller gets their own storefront, and sellers and administrators have separate management areas.",
     problem:
       "Local makers need a place to present and sell handmade fashion online, and the marketplace needs tools to onboard sellers, take orders and moderate the catalogue.",
-    role: "Web developer, 2026 to present (per CV). Built the responsive marketplace interfaces and deployed it on Cloudflare Workers.",
+    role: "Web developer, 2026 to present (per CV). Built the responsive marketplace interfaces and deployed it on Cloudflare Workers. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "Next.js, React and TypeScript",
       "Tailwind CSS",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
       "An online digital-services platform focused on automated data bundle sales, customer onboarding, and digital transactions. It includes agent accounts with their own storefronts, a wallet, order tracking and an administrative back office.",
     problem:
       "Selling data bundles by hand is slow and error-prone. The platform automates ordering, payment and fulfilment, and lets resellers (agents) run their own stores on top of it.",
-    role: "Founder and full-stack web developer, 2026 to present (per CV). Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements.",
+    role: "Founder and web developer, 2026 to present (per CV). Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "Next.js 14, React 18 and TypeScript",
       "Supabase (database and auth client libraries)",
@@ -129,7 +129,7 @@ export const projects: Project[] = [
       "A restaurant website where customers browse the menu, order online, pay, and follow their order, backed by an admin area for running orders, products, riders and delivery.",
     problem:
       "A restaurant needs a simple way to take and track orders online, accept payment, and manage delivery without handling everything by hand.",
-    role: "Website developer and graphic designer on a freelance, project basis, 2026 to present (per CV). Designed and built the restaurant's website and created branding and promotional graphics.",
+    role: "Website developer and graphic designer on a freelance, project basis, 2026 to present (per CV). Designed and built the restaurant's website and created branding and promotional graphics. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "React, built with Vite (JavaScript/JSX)",
       "Tailwind CSS and Lucide icons",
@@ -171,7 +171,7 @@ export const projects: Project[] = [
       "A Flask web application where a user pastes a message (an SMS, a summary of a call, or a social-media message) and gets an estimated fraud probability, a Low, Medium or High risk level, the suspicious wording it found, the words that most influenced the result, and a plain-language safety recommendation. It was my final-year project: an AI-based system for detecting impersonation and mobile money-related social engineering fraud.",
     problem:
       "Mobile money scams rely on impersonation, urgency and requests for a PIN or OTP. People need a fast check that also explains itself, so they can learn the warning signs rather than just trust a score.",
-    role: "Author. Designed and implemented the whole system as my final-year project (per CV).",
+    role: "Author of my final-year project (per CV).",
     technologiesVerified: [
       "Python and Flask (served with gunicorn)",
       "scikit-learn: TF-IDF text features, Logistic Regression, Support Vector Machine and Random Forest",
