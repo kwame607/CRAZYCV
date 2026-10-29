@@ -25,14 +25,34 @@ export function SecuritySection() {
     <section id="security" aria-labelledby="security-title" className="relative border-t border-line py-24 md:py-36">
       <div className={container}>
         <SectionHeader
-          index="04"
+          index="01"
           label="Cybersecurity"
-          lead="I'm learning security in public, so this section is strict about the difference between what I've done and what I'm demonstrating."
+          lead="I'm an aspiring cybersecurity professional with a Computer Science degree, learning in public. This section is strict about the difference between what I've done and what I'm demonstrating."
         >
           <span id="security-title">
             Curiosity is good. <em className="text-term">Evidence is better.</em>
           </span>
         </SectionHeader>
+
+        {/* Where I am: the facts, most relevant first */}
+        <Reveal className="mt-14">
+          <h3 className="font-mono text-[11px] uppercase tracking-[0.28em] text-fg2">Where I am today</h3>
+          <dl className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {(
+              [
+                ["Hands-on tools", "A Python port scanner, run once against scanme.nmap.org, a host published for scanning practice."],
+                ["Lab work", "An isolated Kali Linux home lab with Metasploitable 2, as described on my CV. No lab notes or reports are published yet."],
+                ["Authorised website assessments", "None published yet. I will not show one until it has scope, written permission, evidence, a fix and a retest."],
+                ["Training", `${certifications.map((c) => `${c.title}, ${c.org}`).join("; ")} (certificate). ${studying.map((s) => `${s.title}, ${s.org}`).join("; ")}: continuing study, not completed.`],
+              ] as const
+            ).map(([k, v]) => (
+              <div key={k} className="bg-bg2 p-6">
+                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-term">{k}</dt>
+                <dd className="mt-3 text-[14px] leading-relaxed text-fg2">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
 
         {/* Method */}
         <div className="mt-16">

@@ -7,7 +7,7 @@ import { profile } from "@/data/profile";
 
 export type SectionId = "hero" | "work" | "about" | "skills" | "security" | "terminal" | "system" | "journey" | "contact";
 
-export const sectionIds: readonly SectionId[] = ["hero", "work", "about", "skills", "security", "terminal", "system", "journey", "contact"];
+export const sectionIds: readonly SectionId[] = ["hero", "security", "work", "about", "skills", "terminal", "system", "journey", "contact"];
 
 export function prefersReducedMotion(): boolean {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;

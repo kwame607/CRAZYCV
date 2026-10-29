@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { replayIntro, sectionIds, type SectionId } from "@/lib/experience/actions";
 
 const links: { id: SectionId; label: string }[] = [
-  { id: "work", label: "Work" },
+  { id: "security", label: "Security" },
+  { id: "work", label: "Projects" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
-  { id: "security", label: "Security" },
   { id: "journey", label: "Journey" },
   { id: "contact", label: "Contact" },
 ];

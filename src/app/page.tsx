@@ -20,10 +20,10 @@ export default function Home() {
       {/* Everything below is ordinary server-rendered HTML, so it works without JavaScript or the animation. */}
       <main id="main">
         <Hero cvAvailable={cvAvailable} />
+        <SecuritySection />
         <WorkSection />
         <AboutSection />
         <SkillsSection />
-        <SecuritySection />
         <LiveSections />
         <JourneySection cvAvailable={cvAvailable} />
         <ContactSection />

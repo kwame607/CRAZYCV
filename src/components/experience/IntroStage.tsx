@@ -313,14 +313,14 @@ export function IntroStage() {
             </h2>
           </div>
 
-          <Beat cap="build" style={hidden} n="01" kicker="Build" title="Products people actually use." body="Live products with storefronts, payments, accounts and admin back offices." />
+          <Beat cap="build" style={hidden} n="01" kicker="Build" title="Learn by building." body="Small tools and projects, built to understand how systems work." />
           <Beat cap="investigate" style={hidden} n="02" kicker="Investigate" title="Curiosity is good. Evidence is better." body="Security learning done carefully: authorized targets and documented evidence." />
           <Beat cap="ship" style={hidden} n="03" kicker="Improve" title="Know how it breaks. Build it better." body="What I learn in the lab goes straight back into how I build." />
 
           <div data-cap="name" style={hidden} className="absolute inset-x-5 bottom-[21vh] text-center md:bottom-[18vh]">
             <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-fg2">You are inside</p>
             <p className="mt-3 font-display text-[clamp(2.6rem,9vw,8rem)] leading-[0.92] text-fg">Kwame Emmanuel Adom</p>
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-accent md:text-xs">Full-stack developer · Cybersecurity learner · Kumasi, Ghana</p>
+            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-accent md:text-xs">Aspiring cybersecurity professional · Kumasi, Ghana</p>
           </div>
         </div>
 

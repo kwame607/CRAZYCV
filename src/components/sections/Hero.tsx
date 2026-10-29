@@ -5,10 +5,10 @@ import { container } from "@/components/experience/SectionHeader";
 
 const facts: [string, string][] = [
   ["Based in", profile.location],
-  ["Role", "Full-stack developer"],
-  ["Also", "Cybersecurity learner"],
-  ["Founder of", "Admunz Data Hub · AdepaMarket"],
+  ["Focus", "Aspiring cybersecurity professional"],
   ["Studied", "BSc Computer Science, University of Cape Coast"],
+  ["Hands-on", "Python port scanner · isolated Kali lab · MoMo Fraud Shield"],
+  ["Training", "Cisco: Introduction to Cybersecurity"],
 ];
 
 export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
@@ -28,21 +28,21 @@ export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
           </Reveal>
           <Reveal delay={80}>
             <h1 id="hero-title" className="mt-7 font-display text-[clamp(2.7rem,6.5vw,6.3rem)] leading-[0.95] text-fg">
-              Building useful things.
+              Understanding how things work.
               <br />
-              Understanding how they work.
+              Learning where they break.
               <br />
               <em className="text-accent">Making them more secure.</em>
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-9 max-w-[54ch] text-base leading-relaxed text-fg2 md:text-lg">
-              I build web applications and digital products, integrate APIs, and explore practical cybersecurity through hands-on projects and security assessments.
+              I hold a Computer Science degree and I am building practical cybersecurity skills through hands-on projects and an isolated lab. My web fundamentals are HTML, CSS and basic JavaScript, and I have built AI-assisted applications on top of them.
             </p>
           </Reveal>
           <Reveal delay={240} className="mt-10 flex flex-wrap gap-3">
-            <a href="#work" className={`${btn} bg-accent text-bg hover:brightness-110`}>
-              Explore my work <span aria-hidden="true">↓</span>
+            <a href="#security" className={`${btn} bg-accent text-bg hover:brightness-110`}>
+              See my security work <span aria-hidden="true">↓</span>
             </a>
             {cvAvailable && (
               <a href={withBase(profile.cvPdfPath)} download className={`${btn} border border-line text-fg hover:border-accent hover:text-accent`}>
@@ -67,9 +67,6 @@ export function Hero({ cvAvailable }: { cvAvailable: boolean }) {
             )}
             <a className="link-underline hover:text-fg" href={profile.website} target="_blank" rel="noopener noreferrer">
               admunz.com<span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <a className="link-underline hover:text-fg" href="https://adepamarket.admunz.workers.dev/" target="_blank" rel="noopener noreferrer">
-              AdepaMarket<span className="sr-only"> (opens in a new tab)</span>
             </a>
           </Reveal>
         </div>

@@ -1,6 +1,6 @@
 # Inside Kwame's Mind
 
-Portfolio of **Kwame Emmanuel Adom**: full-stack developer, cybersecurity learner, Kumasi, Ghana.
+Portfolio of **Kwame Emmanuel Adom**: aspiring cybersecurity professional (BSc Computer Science), Kumasi, Ghana.
 
 It opens with a scroll-driven "Welcome to my mind" sequence: a procedural neural brain you travel *through*, then a normal, fast portfolio. Design notes and what was (and wasn't) learned from the reference are in [`docs/INTERACTION-DESIGN.md`](docs/INTERACTION-DESIGN.md).
 
