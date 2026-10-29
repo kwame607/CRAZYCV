@@ -16,6 +16,7 @@ const themes: Record<string, { bg: string; ink: string; soft: string; accent: st
   adepamarket: { bg: "#f3e4cf", ink: "#2b1d14", soft: "#6f5646", accent: "#9a3b18", onAccent: "#fff7ee" },
   "admunz-data-hub": { bg: "#e7f0f5", ink: "#0e1f2b", soft: "#4c6272", accent: "#006a5a", onAccent: "#ffffff" },
   "city-beans": { bg: "#f1e6b0", ink: "#1b1a10", soft: "#5b5a3d", accent: "#476b14", onAccent: "#ffffff" },
+  "interactive-villa-vr": { bg: "#1a1426", ink: "#f1ecf7", soft: "#b9afcb", accent: "#f0a35e", onAccent: "#1a1426" },
   "lan-chat": { bg: "#10161c", ink: "#e6edf3", soft: "#9fb0bf", accent: "#62e6a5", onAccent: "#10161c" },
   "momo-fraud-shield": { bg: "#17304f", ink: "#f4efe6", soft: "#b4c0d0", accent: "#f4977f", onAccent: "#17304f" },
 };
@@ -25,6 +26,7 @@ const pick = (slugs: string[]) =>
 
 /** Security and networking first (my priority), then the web products. */
 const securityFeatured = pick(["momo-fraud-shield", "lan-chat"]);
+const interactiveFeatured = pick(["interactive-villa-vr"]);
 const webFeatured = pick(["adepamarket", "admunz-data-hub", "city-beans"]);
 
 function host(href: string): string {
@@ -140,7 +142,7 @@ export function WorkSection() {
           lead="Everything I've built, with security and networking first. My port scanner and home lab are in the Cybersecurity section above. Each project says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
         >
           <span id="work-title">
-            Security first, <em className="text-accent">and the web products I ship.</em>
+            Security first, <em className="text-accent">then everything else I build.</em>
           </span>
         </SectionHeader>
 
@@ -148,6 +150,19 @@ export function WorkSection() {
           {securityFeatured.map((p, i) => (
             <ProjectFeature key={p.slug} project={p} index={i} />
           ))}
+        </div>
+
+        <div className="mt-24 md:mt-32">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+              Interactive 3D <span className="text-fg2">/ A-Frame</span>
+            </p>
+          </Reveal>
+          <div className="mt-10 space-y-10 md:mt-14 md:space-y-16">
+            {interactiveFeatured.map((p, i) => (
+              <ProjectFeature key={p.slug} project={p} index={securityFeatured.length + i} />
+            ))}
+          </div>
         </div>
 
         <div id="web-products" className="mt-24 scroll-mt-24 md:mt-32">
@@ -161,7 +176,7 @@ export function WorkSection() {
           </Reveal>
           <div className="mt-10 space-y-10 md:mt-14 md:space-y-16">
             {webFeatured.map((p, i) => (
-              <ProjectFeature key={p.slug} project={p} index={securityFeatured.length + i} />
+              <ProjectFeature key={p.slug} project={p} index={securityFeatured.length + interactiveFeatured.length + i} />
             ))}
           </div>
         </div>
