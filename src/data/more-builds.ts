@@ -29,15 +29,6 @@ export const moreBuilds: MoreBuild[] = [
     tech: ["Python", "SQLite"],
   },
   {
-    title: "Interactive Villa VR",
-    kind: "Interactive 3D",
-    line: "A furnished 3D villa you can walk through on desktop or phone.",
-    tech: ["A-Frame", "GLB/GLTF", "JavaScript"],
-    slug: "interactive-villa-vr",
-    live: { label: "Open the demo", href: "https://kwame607.github.io/interactive-villa-vr/" },
-    image: { src: "/projects/villa-vr-exterior.jpg", alt: "The villa demo at dusk: a two-storey modern house, a gym building, a pool and a vintage car on a lawn.", w: 1600, h: 783 },
-  },
-  {
     title: "Solar System",
     kind: "Interactive 3D",
     line: "A 3D solar-system scene in the browser: a labelled Sun and planets on orbit paths against a starfield.",
