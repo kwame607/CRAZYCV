@@ -5,22 +5,12 @@
 import { withBase } from "@/lib/preview";
 import { profile } from "@/data/profile";
 
-export const SEEN_KEY = "ka-intro-seen";
-
 export type SectionId = "hero" | "work" | "about" | "skills" | "security" | "terminal" | "system" | "journey" | "contact";
 
 export const sectionIds: readonly SectionId[] = ["hero", "work", "about", "skills", "security", "terminal", "system", "journey", "contact"];
 
 export function prefersReducedMotion(): boolean {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-export function markIntroSeen(): void {
-  try {
-    window.localStorage.setItem(SEEN_KEY, "1");
-  } catch {
-    /* storage can be blocked; the intro then simply plays again next time */
-  }
 }
 
 /** Scroll a section into view, then move focus there so keyboard and screen-reader users follow. */
@@ -35,7 +25,6 @@ export function scrollToSection(id: SectionId): void {
 
 /** Jump past the intro immediately. */
 export function skipIntro(): void {
-  markIntroSeen();
   const hero = document.getElementById("hero");
   if (!hero) return;
   window.scrollTo({ top: hero.getBoundingClientRect().top + window.scrollY, behavior: "instant" });

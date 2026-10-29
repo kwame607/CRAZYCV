@@ -73,9 +73,8 @@ it, so the page never hijacks the wheel, touch or keyboard.
 * **Tap / Enter to enter** plays the sequence over about 5 seconds for people
   who will not or cannot scroll (touch, keyboard, switch access). Any wheel,
   touch or key press cancels it and returns control.
-* **Seen once, remembered.** After the first view the runway collapses to
-  nothing on later visits (set before first paint, so there is no flash).
-  **Replay intro** is in the navigation and footer.
+* **Plays every visit.** Nothing is stored in the browser. Deep links such as
+  `/#work` skip it, and **Skip intro** and **Replay intro** are always available.
 * **Reduced motion.** No runway and no animation loop. One static frame of the
   brain, the same text, and an Enter button. All content is unchanged.
 * **No JavaScript.** The runway is hidden and the full portfolio is plain

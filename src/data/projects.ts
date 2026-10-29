@@ -11,6 +11,8 @@ const dims: Record<string, [number, number]> = {
   "momo-fraud-shield-home.jpg": [1280, 633],
   "momo-fraud-shield-result.jpg": [711, 775],
   "port-scanner-scanme-run.jpg": [1600, 871],
+  "villa-vr-exterior.jpg": [1600, 783],
+  "solar-system-orbits.jpg": [1600, 783],
   "wisewave-home.jpg": [1600, 871],
   "wisewave-portfolio.jpg": [1600, 871],
   "lan-chat-client.jpg": [827, 779],
@@ -312,7 +314,7 @@ export const projects: Project[] = [
     learned: [],
     security: ["A static front-end scene with no accounts or user data. Not assessed."],
     links: [{ label: "Live demo", href: "https://kwame607.github.io/interactive-villa-vr/" }],
-    screenshots: [],
+    screenshots: [shot("villa-vr-exterior.jpg", "The villa demo in a browser at dusk: a two-storey modern house with a glass front, a gym building on the left, a swimming pool behind and a vintage car on a grass lawn.")],
   },
   {
     slug: "lan-chat",

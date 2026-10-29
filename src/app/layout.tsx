@@ -27,7 +27,7 @@ export const viewport: Viewport = {
  *  - data-phase: whether the nav starts hidden behind the intro.
  * If React has not hydrated after 6s, reveal-hidden content is forced visible.
  */
-const bootScript = `(function(){var d=document.documentElement;d.setAttribute("data-js","1");var seen=false;try{seen=localStorage.getItem("ka-intro-seen")==="1"}catch(e){}if(location.hash.length>1)seen=true;var rm=false;try{rm=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}if(seen)d.setAttribute("data-intro","seen");d.setAttribute("data-phase",seen||rm?"site":"intro");setTimeout(function(){if(!d.hasAttribute("data-hydrated"))d.setAttribute("data-reveal","all")},6000)})();`;
+const bootScript = `(function(){var d=document.documentElement;d.setAttribute("data-js","1");var seen=false;if(location.hash.length>1)seen=true;var rm=false;try{rm=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}if(seen)d.setAttribute("data-intro","seen");d.setAttribute("data-phase",seen||rm?"site":"intro");setTimeout(function(){if(!d.hasAttribute("data-hydrated"))d.setAttribute("data-reveal","all")},6000)})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
