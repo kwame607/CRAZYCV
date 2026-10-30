@@ -6,6 +6,7 @@ const nav = [
   { href: "/skills", label: "Skills" },
   { href: "/security-lab", label: "Security Lab" },
   { href: "/network-tools", label: "Network Tools" },
+  { href: "/security-tools", label: "Security Tools" },
   { href: "/about", label: "About" },
   { href: "/cv", label: "CV" },
   { href: "/contact", label: "Contact" },
