@@ -10,7 +10,7 @@ type Tab = "dashboard" | "simulation" | "assessments";
 
 const tabs: { id: Tab; label: string }[] = [
   { id: "dashboard", label: "Lab dashboard" },
-  { id: "simulation", label: "Port-scan simulation" },
+  { id: "simulation", label: "Port-scan replay" },
   { id: "assessments", label: "Assessments" },
 ];
 

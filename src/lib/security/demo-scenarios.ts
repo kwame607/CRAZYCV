@@ -11,7 +11,9 @@ export interface SimPort {
 export interface SimScenario {
   id: string;
   title: string;
-  /** Documentation-range address (RFC 5737). It is never contacted. */
+  /** True when the data is transcribed from a real run of my own scanner rather than invented. */
+  real?: boolean;
+  /** Fictional scenarios use a documentation-range address (RFC 5737), never contacted. */
   target: string;
   description: string;
   ports: SimPort[];
@@ -22,6 +24,23 @@ const common = {
 };
 
 export const simScenarios: SimScenario[] = [
+  {
+    id: "my-scanner-scanme",
+    title: "My scanner on scanme.nmap.org (a real run)",
+    real: true,
+    target: "scanme.nmap.org (45.33.32.156), a host published by the Nmap project for scanning practice",
+    description:
+      "The output my Python port scanner printed for ports 1 to 100 in common-ports mode, transcribed from a terminal capture. Seven ports were tried. The capture has no date.",
+    ports: [
+      { ...common, port: 20, state: "closed", service: "ftp-data", explanation: "The scanner printed 'close' for port 20, so a TCP connection to it did not complete.", falsePositiveNote: "My scanner prints 'close' for any failed connection, so a closed, filtered or timed-out port all look the same here.", remediation: "Nothing to fix on a practice host. On a system I own I would retry and check with a second tool before concluding anything." },
+      { ...common, port: 21, state: "open", service: "ftp", explanation: "A TCP connection to port 21 completed. Port 21 is conventionally FTP.", falsePositiveNote: "Open only means the connection completed. I did not identify the service, and a port number is just a convention.", remediation: "On a system I own I would identify the service with a banner or version check, then decide whether it should be reachable at all." },
+      { ...common, port: 22, state: "open", service: "ssh", explanation: "A TCP connection to port 22 completed. Port 22 is conventionally SSH.", falsePositiveNote: "Open only means the connection completed. I did not identify the service behind it.", remediation: "On a system I own I would confirm it is SSH, restrict who can reach it and prefer key-based logins." },
+      { ...common, port: 23, state: "closed", service: "telnet", explanation: "The scanner printed 'close' for port 23, so a TCP connection to it did not complete.", falsePositiveNote: "Closed here may also mean filtered or timed out, because my scanner does not tell them apart.", remediation: "Nothing to fix. Telnet being unreachable is the safer outcome." },
+      { ...common, port: 25, state: "closed", service: "smtp", explanation: "The scanner printed 'close' for port 25, so a TCP connection to it did not complete.", falsePositiveNote: "Closed here may also mean filtered or timed out, because my scanner does not tell them apart.", remediation: "Nothing to fix on a practice host." },
+      { ...common, port: 53, state: "closed", service: "dns", explanation: "The scanner printed 'close' for port 53, so a TCP connection to it did not complete.", falsePositiveNote: "DNS also uses UDP, which my TCP-only scanner does not test, so this says nothing about DNS in general.", remediation: "Nothing to fix on a practice host." },
+      { ...common, port: 80, state: "open", service: "http", explanation: "A TCP connection to port 80 completed. Port 80 is conventionally unencrypted HTTP.", falsePositiveNote: "Open only means the connection completed. I did not identify the web server or what it serves.", remediation: "On a system I own I would check whether it should redirect to HTTPS." },
+    ],
+  },
   {
     id: "small-web-server",
     title: "Small web server",

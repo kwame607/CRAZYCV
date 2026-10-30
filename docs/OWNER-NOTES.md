@@ -138,3 +138,7 @@ Cybersecurity leads (Security section first, then MoMo Fraud Shield and LAN chat
 
 - Added from three captures. The fourth capture (a text file holding an AI prompt that names the Admunz stack and upstream provider) was left out on purpose, as was a wrong-password attempt that showed a key-like string. Do not publish either.
 - The encryption method, how the key is protected and how the password is checked are not stated because the source was not reviewed. Tell me if you want them added.
+
+## Port-scan replay
+
+The first scenario in the Security section's replay is transcribed from your scanme.nmap.org capture (21, 22 and 80 open; 20, 23, 25 and 53 closed) and labelled a replay of a real run. The other two scenarios stay clearly labelled simulations. Re-run the scanner and update `my-scanner-scanme` in `src/lib/security/demo-scenarios.ts` if you want newer output.

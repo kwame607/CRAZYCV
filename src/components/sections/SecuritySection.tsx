@@ -112,7 +112,7 @@ export function SecuritySection() {
             <h3 className="mt-5 font-display text-4xl text-fg">What is a demonstration</h3>
             <ul className="mt-6 space-y-5 text-[15px] leading-relaxed text-fg2">
               <li>
-                <strong className="font-medium text-fg">The port-scan replay below.</strong> A fixed, pre-written dataset against reserved documentation addresses. No packets leave your browser.
+                <strong className="font-medium text-fg">Two of the port-scan scenarios below.</strong> Fixed, pre-written datasets against reserved documentation addresses. The first scenario is different: a replay of my real scanme.nmap.org run. No packets leave your browser in any of them.
               </li>
               <li>
                 <strong className="font-medium text-fg">The sample assessment record.</strong> It shows the format I&rsquo;ll use for real work and is labelled as a sample, not a result.{" "}
@@ -176,7 +176,7 @@ export function SecuritySection() {
         <Reveal className="mt-10 overflow-hidden rounded-2xl border border-line bg-win">
           <div className="flex items-center justify-between border-b border-line px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em]">
             <span className="text-term">&gt;_ port-scan replay</span>
-            <span className="rounded-full border border-accent/50 px-2.5 py-0.5 text-accent">Simulation</span>
+            <span className="rounded-full border border-accent/50 px-2.5 py-0.5 text-accent">Replay · 2 simulations</span>
           </div>
           <div className="p-5 md:p-8">
             <ScanSimulation />
