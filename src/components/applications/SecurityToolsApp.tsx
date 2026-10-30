@@ -25,7 +25,7 @@ function LinkChecker() {
     <div className="space-y-4">
       <Notice>
         Rules of thumb on the <strong className="text-fg">text of the link only</strong>. Nothing is opened, fetched or sent anywhere. No flags does not mean a link
-        is safe, and a flag does not prove it is malicious. It reflects the kind of checking behind my MoMo Fraud Shield project.
+        is safe, and a flag does not prove it is malicious. It uses fixed rules, not a trained model, so it works differently from my MoMo Fraud Shield project.
       </Notice>
       <form
         onSubmit={(e) => {
@@ -256,7 +256,7 @@ export function SecurityToolsApp() {
         {tab === "headers" && <HeadersChecker />}
       </div>
       <p className="mt-8 text-xs text-fg2">
-        Three small teaching tools I wrote. They show I understand the ideas; they are not evidence of professional experience or a substitute for a real assessment.
+        Three small teaching tools. They illustrate ideas I am learning; they are not evidence of professional experience or a substitute for a real assessment.
       </p>
     </div>
   );

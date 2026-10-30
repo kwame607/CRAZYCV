@@ -24,16 +24,11 @@ export function ContactSection() {
         </Reveal>
         <Reveal delay={160} className="mt-12 grid gap-10 md:grid-cols-[1.4fr_1fr]">
           <div>
-            {mailto && email ? (
+            {mailto && email && (
               <a href={mailto} className="link-underline break-all font-display text-[clamp(1.7rem,4.4vw,3.4rem)] leading-tight text-fg hover:text-accent">
                 {email}
               </a>
-            ) : (
-              <p className="text-fg2">Email is not configured. Reach me through GitHub.</p>
             )}
-            <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-fg2">
-              There&rsquo;s no contact form on purpose: nothing here would receive it. That link opens your own email app with a message ready to edit.
-            </p>
           </div>
           <ul className="space-y-3 font-mono text-[12px] uppercase tracking-[0.16em]">
             {profile.github && (

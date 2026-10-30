@@ -183,7 +183,7 @@ export function SecuritySection() {
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-term">Try them in your browser</p>
           <h3 className="mt-4 font-display text-4xl leading-tight text-fg">Three small security tools</h3>
           <p className="mt-3 max-w-[62ch] text-[15px] leading-relaxed text-fg2">
-            I wrote these to show I understand the ideas. They run entirely in your browser and send nothing anywhere.
+            They demonstrate security ideas I am learning. They run entirely in your browser and send nothing anywhere.
           </p>
           <ul className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
             {[

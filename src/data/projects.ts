@@ -109,7 +109,7 @@ export const projects: Project[] = [
       "Networks referenced in code: MTN, Telecel and AirtelTigo",
     ],
     evidenceNote:
-      "Read from the project's source code (dependency list, routes, components). DataFlow Ghana is the working name of this same product, confirmed by the owner, so it is not listed separately. Not tested against the live site.",
+      "Read from the project's source code (dependency list, routes, components). DataFlow Ghana is the working name of this same product, confirmed by me, so it is not listed separately. Not tested against the live site.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -239,7 +239,7 @@ export const projects: Project[] = [
       "README includes a disclaimer to scan only systems you own or have permission to test",
     ],
     evidenceNote:
-      "Read from the tool's source code and README. The terminal capture is a real run against scanme.nmap.org, supplied by the owner.",
+      "Read from the tool's source code and README. The terminal capture is a real run against scanme.nmap.org.",
     limitations: [
       "Ports are scanned one at a time, so large ranges are slow.",
       "Any failed connection is reported as 'closed', so it cannot tell a refused connection from a filtered port or a timeout.",
@@ -286,7 +286,7 @@ export const projects: Project[] = [
     technologiesVerified: [],
     featuresVerified: [],
     evidenceNote:
-      "From the owner's CV. No lab notes, screenshots or reports have been published yet, so nothing on this page is evidence of specific results.",
+      "From my CV. No lab notes, screenshots or reports have been published yet, so nothing on this page is evidence of specific results.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -344,7 +344,7 @@ export const projects: Project[] = [
       "The captured runs touched only two files in the test folder. Nothing here shows or claims use on any other data.",
       "The captures carry no date, so none is stated.",
     ],
-    evidenceNote: "From the CV and three terminal and editor captures supplied by the owner. A fourth capture and one wrong-password attempt were left out on purpose.",
+    evidenceNote: "From the CV and three terminal and editor captures.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -379,7 +379,7 @@ export const projects: Project[] = [
       "The capture shows one client talking to the server. Handling several clients at once is not shown and is not claimed.",
       "No encryption or authentication is described or shown, so treat the conversation as plain text.",
     ],
-    evidenceNote: "From the CV and two terminal captures supplied by the owner (the client and the server). The source code was not reviewed.",
+    evidenceNote: "From the CV and two terminal captures (the client and the server). The source code was not reviewed.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -406,7 +406,7 @@ export const projects: Project[] = [
       "A full-width hero with the company introduction",
       "An Enterprise Solutions Portfolio of three service cards with feature tags",
     ],
-    evidenceNote: "From the CV and two screenshots of the live site supplied by the owner. The source code was not reviewed.",
+    evidenceNote: "From the CV and two screenshots of the live site. The source code was not reviewed.",
     decisions: [],
     challenges: [],
     learned: [],

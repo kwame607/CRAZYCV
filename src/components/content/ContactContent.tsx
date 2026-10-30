@@ -1,13 +1,11 @@
 import { ExternalLink, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
-import { Notice } from "@/components/shared/ui";
 
 export function ContactContent() {
-  const hasAny = profile.email || profile.github || profile.linkedin;
   return (
     <div className="space-y-4">
       <h2 className="font-display text-2xl text-fg">Get in touch</h2>
-      <p className="text-sm text-fg2">The quickest way to reach me is by email. There is no contact form because no message-handling backend is configured, so nothing here pretends to submit.</p>
+      <p className="text-sm text-fg2">The quickest way to reach me is by email.</p>
 
       <ul className="space-y-2">
         {profile.email && (
@@ -41,17 +39,6 @@ export function ContactContent() {
         )}
       </ul>
 
-      {!profile.email && (
-        <Notice tone={hasAny ? "info" : "warn"}>
-          {hasAny ? (
-            <>An email address is not published on this site yet. Please reach out through GitHub in the meantime.</>
-          ) : (
-            <>
-              Contact details are not configured yet. Set <code className="font-mono text-xs text-fg">NEXT_PUBLIC_CONTACT_EMAIL</code> (see README) and redeploy.
-            </>
-          )}
-        </Notice>
-      )}
     </div>
   );
 }
