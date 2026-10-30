@@ -97,6 +97,12 @@ export function SecuritySection() {
                 </Link>
               </li>
               <li>
+                <strong className="font-medium text-fg">Three small browser tools.</strong> A link checker, a hashing and salting demo and a security headers checker. They run in your browser and send nothing anywhere.{" "}
+                <Link href="/security-tools" className="link-underline text-term">
+                  Try them
+                </Link>
+              </li>
+              <li>
                 <strong className="font-medium text-fg">Published assessments: {published}.</strong>{" "}
                 {published === 0
                   ? "A port-scan run is not an assessment, and I haven't published a full one yet. When I do it will state scope, authorisation, tools, redacted evidence, the fix and the retest. Until then, this site claims no findings."

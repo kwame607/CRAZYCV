@@ -14,7 +14,13 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Cybersecurity",
     skills: [
-      { name: "Security fundamentals", evidence: [{ kind: "demo", label: "Cisco Networking Academy: Introduction to Cybersecurity (see About)", href: "/about" }] },
+      {
+        name: "Security fundamentals",
+        evidence: [
+          { kind: "demo", label: "Cisco Networking Academy: Introduction to Cybersecurity (see About)", href: "/about" },
+          { kind: "demo", label: "Security Tools: link checker, hashing and salting, security headers", href: "/security-tools" },
+        ],
+      },
       {
         name: "Evidence-based assessment reporting",
         evidence: [{ kind: "demo", label: "Security Lab: assessment format", href: "/security-lab" }],
