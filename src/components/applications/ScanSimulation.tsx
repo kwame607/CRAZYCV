@@ -64,10 +64,17 @@ export function ScanSimulation() {
 
   return (
     <div className="space-y-4">
-      <Notice tone="warn">
-        <strong className="text-fg">SIMULATION.</strong> This is a fixed, pre-written dataset replayed in your browser. No packets are sent, no network is
-        scanned, and the target address belongs to a reserved documentation range. It is not the output of a real scan.
-      </Notice>
+      {scenario.real ? (
+        <Notice>
+          <strong className="text-fg">REPLAY OF A REAL RUN.</strong> This is the recorded output of my own Python port scanner against a host that
+          is published for scanning practice, replayed in your browser. Nothing is scanned from this page and no packets are sent.
+        </Notice>
+      ) : (
+        <Notice tone="warn">
+          <strong className="text-fg">SIMULATION.</strong> This is a fixed, pre-written dataset replayed in your browser. No packets are sent, no network is
+          scanned, and the target address belongs to a reserved documentation range. It is not the output of a real scan.
+        </Notice>
+      )}
 
       <div>
         <label htmlFor="scenario" className="mb-1 block text-xs text-fg2">
@@ -89,12 +96,12 @@ export function ScanSimulation() {
           ))}
         </select>
         <p className="mt-2 text-sm text-fg2">{scenario.description}</p>
-        <p className="mt-1 font-mono text-xs text-fg2">Target (fictional): {scenario.target}</p>
+        <p className="mt-1 font-mono text-xs text-fg2">{scenario.real ? "Target (real, permitted for practice)" : "Target (fictional)"}: {scenario.target}</p>
       </div>
 
       <div className="flex gap-2">
         <PrimaryButton onClick={start} disabled={phase === "running"}>
-          <Play className="h-4 w-4" aria-hidden /> {phase === "done" ? "Run again" : "Start simulation"}
+          <Play className="h-4 w-4" aria-hidden /> {phase === "done" ? "Replay again" : scenario.real ? "Start replay" : "Start simulation"}
         </PrimaryButton>
         <GhostButton onClick={reset} disabled={phase === "idle"}>
           <RotateCcw className="h-4 w-4" aria-hidden /> Reset
@@ -105,7 +112,7 @@ export function ScanSimulation() {
         <div>
           <div
             role="progressbar"
-            aria-label="Simulation progress"
+            aria-label={scenario.real ? "Replay progress" : "Simulation progress"}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={pct}
@@ -114,7 +121,7 @@ export function ScanSimulation() {
             <div className="h-full bg-accent transition-[width] duration-300" style={{ width: `${pct}%` }} />
           </div>
           <p className="mt-1 font-mono text-[11px] text-fg2">
-            {phase === "running" ? `Replaying sample data… ${revealed}/${total} ports` : "Replay complete (simulated)"}
+            {phase === "running" ? `Replaying ${scenario.real ? "recorded output" : "sample data"}… ${revealed}/${total} ports` : scenario.real ? "Replay complete (recorded real output)" : "Replay complete (simulated)"}
           </p>
         </div>
       )}
@@ -122,7 +129,7 @@ export function ScanSimulation() {
       {shown.length > 0 && (
         <div className="overflow-x-auto rounded-lg border border-line">
           <table className="w-full text-left text-sm">
-            <caption className="sr-only">Simulated port results</caption>
+            <caption className="sr-only">{scenario.real ? "Recorded port results" : "Simulated port results"}</caption>
             <thead className="border-b border-line text-xs text-fg2">
               <tr>
                 <th scope="col" className="px-3 py-2">Port</th>
@@ -157,11 +164,11 @@ export function ScanSimulation() {
       {selected && (
         <section aria-live="polite" className="space-y-2 rounded-lg border border-accent/40 bg-accent/5 p-4 text-sm">
           <h4 className="font-mono text-accent">
-            Port {selected.port}/{selected.protocol}: {selected.state} (simulated)
+            Port {selected.port}/{selected.protocol}: {selected.state} ({scenario.real ? "recorded" : "simulated"})
           </h4>
           <p className="text-fg2"><strong className="text-fg">What it means:</strong> {selected.explanation}</p>
           <p className="text-fg2"><strong className="text-fg">Limits and false positives:</strong> {selected.falsePositiveNote}</p>
-          <p className="text-fg2"><strong className="text-fg">Sample remediation:</strong> {selected.remediation}</p>
+          <p className="text-fg2"><strong className="text-fg">{scenario.real ? "Next step:" : "Sample remediation:"}</strong> {selected.remediation}</p>
         </section>
       )}
     </div>
