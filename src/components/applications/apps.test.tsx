@@ -44,7 +44,7 @@ describe("CV and Contact honesty", () => {
   it("shows no download link when the PDF is missing", () => {
     render(<CVContent pdfAvailable={false} />);
     expect(screen.queryByRole("link", { name: /Download CV/ })).not.toBeInTheDocument();
-    expect(screen.getByText(/PDF not yet supplied/)).toBeInTheDocument();
+    expect(screen.getByText(/CV PDF unavailable/)).toBeInTheDocument();
   });
   it("shows a real download link only when the PDF exists", () => {
     render(<CVContent pdfAvailable />);

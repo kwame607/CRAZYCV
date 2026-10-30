@@ -20,7 +20,7 @@ export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
         ) : (
           <Notice tone="warn">
             <span className="flex items-center gap-2 font-medium text-fg">
-              <FileWarning className="h-4 w-4" aria-hidden /> PDF not yet supplied
+              <FileWarning className="h-4 w-4" aria-hidden /> CV PDF unavailable
             </span>
             <span className="mt-1 block">
               Add your CV as <code className="font-mono text-xs text-fg">public{profile.cvPdfPath}</code> and redeploy; this button
