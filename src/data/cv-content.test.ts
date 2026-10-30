@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { certifications, education, experience, profile, studying } from "./profile";
+import { certifications, education, experience, profile } from "./profile";
 import { projects } from "./projects";
 import { skillGroups } from "./skills";
 
@@ -18,12 +18,8 @@ describe("CV-backed content", () => {
     expect(text).not.toMatch(/not yet supplied|needs confirmation|Institution not/i);
     for (const e of [...education, ...experience, ...certifications]) expect(e.status).toBe("verified");
   });
-  it("lists only the certification the CV consistently supports", () => {
-    expect(certifications.map((c) => c.title)).toEqual(["Introduction to Cybersecurity"]);
-  });
-  it("shows Ethical Hacking as continuing study, never as an earned credential", () => {
-    expect(studying.map((s) => s.title)).toContain("Ethical Hacking");
-    expect(certifications.map((c) => c.title)).not.toContain("Ethical Hacking");
+  it("lists the two Cisco Networking Academy certificates the owner has earned, and no others", () => {
+    expect(certifications.map((c) => c.title)).toEqual(["Introduction to Cybersecurity", "Ethical Hacking"]);
   });
   it("uses the contact details given by the owner", () => {
     expect(profile.email).toBe("kwameadom607@gmail.com");

@@ -1,4 +1,4 @@
-import type { Profile, StudyEntry, TimelineEntry } from "@/types/portfolio";
+import type { Profile, TimelineEntry } from "@/types/portfolio";
 
 /** Empty or whitespace env values count as "not configured". */
 function envOrNull(value: string | undefined): string | null {
@@ -98,21 +98,13 @@ export const certifications: TimelineEntry[] = [
   {
     title: "Introduction to Cybersecurity",
     org: "Cisco Networking Academy",
-    detail: "Certificate listed on the CV. No credential ID or issue date is shown here because the CV does not give one.",
+    detail: "Certificate listed on my CV.",
     status: "verified",
   },
-];
-
-/**
- * The CV lists Ethical Hacking under certifications but states only the
- * Introduction certificate as earned ("continued professional development in
- * ethical hacking"). It is therefore shown as continuing study, not as a
- * credential. Confirm completion status before moving it to `certifications`.
- */
-export const studying: StudyEntry[] = [
   {
     title: "Ethical Hacking",
     org: "Cisco Networking Academy",
-    note: "Continuing study. Listed on the CV; no completion is claimed here.",
+    detail: "Certificate listed on my CV.",
+    status: "verified",
   },
 ];

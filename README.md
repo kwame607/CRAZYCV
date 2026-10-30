@@ -52,7 +52,7 @@ The old site's honesty rules are kept and enforced by tests:
 * Project data is in `src/data/projects.ts`: features and technologies only once confirmed from source or the CV. Screenshots are real files in `public/projects/`. No placeholder images, no fabricated metrics.
 * Skills (`src/data/skills.ts`) carry an evidence level **derived from their links**: *In shipped work*, *Lab practice*, or *Learning*. C++, Django, FastAPI, Burp Suite, DNS/HTTP, remediation and retesting currently have no linked evidence and show as **Learning**.
 * Security: real vs simulated is explicit. **Published real assessments: 0.** The assessment record is a labelled sample; the port-scan replay is a simulation against RFC 5737 addresses. Nothing on the site scans a third party.
-* Certifications: only *Introduction to Cybersecurity* is shown as earned. *Ethical Hacking* is shown as continuing study, because the CV states only the former as completed.
+* Certifications: *Introduction to Cybersecurity* and *Ethical Hacking* (Cisco Networking Academy), both confirmed as earned by the owner. No credential IDs or dates are shown.
 * Open questions and to-dos that used to sit inside the public data bundle now live in [`docs/OWNER-NOTES.md`](docs/OWNER-NOTES.md).
 
 ## Terminal and system overview

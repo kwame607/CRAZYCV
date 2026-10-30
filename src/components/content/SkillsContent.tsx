@@ -6,7 +6,7 @@ export function SkillsContent() {
   return (
     <div className="space-y-6">
       <Notice>
-        No proficiency percentages, years of experience or certifications are claimed. Each skill links to evidence you can check.
+        No proficiency percentages or years of experience are claimed. Each skill links to evidence you can check.
         Skills marked &ldquo;evidence pending&rdquo; are not yet backed by a linked project.
       </Notice>
       {skillGroups.map((g) => (

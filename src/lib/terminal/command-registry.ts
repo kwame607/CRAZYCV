@@ -1,6 +1,6 @@
 import type { CommandDef, CommandResult, TerminalContext, TerminalLine } from "@/types/terminal";
 import type { SectionId } from "@/lib/experience/actions";
-import { profile, education, experience, certifications, studying } from "@/data/profile";
+import { profile, education, experience, certifications } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { moreBuilds } from "@/data/more-builds";
 import { skillGroups, skillLevel, levelLabels } from "@/data/skills";
@@ -100,12 +100,11 @@ const commands: CommandDef[] = [
   },
   {
     name: "education",
-    description: "Education, certifications and current study",
+    description: "Education and certifications",
     run: () => ({
       lines: [
         ...education.flatMap((e) => out(timelineLine(e), `  ${e.detail}`)),
         ...certifications.flatMap((e) => out(`Certificate: ${e.title}, ${e.org}`)),
-        ...studying.flatMap((e) => out(`Studying: ${e.title}, ${e.org}. ${e.note}`)),
       ],
       go: "journey",
     }),

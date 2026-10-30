@@ -1,4 +1,4 @@
-import { education, experience, certifications, studying } from "@/data/profile";
+import { education, experience, certifications } from "@/data/profile";
 import { profile } from "@/data/profile";
 import { withBase } from "@/lib/preview";
 import type { TimelineEntry } from "@/types/portfolio";
@@ -57,9 +57,6 @@ export function JourneySection({ cvAvailable }: { cvAvailable: boolean }) {
             ))}
             {certifications.map((c, i) => (
               <Row key={c.title} i={i} e={{ ...c, period: "Certificate", detail: "Earned and listed on my CV." }} />
-            ))}
-            {studying.map((s, i) => (
-              <Row key={s.title} i={i} e={{ title: s.title, org: s.org, period: "Studying", detail: s.note, status: "verified" }} />
             ))}
           </ol>
         </div>

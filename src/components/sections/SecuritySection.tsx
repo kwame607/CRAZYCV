@@ -2,7 +2,7 @@ import Link from "next/link";
 import { assessments } from "@/data/assessments";
 import { getProject } from "@/data/projects";
 import { withBase } from "@/lib/preview";
-import { certifications, studying } from "@/data/profile";
+import { certifications } from "@/data/profile";
 import { ScanSimulation } from "@/components/applications/ScanSimulation";
 import { Reveal } from "@/components/experience/Reveal";
 import { SectionHeader, container } from "@/components/experience/SectionHeader";
@@ -43,7 +43,7 @@ export function SecuritySection() {
                 ["Hands-on tools", "A Python port scanner, run once against scanme.nmap.org, a host published for scanning practice."],
                 ["Lab work", "An isolated Kali Linux home lab with Metasploitable 2, as described on my CV. No lab notes or reports are published yet."],
                 ["Authorised website assessments", "None published yet. I will not show one until it has scope, written permission, evidence, a fix and a retest."],
-                ["Training", `${certifications.map((c) => `${c.title}, ${c.org}`).join("; ")} (certificate). ${studying.map((s) => `${s.title}, ${s.org}`).join("; ")}: continuing study, not completed.`],
+                ["Training", `Cisco Networking Academy certificates: ${certifications.map((c) => c.title).join(" and ")}.`],
               ] as const
             ).map(([k, v]) => (
               <div key={k} className="bg-bg2 p-6">
@@ -222,13 +222,6 @@ export function SecuritySection() {
               <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-term">Certificate earned</p>
               <p className="mt-3 font-display text-3xl text-fg">{c.title}</p>
               <p className="mt-1 text-sm text-fg2">{c.org}</p>
-            </Reveal>
-          ))}
-          {studying.map((s) => (
-            <Reveal key={s.title} delay={80} className="rounded-2xl border border-dashed border-line p-7">
-              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-accent">Continuing study</p>
-              <p className="mt-3 font-display text-3xl text-fg">{s.title}</p>
-              <p className="mt-1 text-sm text-fg2">{s.org}</p>
             </Reveal>
           ))}
         </div>

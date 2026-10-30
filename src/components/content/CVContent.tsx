@@ -22,10 +22,7 @@ export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
             <span className="flex items-center gap-2 font-medium text-fg">
               <FileWarning className="h-4 w-4" aria-hidden /> CV PDF unavailable
             </span>
-            <span className="mt-1 block">
-              Add your CV as <code className="font-mono text-xs text-fg">public{profile.cvPdfPath}</code> and redeploy; this button
-              then becomes a real download. The HTML CV below is the fallback.
-            </span>
+            <span className="mt-1 block">The download is unavailable right now. The CV below has the same details.</span>
           </Notice>
         )}
       </div>
@@ -34,7 +31,7 @@ export function CVContent({ pdfAvailable }: { pdfAvailable: boolean }) {
       <p className="mt-1 text-sm text-accent">{profile.roles.join(" · ")}</p>
       <p className="mt-2 text-sm text-fg2">{profile.summary}</p>
       <p className="mt-2 text-sm text-fg2">
-        {profile.location} · {profile.email ?? "email not configured"} · {profile.github ?? "GitHub not configured"}
+        {[profile.location, profile.email, profile.github].filter(Boolean).join(" · ")}
       </p>
 
       <SectionTitle>Education</SectionTitle>
