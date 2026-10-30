@@ -178,6 +178,32 @@ export function SecuritySection() {
           </Reveal>
         )}
 
+        {/* Browser tools */}
+        <Reveal className="mt-10 rounded-2xl border border-line bg-bg2 p-6 md:p-9">
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-term">Try them in your browser</p>
+          <h3 className="mt-4 font-display text-4xl leading-tight text-fg">Three small security tools</h3>
+          <p className="mt-3 max-w-[62ch] text-[15px] leading-relaxed text-fg2">
+            I wrote these to show I understand the ideas. They run entirely in your browser and send nothing anywhere.
+          </p>
+          <ul className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
+            {[
+              ["Link checker", "Paste a link and see the warning signs: look-alike domains, hidden destinations, brand names on the wrong site."],
+              ["Hashing and salting", "See why the same password gives a different hash with a salt, and why a lookup table stops working."],
+              ["Security headers", "Paste a page's response headers and get a plain-language read of what is missing or weak."],
+            ].map(([t, d]) => (
+              <li key={t} className="bg-bg p-5">
+                <p className="font-display text-2xl text-fg">{t}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-fg2">{d}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6">
+            <Link href="/security-tools" className="inline-flex rounded-full bg-accent px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-bg transition-[filter] hover:brightness-110">
+              Open the tools →
+            </Link>
+          </p>
+        </Reveal>
+
         {/* Demo */}
         <Reveal className="mt-10 overflow-hidden rounded-2xl border border-line bg-win">
           <div className="flex items-center justify-between border-b border-line px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em]">
