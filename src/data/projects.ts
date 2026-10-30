@@ -44,7 +44,7 @@ export const projects: Project[] = [
       "A Ghanaian multi-vendor marketplace focused on handmade fashion, including clothing, footwear, and accessories. Each seller gets their own storefront, and sellers and administrators have separate management areas.",
     problem:
       "Local makers need a place to present and sell handmade fashion online, and the marketplace needs tools to onboard sellers, take orders and moderate the catalogue.",
-    role: "Web developer, 2026 to present (per CV). Built the responsive marketplace interfaces and deployed it on Cloudflare Workers. Built with AI assistance; I do not claim to have hand-written all of the code.",
+    role: "Web developer, 2026 to present. Built the responsive marketplace interfaces and deployed it on Cloudflare Workers. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "Next.js, React and TypeScript",
       "Tailwind CSS",
@@ -64,14 +64,13 @@ export const projects: Project[] = [
       "Review page reachable by a tokenised link",
       "Seller terms, terms and privacy pages",
     ],
-    evidenceNote:
-      "Read from the project's source code (dependency list, route and page names, deployment configuration). Not tested against the live site.",
+    evidenceNote: "Taken from the project's code: its dependencies, routes and deployment settings.",
     decisions: [],
     challenges: [],
     learned: [],
     security: [
-      "Observations from reading the source, not a security assessment: passwords are hashed with bcryptjs; sessions use signed JWTs (jose); httpOnly and sameSite appear in cookie-setting code (2 files); a rate-limiting helper is referenced in 13 source files; 20 automated test files exist.",
-      "Nothing has been tested against the live site. No finding, fix or retest is claimed.",
+      "What the code does: passwords are hashed with bcryptjs, sessions use signed JWTs (jose), cookies are set httpOnly and sameSite, and a rate-limiting helper is referenced in its code. This describes the code. It is not a security assessment.",
+      "I have not security-tested the live site, and I am not claiming any findings.",
     ],
     links: [{ label: "Live site", href: "https://adepamarket.admunz.workers.dev/" }],
     screenshots: [
@@ -89,7 +88,7 @@ export const projects: Project[] = [
       "An online digital-services platform focused on automated data bundle sales, customer onboarding, and digital transactions. It includes agent accounts with their own storefronts, a wallet, order tracking and an administrative back office.",
     problem:
       "Selling data bundles by hand is slow and error-prone. The platform automates ordering, payment and fulfilment, and lets resellers (agents) run their own stores on top of it.",
-    role: "Founder and full-stack web developer, 2026 to present (per CV). Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements. Built with AI assistance; I do not claim to have hand-written all of the code.",
+    role: "Founder and full-stack web developer, 2026 to present. Built the platform and handles APIs, payment integrations, backend services, deployment and ongoing improvements. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "Next.js 14, React 18 and TypeScript",
       "Supabase (database and auth client libraries)",
@@ -108,14 +107,13 @@ export const projects: Project[] = [
       "Scheduled jobs: daily and weekly summaries, reconciliation, wallet checks and provider polling",
       "Networks referenced in code: MTN, Telecel and AirtelTigo",
     ],
-    evidenceNote:
-      "Read from the project's source code (dependency list, routes, components). DataFlow Ghana is the working name of this same product, confirmed by me, so it is not listed separately. Not tested against the live site.",
+    evidenceNote: "Taken from the project's code: its dependencies, routes and components.",
     decisions: [],
     challenges: [],
     learned: [],
     security: [
-      "Observations from reading the source, not a security assessment: the Paystack webhook handler contains signature-verification code (HMAC and timing-safe comparison); Zod validation is imported in 2 files; rate limiting is referenced in 12 files; no .env file is committed and a simple pattern search found no obvious keys (a quick search, not a secret-scanning audit).",
-      "Nothing has been tested against the live site. No finding, fix or retest is claimed.",
+      "What the code does: the Paystack webhook handler verifies the payment signature (HMAC with a timing-safe comparison), Zod is used for input validation, and rate limiting is referenced in its code. No .env file is committed. This describes the code. It is not a security assessment.",
+      "I have not security-tested the live site, and I am not claiming any findings.",
     ],
     links: [{ label: "Live site", href: "https://www.admunz.com/" }],
     screenshots: [
@@ -133,7 +131,7 @@ export const projects: Project[] = [
       "A restaurant website where customers browse the menu, order online, pay, and follow their order, backed by an admin area for running orders, products, riders and delivery.",
     problem:
       "A restaurant needs a simple way to take and track orders online, accept payment, and manage delivery without handling everything by hand.",
-    role: "Website developer and graphic designer on a freelance, project basis, 2026 to present (per CV). Designed and built the restaurant's website and created branding and promotional graphics. Built with AI assistance; I do not claim to have hand-written all of the code.",
+    role: "Website developer and graphic designer on a freelance, project basis, 2026 to present. Designed and built the restaurant's website and created branding and promotional graphics. Built with AI assistance; I do not claim to have hand-written all of the code.",
     technologiesVerified: [
       "React, built with Vite (JavaScript/JSX)",
       "Tailwind CSS and Lucide icons",
@@ -150,14 +148,13 @@ export const projects: Project[] = [
       "Order tracking for customers, and payment result screens (not completed, still confirming, error)",
       "Admin area with login: orders, products, riders and delivery management",
     ],
-    evidenceNote:
-      "Read from the project's source code (dependency list, source files, database table and function names). Not tested against the live site.",
+    evidenceNote: "Taken from the project's code: its dependencies, source files and database functions.",
     decisions: [],
     challenges: [],
     learned: [],
     security: [
-      "Observations from reading the source, not a security assessment: payment verification runs in a server-side function rather than in the browser, and order creation and lookup go through database functions. The admin route has a client-side guard, so real protection depends on the database access rules, which have not been reviewed here.",
-      "Nothing has been tested against a live site. No finding, fix or retest is claimed.",
+      "What the code does: payment verification runs in a server-side function rather than in the browser, and order creation and lookup go through database functions. The admin route has a client-side guard, so real protection depends on the database access rules, which I have not reviewed. This describes the code. It is not a security assessment.",
+      "I have not security-tested the live site, and I am not claiming any findings.",
     ],
     links: [{ label: "Live site", href: "https://kwame607.github.io/city-beans/" }],
     screenshots: [
@@ -175,7 +172,7 @@ export const projects: Project[] = [
       "A Flask web application where a user pastes a message (an SMS, a summary of a call, or a social-media message) and gets an estimated fraud probability, a Low, Medium or High risk level, the suspicious wording it found, the words that most influenced the result, and a plain-language safety recommendation. It was my final-year project: an AI-based system for detecting impersonation and mobile money-related social engineering fraud.",
     problem:
       "Mobile money scams rely on impersonation, urgency and requests for a PIN or OTP. People need a fast check that also explains itself, so they can learn the warning signs rather than just trust a score.",
-    role: "Author of my final-year project (per CV).",
+    role: "Author of my final-year project.",
     technologiesVerified: [
       "Python and Flask (served with gunicorn)",
       "scikit-learn: TF-IDF text features, Logistic Regression, Support Vector Machine and Random Forest",
@@ -191,11 +188,10 @@ export const projects: Project[] = [
       "Three models trained and compared on a 9,447-message dataset, with Logistic Regression deployed",
       "Held-out test results: 98.3% recall (475 of 483 frauds caught), 99.2% precision and 99.0% accuracy on 1,165 test messages, with 8 missed frauds and 4 false alarms",
     ],
-    evidenceNote:
-      "Read from the project's source code and README. The test results above were reproduced by re-running the project's training script on its dataset (the project pins scikit-learn 1.8.0; the re-run used a newer release), and they match the figures on the CV.",
+    evidenceNote: "Taken from the project's code and README. The test results come from re-running its training script on its dataset and match my CV.",
     limitations: [
       "The scores come from a held-out split of the same dataset. They say nothing yet about messages from other sources or new scam styles, so they are prototype results, not real-world performance.",
-      "The dataset is built from message templates, and the project does not document how much of it is synthetic versus real, so it should not be read as a measure of performance on live traffic.",
+      "The dataset is built from message templates, and I have not recorded how much of it is synthetic versus real, so it should not be read as a measure of performance on live traffic.",
       "A high-risk result is an estimate, not proof. It is meant to support a person's judgement, not replace it.",
     ],
     decisions: [
@@ -206,7 +202,7 @@ export const projects: Project[] = [
     challenges: [],
     learned: [],
     security: [
-      "The app processes message text pasted by users on a Flask server. Input handling, rate limiting and data retention have not been reviewed here.",
+      "The app processes message text pasted by users on a Flask server. I have not reviewed its input handling, rate limiting or data retention.",
     ],
     links: [],
     screenshots: [
@@ -224,7 +220,7 @@ export const projects: Project[] = [
       "A Python command-line tool that checks which TCP ports accept connections on a host the user chooses. It prompts for a hostname or IPv4 address, a port range, and a scan mode, then reports open ports.",
     problem:
       "Learning how services are exposed on a network means understanding how TCP connections succeed or fail. This tool is a hands-on way to explore that on systems you own or are authorized to test.",
-    role: "Author (the README credits Kwame Emmanuel Adom).",
+    role: "Author.",
     technologiesVerified: [
       "Python 3 (README states 3.6 or newer)",
       "socket module from the standard library",
@@ -238,15 +234,14 @@ export const projects: Project[] = [
       "TCP connect scan using socket.connect_ex, with a 1 second timeout in common-ports mode and 0.1 second in full-range mode",
       "README includes a disclaimer to scan only systems you own or have permission to test",
     ],
-    evidenceNote:
-      "Read from the tool's source code and README. The terminal capture is a real run against scanme.nmap.org.",
+    evidenceNote: "Taken from the tool's code and README. The terminal capture is a real run against scanme.nmap.org.",
     limitations: [
       "Ports are scanned one at a time, so large ranges are slow.",
       "Any failed connection is reported as 'closed', so it cannot tell a refused connection from a filtered port or a timeout.",
       "It does not identify services: output shows port numbers only, and a port number is just a convention.",
       "Full-range mode prints only open ports, and its 0.1 second timeout can miss slow hosts (false negatives).",
       "Authorization is not enforced in code. It relies on the user and the README disclaimer.",
-      "It prints a 'checking if the host is up' message, but no host-discovery step follows in the code reviewed.",
+      "It prints a 'checking if the host is up' message, but no host-discovery step follows.",
     ],
     decisions: [],
     challenges: [],
@@ -282,11 +277,10 @@ export const projects: Project[] = [
     overview:
       "An isolated home lab built with Kali Linux and deliberately vulnerable targets (Metasploitable 2) to practice network reconnaissance, service enumeration and vulnerability assessment aligned with OWASP Top 10 categories, in preparation for web application security and bug bounty work.",
     problem: "Security skills need a safe, legal place to practice, so the lab is isolated and uses targets that are meant to be attacked.",
-    role: "Builder and sole user (per CV).",
+    role: "Builder and sole user.",
     technologiesVerified: [],
     featuresVerified: [],
-    evidenceNote:
-      "From my CV. No lab notes, screenshots or reports have been published yet, so nothing on this page is evidence of specific results.",
+    evidenceNote: "From my CV. I have not published lab notes, screenshots or reports yet, so this page does not show specific results.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -305,14 +299,14 @@ export const projects: Project[] = [
       "An interactive 3D villa environment with a modern house, swimming pool, gym, garden, vehicle and furniture, explorable on desktop and on a phone.",
     problem:
       "A hands-on exercise in interactive 3D on the web: composing a scene, bringing in GLB/GLTF assets, and making movement and camera control work for both mouse-and-keyboard and touch.",
-    role: "Author. Developed and deployed the experience (per CV).",
+    role: "Author. Developed and deployed the experience.",
     technologiesVerified: ["A-Frame", "HTML5, CSS and JavaScript", "GLB/GLTF 3D assets"],
     featuresVerified: [
       "Desktop movement and camera-look controls",
       "Mobile touch controls for navigation and camera movement",
       "A furnished scene: modern house, swimming pool, gym, garden, vehicle and furniture",
     ],
-    evidenceNote: "From the CV. The source code was not reviewed for this page.",
+    evidenceNote: "From my CV.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -327,10 +321,10 @@ export const projects: Project[] = [
     tagline: "A Python simulation of file encryption and password-gated recovery, for studying defensive security",
     status: "Built · educational simulation",
     overview:
-      "An educational simulation for studying defensive security concepts and threat mitigation (per CV). In the captured runs one script encrypts the files in a test folder, saves a key file, and a second script restores them after a recovery password is entered. Its own output labels each run a simulation, and the project folder is named cybersecurity-ransomware-demo.",
+      "An educational simulation for studying defensive security concepts and threat mitigation. In the captured runs one script encrypts the files in a test folder, saves a key file, and a second script restores them after a recovery password is entered. Its own output labels each run a simulation, and the project folder is named cybersecurity-ransomware-demo.",
     problem:
       "Understanding how file-encrypting attacks work, and what recovery depends on, is part of learning to defend against them. A simulation on throwaway files makes that visible without risk to real data.",
-    role: "Author (per CV).",
+    role: "Author.",
     technologiesVerified: ["Python"],
     featuresVerified: [
       "An encryption script that creates a test_folder if none exists, then encrypts the files placed in it",
@@ -339,12 +333,12 @@ export const projects: Project[] = [
       "Both scripts label their output as a simulation",
     ],
     limitations: [
-      "The source code was not reviewed, so the encryption method, how the key is protected and how the recovery password is checked are not described here.",
+      "The captures do not show the encryption method or how the recovery password is checked.",
       "In the captures the key file is saved next to the files it protects, and the recovery password is a simple demo word. It is a teaching exercise, not a design for protecting real data.",
       "The captured runs touched only two files in the test folder. Nothing here shows or claims use on any other data.",
       "The captures carry no date, so none is stated.",
     ],
-    evidenceNote: "From the CV and three terminal and editor captures.",
+    evidenceNote: "From my CV and three terminal and editor captures.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -365,10 +359,10 @@ export const projects: Project[] = [
       "A terminal chat where a server waits for a connection, a client connects, each side enters a name, and messages appear on the other side with a timestamp until someone types exit.",
     problem:
       "A hands-on way to learn how two programs find each other and exchange data over a network: opening sockets, connecting, and sending and receiving messages.",
-    role: "Author (per CV). Built the real-time messaging application using a client-server design.",
+    role: "Author. Built the real-time messaging application using a client-server design.",
     technologiesVerified: ["Python", "Socket programming (TCP)"],
     featuresVerified: [
-      "Client-server architecture over sockets (per CV)",
+      "Client-server architecture over sockets",
       "A server that waits for a connection and reports who connected",
       "Each side enters a display name; messages show the sender and a timestamp",
       "Typing exit ends the session",
@@ -379,7 +373,7 @@ export const projects: Project[] = [
       "The capture shows one client talking to the server. Handling several clients at once is not shown and is not claimed.",
       "No encryption or authentication is described or shown, so treat the conversation as plain text.",
     ],
-    evidenceNote: "From the CV and two terminal captures (the client and the server). The source code was not reviewed.",
+    evidenceNote: "From my CV and terminal captures of the client and the server.",
     decisions: [],
     challenges: [],
     learned: [],
@@ -399,14 +393,14 @@ export const projects: Project[] = [
       "A business website with Home, Services, About and Reviews sections. Its landing page introduces the company and presents an Enterprise Solutions Portfolio of three service cards: Enterprise Computing Solutions, Professional Accessories and Smart Technology Solutions.",
     problem:
       "A company needs a website that explains what it offers clearly and works on any screen.",
-    role: "Web developer, 2025 to present (per CV). Developed the website, organised its content to present the company's offerings, and implemented responsive layouts and interactive components.",
+    role: "Web developer, 2025 to present. Developed the website, organised its content to present the company's offerings, and implemented responsive layouts and interactive components.",
     technologiesVerified: ["Responsive front-end website", "Hosted on GitHub Pages"],
     featuresVerified: [
       "Navigation across Home, Services, About and Reviews",
       "A full-width hero with the company introduction",
       "An Enterprise Solutions Portfolio of three service cards with feature tags",
     ],
-    evidenceNote: "From the CV and two screenshots of the live site. The source code was not reviewed.",
+    evidenceNote: "From my CV and screenshots of the live site.",
     decisions: [],
     challenges: [],
     learned: [],

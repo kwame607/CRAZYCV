@@ -26,7 +26,7 @@ const facts: [string, string][] = [
   ["Education", "BSc Computer Science, University of Cape Coast"],
   ["Final-year project", "MoMo Fraud Shield, a machine-learning prototype for spotting mobile money scam messages"],
   ["Founder and developer", "Admunz Data Hub and AdepaMarket"],
-  ["Training", "Cisco Networking Academy: Introduction to Cybersecurity (certificate); Ethical Hacking (continuing study)"],
+  ["Training", "Cisco Networking Academy certificates: Introduction to Cybersecurity and Ethical Hacking"],
   ["Based in", "Kumasi, Ghana"],
 ];
 

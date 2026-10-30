@@ -97,7 +97,7 @@ export function ProjectCaseStudy({ project: p }: { project: Project }) {
       {p.evidenceNote && (
         <div className="pt-8">
           <Notice>
-            <strong className="text-fg">Basis for these details:</strong> {p.evidenceNote}
+            <strong className="text-fg">Sources:</strong> {p.evidenceNote}
           </Notice>
         </div>
       )}

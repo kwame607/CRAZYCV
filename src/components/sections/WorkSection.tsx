@@ -140,7 +140,7 @@ export function WorkSection() {
         <SectionHeader
           index="02"
           label="Projects"
-          lead="Everything I've built, with security and networking first. My port scanner and home lab are in the Cybersecurity section above. Each project says what I built and what I can and can't claim about it. Every detail was read from the source, shown in a real screenshot, or stated on my CV."
+          lead="Everything I've built, with security and networking first. My port scanner and home lab are in the Cybersecurity section above. Each project says what I built and what I can and can't claim about it."
         >
           <span id="work-title">
             Security first, <em className="text-accent">then everything else I build.</em>
@@ -185,7 +185,7 @@ export function WorkSection() {
         <div className="mt-24 md:mt-32">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
-              Also built <span className="text-fg2">/ from my CV</span>
+              Also built
             </p>
           </Reveal>
           <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
